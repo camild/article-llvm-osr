@@ -1,0 +1,13 @@
+\section{Experimental Evaluation}
+\label{se:experiments}
+
+\subsection{Setup}
+
+\subsection{Results}
+
+\begin{itemize}
+\item Message 1: how much does a never-firing OSR point impact code quality? We run a program with one or more OSR points, and we measure the slowdown given by factors such as cache effects (due to code bloat), register pressure, etc. due to the presence of the OSR points.
+\item Message 2: what is the overhead of an OSR transition to the same function? We run a program with a controlled OSR transition, e.g., with a counter that fires the OSR. Here we measure the impact of the actual OSR call [we already tried this with the repeated addition microbenchmark simple_loop_SSA.ll].
+\item Message 3: what is the overhead of the library for inserting OSR points?
+\end{itemize}
+
