@@ -2,7 +2,8 @@ On-Stack Replacement (OSR) is a technique that allows to halt the execution of a
 
 In this paper we present a novel framework to perform OSR transitions. Compared to extant OSR techniques, our approach is platform-independent as transitions are encoded entirely at the Intermediate Representation (IR) level; it supports OSR-point insertion at arbitrary locations in a function, and it allows a function version reached via OSR to fire an OSR itself, either to a more optimized version or to a less optimized one from which it was derived.
 
-We implement and evaluate our technique in the LLVM compiler infrastructure, which is nowadays being increasingly used as Just-In-Time (JIT) compiler in virtual machines for dynamic languages such as Javascript, MATLAB, Python and Ruby. We then present a case study on the integration of our technique in the McVM virtual machine for MATLAB, showing interesting speedups from the run-time optimization of a construct of the language.
+We implement and evaluate our technique in the LLVM compiler infrastructure, which is nowadays being increasingly used as Just-In-Time (JIT) compiler in virtual machines for dynamic languages such as Javascript, MATLAB, Python and Ruby. We then present a case study on the integration of our technique in the McVM virtual machine for MATLAB, showing interesting speedups from the run-time optimization of a typical construct of the language.
+  
   
   
   
