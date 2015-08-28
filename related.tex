@@ -3,7 +3,7 @@
 
 \paragraph{Early approaches}. OSR has been pioneered in the SELF language\cite{holzle1992self} to enable source-level debugging of optimized code, which required deoptimizing the code back to the original version. To reconstruct the source-level state, the compiler generates {\em scope descriptors} recording for each scope the locations or values of its arguments and locals. Execution can be interrupted only at certain interrupt points (i.e., method prologues and backward branches in loops) where its state is guaranteed to be consistent, allowing optimizations between interrupt points. It is worth mentioning also the {\em deferred compilation} mechanism\cite{chambers1991self} implemented in SELF for branches that are unlikely to occur at run-time: the system generates a stub which invokes the compiler to generate a code object that can reuse the stack frame of the original code.
 
-\cite{fink2003design,detlefs2001method, soman2006efficient, lameed2013modular,steiner2007adaptive,chambers1992design}
+\cite{fink2003design,detlefs2001method,soman2006efficient,lameed2013modular,steiner2007adaptive,chambers1992design}
 
   
   
