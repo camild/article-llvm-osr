@@ -11,9 +11,13 @@ Whaley\cite{whaley2001osr} proposes a technique to identify intra-method code re
 
 The Jikes RVM uses an OSR mechanism\cite{fink2003design} that extracts a scope descriptor from a thread suspended at a method's entrypoint or backward branch, creates specialized code to setup the stack frame for the optimized compiled code and resumes the execution at the desired program counter. OSR is used as part of an automatic, online, profile-driven deferred compilation mechanism. A more general approach has then been proposed in\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g. class loading, exception conditions). Execution state information is maintained in a variable map - a per-method list of thread-switch points and associated live bytecode variables - that is incrementally updated across a wide range of basic compiler optimizations.
 
+In the Graal VM, which is a modified version of HotSpot centered on the principle of speculative optimizations, the execution falls back to the interpreter during deoptimization, while a runtime function restores the stack frames in the interpreter using the metadata associated with the deoptimization point\cite{duboscq2013graal,wurthinger2013truffle,duboscq2014metadata}.
+
+% TODO only if we have space: HotpathVM
 
 \cite{detlefs2001method,lameed2013modular,steiner2007adaptive,chambers1992design}
 
+  
   
   
   
