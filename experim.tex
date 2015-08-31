@@ -19,8 +19,8 @@ We generated the IR modules for our experiments with clang, starting from the C 
 
 \paragraph{Impact on code quality}
 In order to measure how much a never-firing OSR point impacts code quality, we analyzed the code structure of each benchmark and profiled its run-time behavior with gprof to determine the most critical sections for OSR point insertion.
-
 For recursive benchmarks ({\tt binary-trees} and {\tt spectral-norm}), we insert an OSR point in the body of the hottest method (i.e., the one accounting for the largest {\em self} execution time) of the program. For iterative benchmarks, we insert an OSR point on loops that are responsible for the largest fraction of cumulative invocations of the hottest method.
+  
   
   
   
