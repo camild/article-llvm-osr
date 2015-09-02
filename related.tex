@@ -15,8 +15,13 @@ In the Graal VM, which is a modified version of HotSpot centered on the principl
 
 % TODO only if we have space: HotpathVM
 
+\paragraph{LLVM}
+A slow variant might need to track state at run-time that does not exist in the fast version
+Prospect~\cite{susskraut2010prospect} is a framework for the parallelization of a sequential application that runs a fast variant and a slow variant of its code. The IR is instrumented statically through two LLVM passes to enable switching between the two variants at run-time; helper methods are used to save and eventually restore registers, while stack-local variables are put on a separate {\tt alloca} stack rather than on the stack frame so that the two variants result into similar and thus interchangeable stack layouts. Speculative variables~\cite{susskraut2009speculation} are introduced when the slow variant needs to track state (e.g., information for out-of-bound checks) that is missing in the fast variant.
+
 \cite{detlefs2001method,lameed2013modular,steiner2007adaptive,chambers1992design}
 
+  
   
   
   
