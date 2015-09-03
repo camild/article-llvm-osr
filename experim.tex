@@ -6,7 +6,7 @@ In this section we present a preliminar experimental study of our OSR technique 
 TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. The list of benchmarks and their description is reported in Table~\ref{tab:shootout}.
 
 \begin{table} 
-    \begin{tabular}{ c c }
+    \begin{tabular}{ |c|c| }
         Benchmark & Description \\ 
         b-trees & Adaptation of a GC bench for binary trees \\ 
         fannkuch & Fannkuch benchmark on permutations \\ 
@@ -40,6 +40,7 @@ For iterative benchmarks, we insert an OSR point in the body of their hottest lo
 For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might enable recompilation of the invoked method at a higher degree of optimization, [...]
 
 In the shootout benchmarks, ({\tt binary-trees} and {\tt spectral-norm}) show a recursive pattern.
+  
   
   
   
