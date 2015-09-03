@@ -18,8 +18,15 @@ We generated the IR modules for our experiments with clang, starting from the C 
 \end{itemize}
 
 \paragraph{Impact on code quality}
-In order to measure how much a never-firing OSR point impacts code quality, for each benchmark we analyzed its code structure  and profiled its run-time behavior with gprof to determine the performance-critical sections for OSR point insertion.
-For recursive benchmarks ({\tt binary-trees} and {\tt spectral-norm}), we insert an OSR point in the body of the hottest method (i.e., the one accounting for the largest {\em self} execution time) of the program. For iterative benchmarks, we insert an OSR point on loops that are responsible for the largest fraction of cumulative invocations of the hottest method.
+In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion.
+
+For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body. These loops are natural candidates for OSR point insertion, as they can be used - as in the Jikes RVM - to enable more dynamic inlining opportunities, with the benefits from several control-flow (e.g., dead code elimination) and data-flow (e.g., constant propagation) optimizations based on the run-time values of the live variables. In the shootout benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+
+For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might enable recompilation of the invoked method at a higher degree of optimization, [...]
+
+In the shootout benchmarks, ({\tt binary-trees} and {\tt spectral-norm}) show a recursive pattern.
+  
+  
   
   
   
