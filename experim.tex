@@ -7,15 +7,26 @@ TinyVM is thus an ideal playground to exercise our OSR technique, and we use it 
 
 \begin{table} 
     \begin{tabular}{ |c|c| }
-        Benchmark & Description \\ 
+        \hline
+        {\em Benchmark} & {\em Description} \\ 
+        \hline
+        \hline
         b-trees & Adaptation of a GC bench for binary trees \\ 
+        \hline
         fannkuch & Fannkuch benchmark on permutations \\ 
+        \hline
         fasta & Generation of DNA sequences \\ 
+        \hline
         fasta-redux & Generation of DNA sequences (with lookup table) \\ 
+        \hline
         mbrot & Mandelbrot set generation \\ 
+        \hline
         n-body & N-body simulation of Jovian planets \\ 
+        \hline
         rev-comp & Reverse-complement of DNA sequences \\ 
+        \hline
         sp-norm & Eigenvalue calculation with power method \\ 
+        \hline
     \end{tabular} 
     \caption{\label{tab:shootout} Description of the shootout benchmarks} 
 \end{table}
@@ -40,6 +51,7 @@ For iterative benchmarks, we insert an OSR point in the body of their hottest lo
 For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might enable recompilation of the invoked method at a higher degree of optimization, [...]
 
 In the shootout benchmarks, ({\tt binary-trees} and {\tt spectral-norm}) show a recursive pattern.
+  
   
   
   
