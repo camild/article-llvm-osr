@@ -5,6 +5,14 @@ The key to platform independence in our approach is to encode the entire OSR mac
 
 \subsection{Overview}
 
+\begin{verbatim}
+int fac(int n) {
+    int i, f = 1;
+    for (i=2; i<=n; i++) f *= i;
+    return f;
+}
+\end{verbatim}
+
 \subsection{LLVM API for OSR}
 
 \subsubsection{Finalized OSR Points}
@@ -12,6 +20,7 @@ The key to platform independence in our approach is to encode the entire OSR mac
 \subsubsection{Open OSR Points}
 
 
+  
   
   
   
