@@ -5,9 +5,18 @@ MATLAB is a popular dynamic language for scientific and numerical programming. I
 
 A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an {\tt feval} call is significantly high compared to a direct call, especially in JIT-based execution environments such as McVM and the proprietary MATLAB JIT accelerator by Mathworks. The main reason for this overhead is that the presence of an {\tt feval} instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are a key ingredient for efficient code generation.
 
-Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing feval calls. The first technique is based on OSR: using the McOSR library~\cite{lameed2013modular}, {\tt feval} instructions contained in loops are instrumented with an OSR point and profiling code to cache the last-known types for the arguments of each {\tt feval} instruction. When an OSR is fired at run-time, a code generator modifies the original function by inserting a guard to choose between a fast path containing a direct call and a slow path with an {\tt feval} call. The second technique is less general and uses value-based JIT compilation: when the first argument of an {\tt feval} call is an argument of the enclosing function, the compiler replaces each call to this function in its callers with a call to a dispatcher. When the program is executed, the dispatcher will evaluate the value of the parameter for the {\tt feval} and return either a cached version or JIT-compile a method optimized for the current value of the argument of interest.
- 
+Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing {\tt feval} instructions. The first technique is based on OSR: using the McOSR library~\cite{lameed2013modular}, {\tt feval} calls inside loops are instrumented with an OSR point and with profiling code to cache the last-known types for the arguments of each {\tt feval} instruction. When an OSR is fired at run-time, a code generator modifies the original function by inserting a guard to choose between a fast path containing a direct call and a slow path with the original {\tt feval} call. The second technique is less general and uses value-based JIT compilation: when the first argument of an {\tt feval} call is an argument of the enclosing function, the compiler replaces each call to this function in all of its callers with a call to a special dispatcher. When the program is executed, the dispatcher will evaluate the value of the parameter for the {\tt feval} and execute either a previously compiled cached code or generate and JIT-compile a method optimized for the current value of the argument.
 
+Although the OSR-based approach is more general, it generates much less efficient code compared to the JIT-based version for three reasons:
+\begin{enumerate}
+\item since the function called through {\tt feval} is unknown at compile time, the type inference engine is unable to infer types for the returned values, so the compiler has to generate generic instructions (suitable for handling different types) for the remainder of the code;
+\item guard computation is expensive, because not only the value of the first argument, but also the types of the remaining arguments have to be checked to choose between the fast and the slow path;
+\item since an {\tt feval} is executed through the interpreter, in the original functions arguments are boxed to make them more generic before the call.
+\end{enumerate}
+
+
+
+  
   
   
   
