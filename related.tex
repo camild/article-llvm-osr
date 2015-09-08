@@ -25,7 +25,10 @@ Dynamic Software Updating (DSU) is a methodology for permitting programs to be u
 
 In tracing JIT compilers deoptimization techniques are used to safely leave an optimized trace when a guard fails and to continue the execution in the interpreter or with a different piece of code. SPUR~\cite{bebenita2010spur} is a trace-based JIT compiler for Microsoft's Common Intermediate Language (CIL) with four levels of JIT-ting: profiling, tracing, optimizing and transfer-tail; transfer-tail JIT is used to bridge the execution from an instruction in a block from tracing or optimizing mode to the next safe point for deoptimization to profiling code. In RPython guards are implemented as a conditional jump to a trampoline that analyzes resume information for the guard and executes compensation code to leave the trace. Resume data is compactly encoded by sharing parts of the data structure between subsequent guards~\cite{schneider2012rpython}; a similar approach is used in LuaJIT, where sparse snapshots are taken to enable state restoration when leaving a trace~\cite{luajit}.
 
+% TODO: speculative parallelization? (e.g. FastTrack)
+
 \cite{detlefs2001method,steiner2007adaptive,chambers1992design}
+  
   
   
   
