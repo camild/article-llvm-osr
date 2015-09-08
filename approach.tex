@@ -23,6 +23,15 @@ int fac(int n) {
 }
 \end{verbatim}
 
+\begin{verbatim}
+int fac_osr(int n) {
+    goto L;
+    int i = 2, f = 1;
+    while (i<=n) L: f *= i++;
+    return f;
+}
+\end{verbatim}
+
 \subsection{LLVM API for OSR}
 
 \subsubsection{Finalized OSR Points}
@@ -30,6 +39,7 @@ int fac(int n) {
 \subsubsection{Open OSR Points}
 
 
+  
   
   
   
