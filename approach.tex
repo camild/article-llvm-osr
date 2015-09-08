@@ -5,34 +5,32 @@ The key to platform independence in our approach is to encode the entire OSR mac
 
 \subsection{Overview}
 
-[TEST]
-
-\begin{verbatim}
-int fac(int n) {
-    int i = 2, f = 1;
-    while (i<=n) f *= i++;
-    return f;
-}
-\end{verbatim}
-
-\begin{verbatim}
-int fac(int n) {
-    int i = 2, f = 1;
-    while (i<=n)  {
-        if (osr_cond) return fac_osr(n,i,f); 
-        f *= i++; 
-    } return f;
-}
-\end{verbatim}
-
-\begin{verbatim}
-int fac_osr(int n) {
-    goto L;
-    int i = 2, f = 1;
-    while (i<=n) L: f *= i++;
-    return f;
-}
-\end{verbatim}
+%\begin{verbatim}
+%int fac(int n) {
+%    int i = 2, f = 1;
+%    while (i<=n) f *= i++;
+%    return f;
+%}
+%\end{verbatim}
+%
+%\begin{verbatim}
+%int fac(int n) {
+%    int i = 2, f = 1;
+%    while (i<=n)  {
+%        if (osr_cond) return fac_osr(n,i,f); 
+%        f *= i++; 
+%    } return f;
+%}
+%\end{verbatim}
+%
+%\begin{verbatim}
+%int fac_osr(int n) {
+%    goto L;
+%    int i = 2, f = 1;
+%    while (i<=n) L: f *= i++;
+%    return f;
+%}
+%\end{verbatim}
 
 \subsection{LLVM API for OSR}
 
