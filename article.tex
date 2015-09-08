@@ -30,10 +30,20 @@
 % authoryear    To obtain author/year citation style instead of numeric.
 
 \usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\usepackage{latexsym}
+\usepackage{amsfonts,amsmath,amssymb}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0}}
+\usepackage{textcomp}
+\usepackage{longtable}
+\usepackage{multirow,booktabs}
 
 \newcommand{\noauthorea}{}
 \input{header}
-\newcommand{\url}[1]{}
 
 \begin{document}
 
@@ -88,6 +98,15 @@ keyword1, keyword2
 \input{approach}
 \input{case-study}
 \input{experim}
+
+% figure
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.7\columnwidth]{figures/code-quality-noBB/code-quality-noBB.png}
+\caption{\label{fig:code-quality} Impact on running time of never-firing OSR points inserted inside hot code portions.}
+\end{center}
+\end{figure}
+
 \input{related}
 \input{conclusions}
 
