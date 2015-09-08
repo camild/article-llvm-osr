@@ -14,10 +14,8 @@ Although the OSR-based approach is more general, it generates much less efficien
 \item since an {\tt feval} is executed through the interpreter, in the original functions arguments are boxed to make them more generic before the call.
 \end{enumerate}
 
+The first one is a major source of inefficiency for the OSR-based approach, since the benefits from replacing the call to the interpreter's {\tt feval} dispatcher with a direct call are limited compared to the optimization opportunities deriving from a better type inference on the whole body of the function. In fact, instructions operating on generic-type variables are much less efficient than their counterparts for [arrays of] primitive types, as they operate on boxed values.
 
-
-  
-  
-  
-  
+Lameed and Hendren conclude their paper by stating that ``It would be interesting to look at future work that combine the
+strengths of both approaches".
   
