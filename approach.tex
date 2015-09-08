@@ -17,8 +17,7 @@ int fac(int n) {
 int fac(int n) {
     int i = 2, f = 1;
     while (i<=n)  {
-        if (osr_cond) { fac_osr(n,i,f); 
-                        return f; }
+        if (osr_cond) return fac_osr(n,i,f); 
         f *= i++; 
     } return f;
 }
@@ -31,6 +30,7 @@ int fac(int n) {
 \subsubsection{Open OSR Points}
 
 
+  
   
   
   
