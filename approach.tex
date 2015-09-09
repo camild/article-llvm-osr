@@ -19,7 +19,7 @@ The key to platform independence in our approach is to encode the entire OSR mac
 
 Consider the generic OSR scenario shown Figure~\ref{fi:osr-dynamics}. A base function \textsf{f} is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \textsf{f'}. The decision of whether an OSR should be fired at a given point \textsf{L} is based on an {\em OSR condition}. A typical example is a guard testing whether a speculative function \textsf{f} has become unsafe and a fallback to a safe version \textsf{f'} is in order. Another example is a profile counter reaching a certain hotness threshold, which indicates that \textsf{f} is taking longer than expected and is worth optimizing.
 
-A classical OSR implementation approach consists of manipulating the state of the program at machine code level, e.g., by adjusting the stack so that execution can continue in \textst{f'} with the current frame \cite{}. A substantially simpler approach consists of creating a new frame, rather that modifying the current one. This approach was used, e.g., in \cite{}.
+A classical OSR implementation approach consists of manipulating the state of the program at machine code level, e.g., by adjusting the stack so that execution can continue in \textsf{f'} with the current frame \cite{}. A substantially simpler approach consists of creating a new frame, rather that modifying the current one. This approach was used, e.g., in \cite{}.
 
 The approach we use to support OSR transitions is to perform a 
 
@@ -70,6 +70,7 @@ The approach we use to support OSR transitions is to perform a
 \end{figure}
 \fi
 
+  
   
   
   
