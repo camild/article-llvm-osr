@@ -47,11 +47,12 @@ The analysis pass is integrated in McVM's analysis manager and identifies optimi
 
 The analysis pass is also able to determine whether the value of the argument can change across two executions of the same {\tt feval} instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase. Compared to the OSR-based approach by Lameed and Hendren, our solution is cheaper because the types for the other arguments do not need to be cached or guarded: as we will see later, the type inference engine will compute the most accurate yet sound type information in the analysis of the optimized IIR where direct calls are used.
 
-When the IIR compiler processes an annotated {\tt feval} instruction, it will store in the metadata of the function version being compiled a copy of its variable map (i.e., a map between IIR and IR objects), the current {\tt llvm::BasicBlock*} created for the call and the {\tt llvm::Value*} object corresponding to the first argument for the {\tt feval}. This information is then used by the helper component for OSR point insertion.
+When the IIR compiler processes an annotated {\tt feval} instruction, it will store in the metadata of the function version being compiled a copy of its variable map (i.e., a map between IIR and IR objects), the current {\tt llvm::BasicBlock*} created for the call and the {\tt llvm::Value*} object corresponding to the first argument for the {\tt feval}. The last two objects are used by the helper component as source label and profiling value for inserting an open OSR point, with the copy of the variable map being passed (along with other information) as {\tt extra} field. The open OSR stub will in turn invoke the callback component we are about to describe in the next subsection.
 
-The helper will process the metadata and insert an open OSR point [...]
+\subsection{Generating optimized code}
 
 
+  
   
   
   
