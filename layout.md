@@ -2,7 +2,7 @@ abstract.tex
 intro.tex
 figures/overview-osr/overview-osr.eps
 approach.tex
-figures/overview-osr-final/overview-osr-final.eps
+figures/overview-osr-final/overview-osr-final.pdf
 osr-llvm.tex
 case-study.tex
 experim.tex
