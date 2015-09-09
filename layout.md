@@ -3,6 +3,7 @@ intro.tex
 figures/overview-osr/overview-osr.png
 approach.tex
 figures/overview-osr-final/overview-osr-final.png
+figures/overview-osr-open/overview-osr-open.png
 osr-llvm.tex
 case-study.tex
 experim.tex
