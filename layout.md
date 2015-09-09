@@ -2,7 +2,7 @@ abstract.tex
 intro.tex
 figures/overview-osr/overview-osr.png
 approach.tex
-subsection_OSR_in_LLVM_subsubsection__.tex
+osr-llvm.tex
 case-study.tex
 experim.tex
 figures/code-quality-noBB/code-quality-noBB.png
