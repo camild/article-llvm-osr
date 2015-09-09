@@ -17,7 +17,7 @@ The key to platform independence in our approach is to encode the entire OSR mac
 \subsection{Overview}
 \label{ss:overview}
 
-Consider the generic OSR scenario shown Figure~\ref{fi:osr-dynamics}. A base function \textsf{f} is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \textsf{f'}. The decision of whether an OSR should be fired at a given point is based on a condition: examples include a guard that tests whether \textsf{f} has become unsafe, or a profile counter that reaches a certain hotness threshold, indicating that \textsf{f} is taking longer than expected and is worth optimizing.
+Consider the generic OSR scenario shown Figure~\ref{fi:osr-dynamics}. A base function \textsf{f} is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \textsf{f'}. The decision of whether an OSR should be fired at a given point is based on an {\em OSR condition}: for instance, a guard testing whether \textsf{f} has become unsafe, or a profile counter reaching a certain hotness threshold, which indicates that \textsf{f} is taking longer than expected and is worth optimizing.
 
 %\ref{fi:overview-osr-final}
 
@@ -66,6 +66,7 @@ Consider the generic OSR scenario shown Figure~\ref{fi:osr-dynamics}. A base fun
 \end{figure}
 \fi
 
+  
   
   
   
