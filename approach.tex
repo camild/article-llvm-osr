@@ -21,7 +21,7 @@ Consider the generic OSR scenario shown in Figure~\ref{fi:osr-dynamics}. A base 
 
 Classical OSR implementations adjust the stack so that execution can continue in \fvariant\ with the current frame \mynote{add citations}. This requires manipulating the program state at machine code level and is highly ABI- and compiler-dependent. A simpler approach, which we follow in this article, consists of creating a new frame every time an OSR is fired, essentially regarding an OSR transition as a function call \mynote{cite WebKit and McVM}. 
 
-Our implementation targets two general scenarios: 1) {\em Resolved OSR}: \fvariant\ is known before executing \fbase, as in the deoptimization example discussed above; 2) {\em Open OSR}: \fvariant\ is generated when the OSR is fired, supporting deferred compilation strategies. In both cases, \fbase\ is instrumented before its execution to incorporate the OSR machinery. We call such OSR-instrumented version \fosrfrom. Instrumentation consists of adding a check of the OSR condition. If the condition is satisfied, \fosrfrom\ fires the OSR via a regular function call.
+Our implementation targets two general scenarios: 1) {\em resolved OSR}: \fvariant\ is known before executing \fbase, as in the deoptimization example discussed above; 2) {\em open OSR}: \fvariant\ is generated when the OSR is fired, supporting deferred compilation strategies. In both cases, \fbase\ is instrumented before its execution to incorporate the OSR machinery. We call such OSR-instrumented version \fosrfrom. Instrumentation consists of adding a check of the OSR condition. If the condition is satisfied, \fosrfrom\ fires the OSR via a regular function call.
 
 In the resolved OSR scenario (see Figure~\ref{fi:overview-osr-final}), the OSR invokes an instrumented version of \fvariant\ called \fosrto, passing to it {\em all variables that are live at the OSR point}. Notice that, differently from \fvariant, \fosrto\ takes as input the live variables of \fbase\ at \textsf{L}.
 
@@ -75,6 +75,7 @@ In the resolved OSR scenario (see Figure~\ref{fi:overview-osr-final}), the OSR i
 \end{figure}
 \fi
 
+  
   
   
   
