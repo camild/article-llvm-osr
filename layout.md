@@ -1,13 +1,11 @@
 abstract.tex
 intro.tex
+figures/overview-osr/overview-osr.eps
 approach.tex
+figures/overview-osr-final/overview-osr-final.eps
 osr-llvm.tex
 case-study.tex
 experim.tex
-figures/code-quality-noBB/code-quality-noBB.png
+figures/code-quality-noBB/code-quality-noBB.eps
 related.tex
 conclusions.tex
-  
-  
-  
-  
