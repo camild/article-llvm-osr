@@ -33,12 +33,14 @@ McVM implements a function versioning mechanism based on type specialization: fo
 The source code of McVM is publicly available~\cite{mcvm}, and after porting it from the legacy LLVM JIT to MCJIT, we have extended it with the following components to enable the optimization of {\tt feval} instructions:
 \begin{enumerate}
 \item An analysis pass for {\tt feval} instructions in the IIR representation of a function
-\item An extension for the IIR compiler to track the correspondence between IIR and LLVM IR objects at {\tt feval} calls
-\item A helper component to insert OSR points at locations identified during the analysis pass
-\item A profile-driven generator for IIR code (to replace {\tt feval} calls with direct calls)
-\item A callback component invoked at OSR points to generate (or retrieve a cached version of) an optimized version of the
-
-\item 
+\item An extension for the IIR compiler to track the correspondence between IIR and IR objects at {\tt feval} calls
+\item A helper component to insert OSR points in the IR at IIR locations identified during the analysis pass
+\item A callback component invoked at OSR points, which in turns is made of:
+\begin{enumerate}
+\item A profile-driven IIR generator to replace {\tt feval} calls with direct calls
+\item A helper component to lower the optimized IIR function to IR and construct a state mapping 
+\item A code caching mechanism to handle the compilation of the continuation functions
+\end{enumerate}
 \end{enumerate}
 
 
@@ -46,6 +48,7 @@ The source code of McVM is publicly available~\cite{mcvm}, and after porting it 
 
 
 
+  
   
   
   
