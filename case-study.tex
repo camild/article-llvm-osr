@@ -35,7 +35,7 @@ The source code of McVM is publicly available~\cite{mcvm}, and after porting it 
 \item An analysis pass for {\tt feval} instructions in the IIR representation of a function
 \item An extension for the IIR compiler to track the correspondence between IIR and IR objects at {\tt feval} calls
 \item A helper component to insert OSR points in the IR at IIR locations identified during the analysis pass
-\item A callback component invoked at OSR points, which in turns is made of:
+\item A callback component invoked at OSR points, which in turn is made of:
 \begin{enumerate}
 \item A profile-driven IIR generator to replace {\tt feval} calls with direct calls
 \item A helper component to lower the optimized IIR function to IR and construct a state mapping 
@@ -43,16 +43,6 @@ The source code of McVM is publicly available~\cite{mcvm}, and after porting it 
 \end{enumerate}
 \end{enumerate}
 
-
-
-
-
-
-  
-  
-  
-  
-  
-  
+The analysis pass is integrated in McVM's analysis manager and groups {\tt feval} instructions together when their first argument is reached by the same definition, using reaching definition information already computed by the analysis manager for other optimizations. The analysis pass is also able to determine whether the value of the argument can change across two executions of the same {\tt feval} instruction, and thus indicate when a run-time guard should be inserted during the run-time optimization phase. Compared to the OSR-based approach by Lameed and Hendren, our solution is cheaper because the types for the other arguments do not need to be cached or checked: as we will see later, the type inference engine will compute the most accurate yet sound type information during the analysis of the IIR where {\tt feval} calls are replaced with direct calls.
   
   
