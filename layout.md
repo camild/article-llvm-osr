@@ -6,6 +6,6 @@ figures/overview-osr-final/overview-osr-final.pdf
 osr-llvm.tex
 case-study.tex
 experim.tex
-figures/code-quality-noBB/code-quality-noBB.eps
+figures/code-quality-noBB/code-quality-noBB.png
 related.tex
 conclusions.tex
