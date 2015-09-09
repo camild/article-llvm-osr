@@ -1,9 +1,13 @@
+% !TEX root = article.tex
+
 \section{Approach}
 \label{se:approach}
 
 The key to platform independence in our approach is to encode the entire OSR machinery at intermediate representation level, without resorting to machine-level code manipulation.
 
 \subsection{Overview}
+
+\ref{fi:overview-osr-final}
 
 %\begin{verbatim}
 %int fac(int n) {
@@ -32,7 +36,15 @@ The key to platform independence in our approach is to encode the entire OSR mac
 %}
 %\end{verbatim}
 
-  
+\ifdefined\noauthorea
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.7\columnwidth]{figures/overview-osr-final/overview-osr-final.eps}
+\caption{\protect\input{figures/overview-osr-final/caption}}
+\end{center}
+\end{figure}
+\fi
+
   
   
   
