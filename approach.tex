@@ -21,7 +21,7 @@ Consider the generic OSR scenario shown in Figure~\ref{fi:osr-dynamics}. A base 
 
 Classical OSR implementations adjust the stack so that execution can continue in \textsf{f'} with the current frame \mynote{add citations}. This requires manipulating the program at machine code level and is highly ABI- and compiler-dependent. A simpler approach, which we follow in this article, consists of creating a new frame every time an OSR is fired, essentially regarding an OSR transition as a function call \mynote{cite WebKit and McVM}. 
 
-Our implementation targets two general scenarios: 1) {\bf resolved OSR}: \textsf{f'} is known before executing \textsf{f}, as in the deoptimization example discussed above; 2) {\bf open OSR}: \textsf{f'} is generated when the OSR is fired, supporting deferred compilation strategies. In both cases, for and OSR to be fired at a certain point \textsf{L}, the base function needs to be instrumented before its execution with code that checks the OSR condition. We denote with \textsf{f$_OSRfrom$} the OSR-instrumented version of \textsf{f}. If the condition is satisfied, control is transferred to \textsf{f'} via a function call. In the first scenario, shown in Figure~\ref{fi:overview-osr-final}, the OSR invokes an instrumented version of \textsf{f'}, which we call \textsf{f'$_OSRto$}. This is possible since \textsf{f'} is known when \textsf{f} is instrumented.
+Our implementation targets two general scenarios: 1) {\bf resolved OSR}: \textsf{f'} is known before executing \textsf{f}, as in the deoptimization example discussed above; 2) {\bf open OSR}: \textsf{f'} is generated when the OSR is fired, supporting deferred compilation strategies. In both cases, for and OSR to be fired at a certain point \textsf{L}, the base function needs to be instrumented before its execution with code that checks the OSR condition. We denote with \textsf{f$_{OSRfrom}$} the OSR-instrumented version of \textsf{f}. If the condition is satisfied, control is transferred to \textsf{f'} via a function call. In the first scenario, shown in Figure~\ref{fi:overview-osr-final}, the OSR invokes an instrumented version of \textsf{f'}, which we call \textsf{f'$_{OSRto}$}. This is possible since \textsf{f'} is known when \textsf{f} is instrumented.
 
 %and returns the same value when it has terminated. The assumption is that the called function produces the same side-effects and return values that one would obtain by \textsf{f} if no OSR were performed.
 
@@ -72,6 +72,7 @@ Our implementation targets two general scenarios: 1) {\bf resolved OSR}: \textsf
 \end{figure}
 \fi
 
+  
   
   
   
