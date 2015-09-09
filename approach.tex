@@ -17,7 +17,7 @@ The key to platform independence in our approach is to encode the entire OSR mac
 \subsection{Overview}
 \label{ss:overview}
 
-Consider the generic OSR scenario shown Figure~\ref{fi:osr-dynamics}. A base function \textsf{f} is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \textsf{f'}. The decision of whether an OSR should be fired at a given point \textsf{L} is based on an {\em OSR condition}. A typical example is a guard testing whether a speculative function \textsf{f} has become unsafe and a fallback to a safe version \textsf{f'} is in order. Another example is a profile counter reaching a certain hotness threshold, which indicates that \textsf{f} is taking longer than expected and is worth optimizing.
+Consider the generic OSR scenario shown in Figure~\ref{fi:osr-dynamics}. A base function \textsf{f} is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \textsf{f'}. The decision of whether an OSR should be fired at a given point \textsf{L} is based on an {\em OSR condition}. A typical example is a guard testing whether a speculative function \textsf{f} has become unsafe and a fallback to a safe version \textsf{f'} is in order. Another example is a profile counter reaching a certain hotness threshold, which indicates that \textsf{f} is taking longer than expected and is worth optimizing.
 
 Classical OSR implementations adjust the stack so that execution can continue in \textsf{f'} with the current frame \mynote{add citations}. This requires manipulating the program at machine code level and is highly ABI- and compiler-dependent. A simpler approach, which we follow in this paper, consists of creating a new frame every time an OSR is fired, essentially regarding an OSR transition as a function call \mynote{cite WebKit and McVM}. 
 
@@ -68,6 +68,7 @@ Classical OSR implementations adjust the stack so that execution can continue in
 \end{figure}
 \fi
 
+  
   
   
   
