@@ -28,11 +28,21 @@ strengths of both approaches". In the remaining part of this section, we extend 
 \subsection{Extending McVM}
 The McVM virtual machine is a complex research project developed at McGill and composed of several software components, including: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures all of the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, thus lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. The architecture of McVM is illustrated in Figure [...]
 
-McVM implements a JIT specialization mechanism for functions based on call signatures: for each IIR representation of a function, multiple IR versions are generated according to the types of the arguments for the call
+McVM implements a function versioning mechanism based on type specialization: for each IIR representation of a function, different IR versions are generated according to the types of the arguments at each call site. The number of generated versions per function is on average small (i.e., less than two), as in most cases functions are always called with the same argument types. Type specialization is the main factor for the generation of efficient code in McVM~\cite{chevalier2010mcvm}.
+
+The source code of McVM is publicly available~\cite{mcvm}, and after porting it from the legacy LLVM JIT to MCJIT, we have extended it with the following components to enable the optimization of {\tt feval} instructions:
+\begin{enumerate}
+\item An analysis pass for {\tt feval} instructions in the IIR representation of a function
+\item An extension for the IIR compiler to track the correspondence between IIR and LLVM IR objects when compiling {\feval} calls
+\item 
+\end{enumerate}
 
 
 
 
+
+
+  
   
   
   
