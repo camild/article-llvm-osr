@@ -329,7 +329,7 @@
          id="tspan4471"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:serif;-inkscape-font-specification:serif">        return f'<tspan
    style="font-size:51.99999809%;baseline-shift:sub"
-   id="tspan4479">OSR</tspan>(live vars)</tspan><tspan
+   id="tspan4479">cont</tspan>(live vars)</tspan><tspan
          sodipodi:role="line"
          x="36"
          y="-346"
@@ -354,7 +354,7 @@
          id="tspan4483"
          sodipodi:role="line">T f'<tspan
    id="tspan4485"
-   style="font-size:51.99999809%;baseline-shift:sub">OSR</tspan>(live vars){</tspan><tspan
+   style="font-size:51.99999809%;baseline-shift:sub">cont</tspan>(live vars){</tspan><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:serif;-inkscape-font-specification:serif"
          id="tspan4487"
          y="-383.90234"
