@@ -66,18 +66,18 @@ In this [...]
 \begin{footnotesize}
     \begin{tabular}{ |c|c|c|c|c|c| }
         \cline{3-6}
-        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Base version} & \multicolumn{2}{c|}{Opt. version} \\
+        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Base version} & \multicolumn{2}{c|}{Optimized code} \\
         \hline
         Benchmark & Fired OSR transitions & Live values & Avg time (ns) & Live values & Avg time (ns) \\ 
         \hline
         \hline
-        b-trees & 605\,377\,887 & 2 & 3.057 & & \\ 
+        b-trees & 605\,377\,887 & 2 & 3.057 & 3 & 1.214 \\ 
         \hline
-        b-trees-large & 2\,689\,946\,975 & 2 & 2.986 & & \\ 
+        b-trees-large & 2\,689\,946\,975 & 2 & 2.986 & 3 & 0.945 \\ 
         \hline
-        fannkuch & ??? & ??? & ??? & & \\ 
+        fannkuch & ??? & ??? & ??? & ??? & ??? \\ 
         \hline
-        fasta & 400\,000\,000 & 2 & 3.039 & & \\ 
+        fasta & 400\,000\,000 & 2 & 3.039 & 2 & 4.654 \\ 
         \hline
         fasta-redux & 400\,000\,000 & 4 & 2.566 & & \\ 
         \hline
@@ -115,6 +115,7 @@ In this [...]
 [...]
   
 
+  
   
   
   
