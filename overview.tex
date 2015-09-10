@@ -59,8 +59,9 @@ Instrumenting functions for OSR at a higher level of representation than machine
 \item {\em Abstraction}: the approach is amenable to a clean instrumentation API that abstracts the OSR implementation details, allowing a front-end to focus on where to insert OSR points by analyzing code at an intermediate representation level.
 \end{enumerate}
 
-\noindent A natural question is whether encoding OSR at a higher level of abstraction can result in poorer performance than binary code approaches. We address this issue in Section~\ref{se:osr-llvm}, where we analyze the OSR machine code generated for an x86 target, and in Section~\ref{se:experiments}, where OSR-related overheads are measured on classical benchmarks.
+\noindent A natural question is whether encoding OSR at a higher level of abstraction can result in poorer performance than binary code approaches. We address this issue in Section~\ref{se:osr-llvm}, where we analyze the OSR machine code generated for an x86 target, and in Section~\ref{se:experiments}, where OSR performance is measured on classical benchmarks.
 
+  
   
   
   
