@@ -17,7 +17,7 @@ The key to platform independence in our work is to encode the entire OSR machine
 %\subsection{Overview}
 %\label{ss:overview}
 
-Consider the generic OSR scenario shown in \ifauthorea{Figure~}{}\ref{fi:osr-dynamics}. A base function \fbase\ is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \fvariant. The decision of whether an OSR should be fired at a given point \osrpoint\ of \fbase\ is based on an {\em OSR condition}. A typical example is a profile counter reaching a certain hotness threshold, which indicates that \fbase\ is taking longer than expected and is worth optimizing. This is a frequent scenario in JIT-based virtual machines. Another example is a guard testing whether \fbase\ has become unsafe and execution needs to fall back to a safe version \fvariant. This scenario includes deoptimization of functions generated with aggressive speculative optimizations. 
+Consider the generic OSR scenario shown in \ifauthorea{Figure~}{}\ref{fi:osr-dynamics}. A base function \fbase\ is executed and it can either terminate normally (dashed lines), or an OSR event may transfer control to a variant \fvariant. The decision of whether an OSR should be fired at a given point \osrpoint\ of \fbase\ is based on an {\em OSR condition}. A typical example in JIT-based virtual machines is a profile counter reaching a certain hotness threshold, which indicates that \fbase\ is taking longer than expected and is worth optimizing. Another example is a guard testing whether \fbase\ has become unsafe and execution needs to fall back to a safe version \fvariant. This scenario includes deoptimization of functions generated with aggressive speculative optimizations. 
 
 Classical OSR implementations adjust the stack so that execution can continue in \fvariant\ with the current frame \mynote{add citations}. This requires manipulating the program state at machine code level and is highly ABI- and compiler-dependent. A simpler approach, which we follow in this article, consists of creating a new frame every time an OSR is fired, essentially regarding an OSR transition as a function call~\cite{Lameed_2013} \mynote{cite WebKit}. 
 
@@ -62,6 +62,7 @@ Instrumenting functions for OSR at a higher level than machine code yields sever
 
 \noindent A natural question is whether encoding OSR at a higher level of abstraction can result in poorer performance than binary code approaches. We address this issue in Section~\ref{se:osr-llvm}, where we analyze the OSR machine code generated for an x86 target, and in Section~\ref{se:experiments}, where OSR performance is measured on classical benchmarks.
 
+  
   
   
   
