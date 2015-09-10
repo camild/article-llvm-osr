@@ -30,7 +30,8 @@ Design goals of our implementation include:
 \noindent Our implementation ships as a library for IR manipulation, and we present a preliminary experimental study of our technique in TinyVM, a proof-of-concept virtual machine for run-time IR manipulation and compilation based on MCJIT. We then present a case study on the integration of our technique in McVM~\cite{chevalier2010mcvm}: we show the potential of our approach by enabling an aggressive specialization mechanism for the {\tt feval} construct - a source of bottlenecks in many MATLAB programs - that could not have been implemented using extant OSR techniques.
 
 \paragraph{Structure of the paper.}
-The remainder of this paper is organized as follows. In Section~\ref{se:overview} we present our OSR technique and in Section~\ref{se:osr-llvm} we outline its implementation and Application Program Interface (API) in LLVM. Section~\ref{case-study} illustrates a case study in McVM. In Section~\ref{se:experiments}, we present the experimental study in TinyVM and discuss implications of inserting OSR points in a LLVM function, while in Section~\ref{se:related} addresses related work. Section~\ref{se:conclusions} concludes the paper and presents some ideas for future research directions. 
+The remainder of this paper is organized as follows. In \mysection\ref{se:overview} we present our OSR technique and in \mysection\ref{se:osr-llvm} we outline its implementation and Application Program Interface (API) in LLVM. \mysection\ref{case-study} illustrates a case study in McVM. In \mysection\ref{se:experiments}, we present the experimental study in TinyVM and discuss implications of inserting OSR points in a LLVM function, while in Section~\ref{se:related} addresses related work. \mysection\ref{se:conclusions} concludes the paper and presents some ideas for future research directions. 
+  
   
   
   
