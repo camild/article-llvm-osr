@@ -20,6 +20,14 @@
 
 \newcommand{\mynote}[1]{\medskip\noindent{\small[{\bf Note:} {\em #1}]}}
 
+\ifdefined\noauthorea
+\newcommand{\mysection}{}
+\newcommand{\myfigure}{}
+\else
+\newcommand{\mysection}{Section~}
+\newcommand{\myfigure}{Figure~}
+\fi
+
 % macros
 \newcommand{\tinyvm}{{\sc Anony}}
 \newcommand{\feval}{{\tt feval}}
@@ -70,6 +78,7 @@
   xleftmargin=20pt
 }
 
+  
   
   
   
