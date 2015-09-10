@@ -31,36 +31,11 @@ The open OSR scenario is similar, with one main difference (see \ifauthorea{Figu
 \subsection{Discussion}
 \label{ss:discussion}
 
-Instrumenting functions for OSR at a higher level of representation than machine code yields several benefits: 1) platform independence: both the base/variant code and the OSR instrumentation code are lowered to native code by the compiler backend, which handles the details of the target ABI; 2) [...]
-
-%\ref{fi:overview-osr-final}
-
-%\begin{verbatim}
-%int fac(int n) {
-%    int i = 2, f = 1;
-%    while (i<=n) f *= i++;
-%    return f;
-%}
-%\end{verbatim}
-%
-%\begin{verbatim}
-%int fac(int n) {
-%    int i = 2, f = 1;
-%    while (i<=n)  {
-%        if (osr_cond) return fac_osr(n,i,f); 
-%        f *= i++; 
-%    } return f;
-%}
-%\end{verbatim}
-%
-%\begin{verbatim}
-%int fac_osr(int n) {
-%    goto L;
-%    int i = 2, f = 1;
-%    while (i<=n) L: f *= i++;
-%    return f;
-%}
-%\end{verbatim}
+Instrumenting functions for OSR at a higher level of representation than machine code yields several benefits: 
+\begin{enumerate}
+\item {\em platform independence}: both the base/variant code and the OSR instrumentation code are lowered to native code by the compiler backend, which handles the details of the target ABI; 
+\item [...]
+\end{enumerate}
 
 \ifdefined\noauthorea
 \begin{figure}[t]
@@ -80,6 +55,7 @@ Instrumenting functions for OSR at a higher level of representation than machine
 \end{figure}
 \fi
 
+  
   
   
   
