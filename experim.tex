@@ -8,6 +8,7 @@ In this section we present a preliminar experimental study of our OSR technique 
 TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. The list of benchmarks and their description is reported in Table~\ref{tab:shootout}; four of them - namely {\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm} - are evaluated against two workloads of different size.
 
 \begin{table} 
+\begin{center}
 \begin{small}
     \begin{tabular}{ |c|c| }
         \hline
@@ -32,6 +33,7 @@ TinyVM is thus an ideal playground to exercise our OSR technique, and we use it 
         \hline
     \end{tabular} 
 \end{small}
+\end{center}
 \caption{\label{tab:shootout} Description of the shootout benchmarks} 
 \end{table}
 
@@ -63,7 +65,8 @@ For {\tt b-trees} - the only benchmark in our suite showing a recursive pattern 
 In this [...]
 
 \begin{table*} 
-\begin{footnotesize}
+\begin{center}
+\begin{small}
     \begin{tabular}{ |c|c|c|c|c|c| }
         \cline{3-6}
         \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Base version} & \multicolumn{2}{c|}{Optimized code} \\
@@ -96,7 +99,8 @@ In this [...]
         sp-norm-large & 19\,360\,000\,000 & 2 & 0.756 & 2 &- \\
         \hline
     \end{tabular} 
-\end{footnotesize}
+\end{small}
+\end{center}
 \caption{\label{tab:sameFun}Average cost of an OSR transition to the same function.} 
 \end{table*}
 
@@ -115,6 +119,7 @@ In this [...]
 [...]
   
 
+  
   
   
   
