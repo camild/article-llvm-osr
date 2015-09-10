@@ -49,7 +49,7 @@ The open OSR scenario is similar, with one main difference (see \ifauthorea{Figu
 %\subsection{Discussion}
 %\label{ss:discussion}
 
-\paragraph{Discussion}
+\paragraph{Discussion.}
 Instrumenting functions for OSR at a representation level higher than machine code yields several benefits: 
 \begin{enumerate}
 \item {\em Platform independence}: the OSR instrumentation code is lowered to native code by the compiler backend, which handles the details of the target ABI; 
@@ -61,6 +61,7 @@ Instrumenting functions for OSR at a representation level higher than machine co
 
 \noindent A natural question is whether encoding OSR at a higher level of abstraction can result in poorer performance than binary code approaches. We address this issue in Section~\ref{se:osr-llvm}, where we analyze the OSR machine code generated for an x86 target, and in Section~\ref{se:experiments}, where OSR performance is measured on classical benchmarks.
 
+  
   
   
   
