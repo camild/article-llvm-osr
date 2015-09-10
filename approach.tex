@@ -52,11 +52,13 @@ The open OSR scenario is similar, with one main difference (see \ifauthorea{Figu
 Instrumenting functions for OSR at a higher level of representation than machine code yields several benefits: 
 \begin{enumerate}
 \item {\em Platform independence}: the OSR instrumentation code is lowered to native code by the compiler backend, which handles the details of the target ABI; 
-\item {\em Global optimization opportunities}: lowering OSR instrumentation code along with the application code can generate faster code than local binary instrumentation. For instance, dead code elimination can suppress from \fosrto\ portions of code that would no longer be needed when jumping to the landing pad \textsf{L'}, producing smaller code and enabling better register allocation and instruction scheduling.
+\item {\em Global optimizations}: lowering OSR instrumentation code along with the application code can generate faster code than local binary instrumentation. For instance, dead code elimination can suppress from \fosrto\ portions of code that would no longer be needed when jumping to the landing pad \textsf{L'}, producing smaller code and enabling better register allocation and instruction scheduling.
 \item {\em Debugging and Profiling}: preserving ABI conventions in the native code versions of \fosrfrom, \fstub, and \fosrto helps debuggers and profilers more precisely locate the current execution context and collect more informative data.
 %avoiding low-lever tampering with stack frames can more easily preserve ABI calling conventions
+\item {\em Abstraction}: the approach is amenable to a clean instrumentation API that abstracts the OSR implementation details, allowing a front-end to focus on where to insert OSR points by analyzing code at an intermediate representation level.
 \end{enumerate}
 
+  
   
   
   
