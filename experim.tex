@@ -68,35 +68,35 @@ In this [...]
 \begin{center}
 \begin{small}
     \begin{tabular}{ |c|c|c|c|c|c| }
-        \cline{3-6}
-        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{Base version} & \multicolumn{2}{c|}{Optimized code} \\
+        \cline{3-8}
+        \multicolumn{2}{c|}{} & \multicolumn{3}{c|}{Base version} & \multicolumn{3}{c|}{Optimized code} \\
         \hline
-        Benchmark & Fired OSR transitions & Live values & Avg time (ns) & Live values & Avg time (ns) \\ 
+        Benchmark & Fired OSR transitions & Live values & Avg time (ns) & Overhead (\%) & Live values & Avg time (ns) & Overhead (\%) \\ 
         \hline
         \hline
-        b-trees & 605\,377\,887 & 2 & 3.057 & 3 & 1.214 \\ 
+        b-trees & 605\,377\,887 & 2 & 1.731 & 3.96 & 3 & 0.974 & 2.29 \\ 
         \hline
-        b-trees-large & 2\,689\,946\,975 & 2 & 2.986 & 3 & 0.945 \\ 
+        b-trees-large & 2\,689\,946\,975 & 2 & 1.749 & 3.90 & 3 & 1.423 & 3.30 \\ 
         \hline
-        fannkuch & 399\,168\,000 & 0 & ??? & 0 & ??? \\ 
+        fannkuch & 399\,168\,000 & 0 & 1.793 & 1.73 & 0 & 0.621 & 0.59 \\ 
         \hline
-        fasta & 400\,000\,000 & 2 & 3.039 & 2 & 4.654 \\ 
+        fasta & 400\,000\,000 & 2 & 2.335 & 7.39 & 2 & 2.699 & 8.23 \\ 
         \hline
-        fasta-redux & 400\,000\,000 & 4 & 2.566 & 4 & 2.218 \\ 
+        fasta-redux & 400\,000\,000 & 4 & 2.306 & 20.13 & 4 & 2.269 & 19.69 \\ 
         \hline
-        mbrot & 256\,000\,000 & 15 & 6.553 & 15 & 4.793 \\ 
+        mbrot & 256\,000\,000 & 15 & 5.016 & 2.40 & 15 & 3.628 & 1.75 \\ 
         \hline
-        mbrot-large & 1\,024\,000\,000 & 15 & 6.345 & 15 & 4.436 \\ 
+        mbrot-large & 1\,024\,000\,000 & 15 & 5.268 & 2.53 & 15 & 4.637 & 2.25 \\ 
         \hline
-        n-body & 50\,000\,000 & 3 & 2.543 & 3 & 20.792 \\ 
+        n-body & 50\,000\,000 & 3 & 2.952 & 1.65 & 3 & 20.792 & 6.929 & 3.59 \\ 
         \hline
-        n-body-large & 500\,000\,000 & 3 & 2.329 & 3 & 20.577 \\ 
+        n-body-large & 500\,000\,000 & 3 & 2.953 & 1.64 & 3 & 20.577 & 6.953 & 3.60 \\ 
         \hline
-        rev-comp & 6\,172\,843 & 8 & 3.589 & 8 & 7.896 \\ 
+        rev-comp & 6\,172\,843 & 8 & - & - & 8 & 8.267 & 0.92 \\ 
         \hline
-        sp-norm & 1\,210\,000\,000 & 2 & 0.752 & 2 & - \\ 
+        sp-norm & 1\,210\,000\,000 & 2 & 0.772 & 14.76 & 2 & - & - \\ 
         \hline 
-        sp-norm-large & 19\,360\,000\,000 & 2 & 0.756 & 2 &- \\
+        sp-norm-large & 19\,360\,000\,000 & 2 & 0.778 & 14.89 & 2 & - & - \\
         \hline
     \end{tabular} 
 \end{small}
