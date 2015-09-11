@@ -8,5 +8,6 @@ osr-llvm.tex
 case-study.tex
 experim.tex
 figures/code-quality-noBB/code-quality-noBB.png
+figures/code-quality-noBB/code-quality-O1-noBB.eps
 related.tex
 conclusions.tex
