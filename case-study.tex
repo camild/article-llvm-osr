@@ -90,7 +90,11 @@ We have evaluated the effectiveness of our technique on four benchmarks, namely 
     \caption{\label{tab:feval} Speedup comparison for \feval\ optimization.} 
 \end{table}  
   
-Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Numbers in their paper~\cite{lameed2013feval} show that for these benchmarks the OSR-based approach yields a fraction of the speed-up from hand-coded calls on average equal to $30.1\%$ (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach this fraction grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$). Our technique [...] 
+Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Numbers in their paper~\cite{lameed2013feval} show that for these benchmarks the speed-up of the OSR-based approach is equal on average to a $30.1\%$ percentage of the speed-up from hand-coded calls, ranging from $9.2\%$ to $73.9\%$; for the JIT-based approach the percentage grows to $84.7\%$, ranging from $75.7\%$ to $96.5\%$.
+
+Our optimization technique yields speed-ups that are very close to the upper bound from by-hand optimization. In particular, in the worst case we observe a $94.1\%$ percentage when the optimized code is JIT-compiled, which becomes $97.5\%$ when a cached version is available ({\tt odeRK4} benchmark). Compared to their OSR-based approach, more type-specialized code enabled by the compensation entry block is the key driver for better performance. 
+
+We believe our approach can generate slightly better code than their JIT-based approach
   
   
   
