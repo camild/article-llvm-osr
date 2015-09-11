@@ -74,11 +74,11 @@ We have evaluated the effectiveness of our technique on four benchmarks, namely 
     % dirty hack for text wrapping
     \begin{tabular}{ |c|c|c|c|c| }
         \hline
-        benchmark / & base & optimized & optimized & \\ 
-        speedup & (cached) & (compile) & (cached) & hand-coded \\
+         & base & optimized & optimized & direct call \\ 
+        benchmark & (cached) & (compile) & (cached) & (hand-coded) \\
         \hline
         \hline
-        odeEuler & 1.046 & 2.796 & 2.800 & 2 .828 \\ 
+        odeEuler & 1.046 & 2.796 & 2.800 & 2.828 \\ 
         \hline
         odeMidpt & 1.014 & 2.645 & 2.660 & 2.685 \\ 
         \hline
