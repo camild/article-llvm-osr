@@ -7,6 +7,7 @@ figures/overview-osr-open/overview-osr-open.png
 figures/isord-example/isord.png
 figures/isordfrom/isordfrom.png
 figures/isordascto/isordascto.png
+figures/isordx86-64/isordx86-64.png
 osr-llvm.tex
 case-study.tex
 experim.tex
