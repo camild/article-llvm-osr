@@ -71,6 +71,7 @@ Once a state mapping object has been constructed, the optimizer calls our OSR li
 We have evaluated the effectiveness of our technique on four benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing. We report the speed-ups enabled by our technique in Table~\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we report speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
   
 \begin{table}
+\begin{small}
     % dirty hack for text wrapping
     \begin{tabular}{ |c|c|c|c|c| }
         \hline
@@ -88,6 +89,7 @@ We have evaluated the effectiveness of our technique on four benchmarks, namely 
         \hline
     \end{tabular} 
     \caption{\label{tab:feval} Speedup comparison for \feval\ optimization.} 
+\end{small}
 \end{table}  
   
 Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Numbers in their paper~\cite{lameed2013feval} show that for these benchmarks the speed-up of the OSR-based approach is equal on average to a $30.1\%$ percentage of the speed-up from hand-coded calls, ranging from $9.2\%$ to $73.9\%$; for the JIT-based approach the percentage grows to $84.7\%$, ranging from $75.7\%$ to $96.5\%$.
