@@ -5,6 +5,7 @@ overview.tex
 figures/overview-osr-final/overview-osr-final.png
 figures/overview-osr-open/overview-osr-open.png
 figures/isordfrom/isordfrom.png
+figures/isordascto/isordascto.png
 osr-llvm.tex
 case-study.tex
 experim.tex
