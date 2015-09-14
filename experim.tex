@@ -50,7 +50,7 @@ For each benchmark we performed 10 trials preceded by an initial warm-up iterati
 \begin{itemize}
 \item {\bf Message 1}: how much does a never-firing OSR point impact code quality? We run a program with one or more OSR points, and we measure the slowdown given by factors such as cache effects (due to code bloat), register pressure, etc. due to the presence of the OSR points.
 \item {\bf Message 2}: what is the overhead of an OSR transition to the same function? We run a program with a controlled OSR transition, e.g., with a counter that fires the OSR. Here we measure the impact of the actual OSR call. We compute for each benchmark: 1) the average time per OSR transition; 2) the number of transferred live variables; 3) the total benchmark time with an always-firing OSR at each iteration of the hottest loop; 4) the total benchmark time with a never-firing OSR at each iteration of the hottest loop (baseline); 5) the number of iterations of the hottest loop (equals the number of OSR transitions).
-\item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark the time required by insertOpenOSR (OSR point insertion + stub creation) and the time required by insertFinalizedOSR (OSR point insertion + generation of continuation function).
+\item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark the time required by insertOpenOSR (OSR point insertion + stub creation) and insertFinalizedOSR (OSR point insertion + generation of continuation function).
 \end{itemize}
 
 \paragraph{Impact on code quality}
@@ -131,7 +131,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
 
 \ifauthorea{\newline}{}
 \paragraph{OSR machinery generation}
-[...]
+We now discuss the overhead of the library for the insertion of OSR machinery in the IR of a function. Table~\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function and the time spent in the IR manipulation. In particular, for open OSR points we separately measure the time spent in inserting the OSR point in the original function and in generating the stub; note that both operations do not depend on the size of the function. For resolved OSR points, we separately analyze the time spent in inserting the OSR point and in generating the continuation function. The latter operation is the most expensive, as it involves cloning and manipulating the body of the target function - which is identical to the source function - as described in Section {\bf XXX}; for this reason, the table also contains a column in which its time is normalized against the number of IR instructions in the function.
 
 \begin{table} 
     \begin{tabular}{ |c|c|c|c|c|c|c|c|c| }
@@ -160,31 +160,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
         sp-norm & 28 & 15.31 & 27.50 & 68.32 & 12.41 & 154.54 & 5.52 & 75.34 \\ 
         \hline
     \end{tabular} 
-\caption{\label{tab:instrTime} OSR machinery insertion in optimized code. Time measurements are expressed in microseconds.} 
+\caption{\label{tab:instrTime} OSR machinery insertion in optimized code. Time measurements are expressed in microseconds.}
 \end{table}
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+%\paragraph{Discussion}
