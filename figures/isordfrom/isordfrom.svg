@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="355.01017"
-     inkscape:cy="735.62784"
+     inkscape:cx="219.49615"
+     inkscape:cy="847.77737"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -60,16 +60,16 @@
        x="152.67801"
        y="34.901432" />
     <rect
-       y="485.00146"
+       y="471.00146"
        x="248.57812"
        height="11.795774"
        width="34.427029"
        id="rect6771"
        style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
     <rect
-       y="553.27582"
+       y="525.25714"
        x="36.409088"
-       height="72.359154"
+       height="71.424576"
        width="346.29355"
        id="rect6765"
        style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
@@ -77,7 +77,7 @@
        style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
        id="rect6757"
        width="346.29355"
-       height="87.266357"
+       height="97.54673"
        x="36.409088"
        y="202.13484" />
     <flowRoot
@@ -118,8 +118,6 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  br i1 %osr.cond, label %osr, </flowPara><flowPara
          id="flowPara5630"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">                   label %loop.body.cont</flowPara><flowPara
-         id="flowPara5632"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'" /><flowPara
          id="flowPara5634"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">loop.body.cont:</flowPara><flowPara
          id="flowPara5636">  %t2 = getelementptr inbounds i64* %v, i64 %i</flowPara><flowPara
