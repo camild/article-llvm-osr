@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="isord.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.07"
+     inkscape:cx="83.982131"
+     inkscape:cy="885.16055"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       transform="translate(-18.13636,-93.181818)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot5588"
+       xml:space="preserve"><flowRegion
+         id="flowRegion5590"><rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+           y="126.55576"
+           x="56.451614"
+           height="319.92371"
+           width="344.58978"
+           id="rect5592" /></flowRegion><flowPara
+         id="flowPara4399">int isord(long* v, long n, int (*c)(void*,void*)) {</flowPara><flowPara
+         id="flowPara4381">    for (long i=1; i&lt;n; i++) </flowPara><flowPara
+         id="flowPara4384">        if (c(v+i-1,v+i)&gt;0) return 0;</flowPara><flowPara
+         id="flowPara4387">    return 1;</flowPara><flowPara
+         id="flowPara4390">}</flowPara><flowPara
+         id="flowPara4393" /><flowPara
+         id="flowPara5640">int isord_asc(long* v, long n) {</flowPara><flowPara
+         id="flowPara4578">    for (long i=1; i&lt;n; i++) </flowPara><flowPara
+         id="flowPara4580">        if (v[i-1]&gt;v[i]) return 0;</flowPara><flowPara
+         id="flowPara4582">    return 1;</flowPara><flowPara
+         id="flowPara4586">}</flowPara><flowPara
+         id="flowPara5680" /></flowRoot>  </g>
+</svg>
