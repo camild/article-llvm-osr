@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="isordx86-64.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0729879"
+     inkscape:cx="178.51818"
+     inkscape:cy="823.78442"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4263" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4305"
+       width="14.463603"
+       height="9.4982271"
+       x="247.32626"
+       y="274.52496" />
+    <rect
+       y="35.924976"
+       x="71.426003"
+       height="9.4982271"
+       width="29.346338"
+       id="rect4303"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="104.17685"
+       x="193.25331"
+       height="154.34584"
+       width="189.22174"
+       id="rect5354"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6757"
+       width="142.58907"
+       height="28.387852"
+       x="38.273041"
+       y="216.13484" />
+    <flowRoot
+       transform="translate(-18.13636,-93.181818)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot5588"
+       xml:space="preserve"><flowRegion
+         id="flowRegion5590"><rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+           y="126.55576"
+           x="56.451614"
+           height="541.87714"
+           width="151.15788"
+           id="rect5592" /></flowRegion><flowPara
+         id="flowPara5680">isord<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan4205">from</flowSpan>: </flowPara><flowPara
+         id="flowPara5099">   pushq	%r15</flowPara><flowPara
+         id="flowPara5005">	  pushq	%r14</flowPara><flowPara
+         id="flowPara5007">	  pushq	%r12</flowPara><flowPara
+         id="flowPara5009">	  pushq	%rbx</flowPara><flowPara
+         id="flowPara5011">	  pushq	%rax</flowPara><flowPara
+         id="flowPara5013">	  movq	%rdx, %r14</flowPara><flowPara
+         id="flowPara5015">	  movq	%rsi, %r15</flowPara><flowPara
+         id="flowPara5017">	  movq	%rdi, %rbx</flowPara><flowPara
+         id="flowPara5019">	  movl	$1, %r12d</flowPara><flowPara
+         id="flowPara5021">	  cmpq	$1, %r15</flowPara><flowPara
+         id="flowPara5023">	  jle	.LBB0_1</flowPara><flowPara
+         id="flowPara5025">.LBB0_4: # %loop.body</flowPara><flowPara
+         id="flowPara5027"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">	  cmpq	$1001, %r12</flowPara><flowPara
+         id="flowPara5029"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">	  je	.LBB0_7</flowPara><flowPara
+         id="flowPara5031"># %loop.body.cont</flowPara><flowPara
+         id="flowPara5033">	  movq	%rbx, %rdi</flowPara><flowPara
+         id="flowPara5035">	  leaq	8(%rbx), %rbx</flowPara><flowPara
+         id="flowPara5037">	  movq	%rbx, %rsi</flowPara><flowPara
+         id="flowPara5039">	  callq	*%r14</flowPara><flowPara
+         id="flowPara5041">	  movl	%eax, %ecx</flowPara><flowPara
+         id="flowPara5043">	  xorl	%eax, %eax</flowPara><flowPara
+         id="flowPara5045">	  testl	%ecx, %ecx</flowPara><flowPara
+         id="flowPara5049">	  jg	.LBB0_6</flowPara><flowPara
+         id="flowPara5051">	  incq	%r12</flowPara><flowPara
+         id="flowPara5053">	  cmpq	%r15, %r12</flowPara><flowPara
+         id="flowPara5055">	  jl	.LBB0_4</flowPara><flowPara
+         id="flowPara5057">	  movl	$1, %eax</flowPara><flowPara
+         id="flowPara5059">	  jmp	.LBB0_6</flowPara><flowPara
+         id="flowPara5061">.LBB0_1:</flowPara><flowPara
+         id="flowPara5063">	  movl	$1, %eax</flowPara><flowPara
+         id="flowPara5065">.LBB0_6: # %exit</flowPara><flowPara
+         id="flowPara5101">   addq	$8, %rsp</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier, Normal'"
+         id="flowPara5136" /></flowRoot>    <rect
+       style="fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.49999997;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.50000002, 0.50000002;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5111"
+       width="346.63605"
+       height="464.43845"
+       x="37.113953"
+       y="34.612206" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4207"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4209"><rect
+           id="rect4211"
+           width="184.11215"
+           height="449.53275"
+           x="199.06541"
+           y="36.474354" /></flowRegion><flowPara
+         id="flowPara4213" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4215"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(-4,234.09357)"><flowRegion
+         id="flowRegion4217"><rect
+           id="rect4219"
+           width="191.56796"
+           height="400.93457"
+           x="197.19626"
+           y="38.343513" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+         id="flowPara4255">isordasc<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan4257">to</flowSpan>:</flowPara><flowPara
+         id="flowPara4223"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  movl	$1, %edx</flowPara><flowPara
+         id="flowPara4225"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  cmpq	$1, %rsi</flowPara><flowPara
+         id="flowPara4227"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  jle	.LBB0_1</flowPara><flowPara
+         id="flowPara4229"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">.LBB0_4: # %loop.body</flowPara><flowPara
+         id="flowPara4231"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  movq	-8(%rdi,%rdx,8),%rcx</flowPara><flowPara
+         id="flowPara4233"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  xorl	%eax, %eax</flowPara><flowPara
+         id="flowPara4235"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  cmpq	(%rdi,%rdx,8),%rcx</flowPara><flowPara
+         id="flowPara4239"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  jg	.LBB0_5</flowPara><flowPara
+         id="flowPara4241"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  incq	%rdx</flowPara><flowPara
+         id="flowPara4243"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  cmpq	%rsi, %rdx</flowPara><flowPara
+         id="flowPara4245"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  jl	.LBB0_4</flowPara><flowPara
+         id="flowPara4247"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">.LBB0_1:</flowPara><flowPara
+         id="flowPara4249"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  movl	$1, %eax</flowPara><flowPara
+         id="flowPara4251"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">.LBB0_5: # %exit</flowPara><flowPara
+         id="flowPara4253"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start">	  retq</flowPara></flowRoot>    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 209,294.51828 c 95,0 95,0 95,0"
+       id="path4269"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4271"
+       d="m 209,308.51828 c 95,0 95,0 95,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 209,322.51828 c 82.97933,0 82.97933,0 82.97933,0"
+       id="path4273"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4275"
+       d="m 195,448.51828 c 54.35869,0 54.35869,0 54.35869,0"
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3421"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(137.86364,-93.181818)"><flowRegion
+         id="flowRegion3423"><rect
+           id="rect3425"
+           width="160.47765"
+           height="705.90503"
+           x="56.451614"
+           y="126.55576"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara3505">	  popq	%rbx</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4160">	  popq	%r12</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4132">	  popq	%r14</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4108">	  popq	%r15</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4110">	  retq</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara4112">.LBB0_7: # %osr</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3507">	  movq	%rbx, %rdi</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3509">	  movq	%r15, %rsi</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3511">	  movq	%r12, %rdx</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3513">	  movq	%r14, %rcx</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3515">	  addq	$8, %rsp</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3517">	  popq	%rbx	</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3519">   popq	%r12	</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3521">   popq	%r14	</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3523">   popq	%r15	</flowPara><flowPara
+         id="flowPara3525"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">   jmp	isordascto</flowPara></flowRoot>  </g>
+</svg>
