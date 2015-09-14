@@ -29,6 +29,14 @@ int isord(long* v, long n, int (*c)(void* a, void* b)) {
 }
 \end{verbatim}
 
+\begin{verbatim}
+int isord2(long* v, long n) {
+    for (long i=1; i<n; i++) 
+        if (v[i-1]>v[i]) return 0;
+    return 1;
+}
+\end{verbatim}
+
 \subsection{Resolved OSR Points}
 
 \subsection{Open OSR Points}
