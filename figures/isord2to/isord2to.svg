@@ -70,8 +70,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.32"
-     inkscape:cx="-30.99601"
-     inkscape:cy="805.19553"
+     inkscape:cx="192.48884"
+     inkscape:cy="926.40765"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -105,11 +105,33 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <rect
+       y="330.53827"
+       x="264.78326"
+       height="13.664933"
+       width="44.943779"
+       id="rect4199"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4197"
+       width="44.943779"
+       height="13.664933"
+       x="264.78326"
+       y="302.53827" />
+    <rect
+       y="190.53827"
+       x="196.23782"
+       height="13.664933"
+       width="49.489235"
+       id="rect4195"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
     <path
        style="fill:#d2d2d2;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 57.33333,35.81675 c 0,28.030303 -0.75757,27.272727 -0.75757,27.272727 l 150,0 0,-12.878787 62.12121,0 0,-13.636364 z"
+       d="m 37.303027,63.091469 c 0,-28.030303 0.757581,-27.272727 0.757581,-27.272727 l 212.878792,0 0,12.878787 97.72727,0 0,13.636364 z"
        id="path7839"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
     <rect
        y="77.134933"
        x="20.409088"
@@ -146,12 +168,12 @@
          id="flowPara7098">define i32 @isord2<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
    id="flowSpan7837">to</flowSpan></flowPara><flowPara
-         id="flowPara7739">    (<flowSpan
+         id="flowPara7739"> (<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
    id="flowSpan7807">i64* nocapture readonly %v_osr, </flowSpan></flowPara><flowPara
          id="flowPara7741"><flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-   id="flowSpan7809">     i64 %n_osr, i64 %i_osr</flowSpan>) {</flowPara><flowPara
+   id="flowSpan7809">  i64 %n_osr, i64 %i_osr, i32 (i8*, i8*)* %c_osr</flowSpan>) {</flowPara><flowPara
          id="flowPara7743" /><flowPara
          id="flowPara7745"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr.entry: ; no compensation code needed...</flowPara><flowPara
@@ -163,7 +185,9 @@
          id="flowPara7755">  br i1 %t1, label %loop.body, label %exit</flowPara><flowPara
          id="flowPara7757" /><flowPara
          id="flowPara7759">loop.header:</flowPara><flowPara
-         id="flowPara7761">  %t2 = icmp slt i64 %i1, %n_osr</flowPara><flowPara
+         id="flowPara7761">  %t2 = icmp slt i64 %i1, <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan4189">%n_osr</flowSpan></flowPara><flowPara
          id="flowPara7763">  br i1 %t2, label %loop.body, label %exit</flowPara><flowPara
          id="flowPara7765" /><flowPara
          id="flowPara7769">loop.body:</flowPara><flowPara
@@ -172,9 +196,13 @@
          id="flowPara7775"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">               [ %i_osr, %osr.entry ]</flowPara><flowPara
          id="flowPara7777">  %t3 = add nsw i64 %i, -1</flowPara><flowPara
-         id="flowPara7779">  %t4 = getelementptr inbounds i64* %v_osr, i64 %t3</flowPara><flowPara
+         id="flowPara7779">  %t4 = getelementptr inbounds i64* <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan4191">%v_osr</flowSpan>, i64 %t3</flowPara><flowPara
          id="flowPara7781">  %t5 = load i64* %t4, align 8, !tbaa !1</flowPara><flowPara
-         id="flowPara7783">  %t6 = getelementptr inbounds i64* %v_osr, i64 %i</flowPara><flowPara
+         id="flowPara7783">  %t6 = getelementptr inbounds i64* <flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan4193">%v_osr</flowSpan>, i64 %i</flowPara><flowPara
          id="flowPara7785">  %t7 = load i64* %t6, align 8, !tbaa !1</flowPara><flowPara
          id="flowPara7787">  %t8 = icmp sgt i64 %t5, %t7</flowPara><flowPara
          id="flowPara7789">  %i1 = add nuw nsw i64 %i, 1</flowPara><flowPara
