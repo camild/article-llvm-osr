@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="490.52419"
-     inkscape:cy="773.01102"
+     inkscape:cx="355.01017"
+     inkscape:cy="735.62784"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -52,118 +52,103 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <g
-       id="g6800"
-       transform="translate(-342,0)">
-      <rect
-         y="34.901432"
-         x="494.67801"
-         height="11.795774"
-         width="29.127001"
-         id="rect6773"
-         style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
-      <rect
-         style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
-         id="rect6771"
-         width="34.427029"
-         height="11.795774"
-         x="596.57812"
-         y="513.00146" />
-      <rect
-         y="471.00143"
-         x="556.57812"
-         height="11.795774"
-         width="34.427029"
-         id="rect6769"
-         style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
-      <rect
-         style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
-         id="rect6765"
-         width="323.86365"
-         height="72.359154"
-         x="378.40909"
-         y="567.27582" />
-      <rect
-         y="217.13493"
-         x="378.40909"
-         height="112.5"
-         width="323.86365"
-         id="rect6757"
-         style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
-      <flowRoot
-         xml:space="preserve"
-         id="flowRoot5588"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         transform="translate(323.86364,-93.181818)"><flowRegion
-           id="flowRegion5590"><rect
-             id="rect5592"
-             width="326.83279"
-             height="622.72736"
-             x="56.451614"
-             y="126.55576"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
-           id="flowPara5594">define i32 @isord<flowSpan
-   id="flowSpan6767"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">from</flowSpan>(i64* %v, i64 %n, </flowPara><flowPara
-           id="flowPara5596">         i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
-           id="flowPara5598">entry:</flowPara><flowPara
-           id="flowPara5600">  %t0 = icmp sgt i64 %n, 1</flowPara><flowPara
-           id="flowPara5602">  br i1 %t0, label %loop.body, label %exit</flowPara><flowPara
-           id="flowPara5604" /><flowPara
-           id="flowPara5606">loop.header: ; preds = %loop.body.cont</flowPara><flowPara
-           id="flowPara5608">  %t1 = icmp slt i64 %i1, %n</flowPara><flowPara
-           id="flowPara5610">  br i1 %t1, label %loop.body, label %exit</flowPara><flowPara
-           id="flowPara5612" /><flowPara
-           id="flowPara5614">loop.body: ; preds = %loop.header, %entry</flowPara><flowPara
-           id="flowPara5616">  %i = phi i64 [ %i1, %loop.header ], </flowPara><flowPara
-           id="flowPara5618">               [ 1,   %entry ]</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5620">  %p.osr = phi i64 [ %p.osr1, %loop.header ], </flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5622">                   [ 1000,    %entry ]</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5624">  %p.osr1 = add nsw i64 %p.osr, -1</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5626">  %osr.cond = icmp eq i64 %p.osr, 0</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5628">  br i1 %osr.cond, label %osr, </flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5630">                   label %loop.body.cont</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5632" /><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5634">loop.body.cont: ; preds = %loop.body</flowPara><flowPara
-           id="flowPara5636">  %t2 = getelementptr inbounds i64* %v, i64 %i</flowPara><flowPara
-           id="flowPara5638">  %t3 = add nsw i64 %i, -1</flowPara><flowPara
-           id="flowPara5640">  %t4 = getelementptr inbounds i64* %v, i64 %t3</flowPara><flowPara
-           id="flowPara5642">  %t5 = bitcast i64* %t4 to i8*</flowPara><flowPara
-           id="flowPara5644">  %t6 = bitcast i64* %t2 to i8*</flowPara><flowPara
-           id="flowPara5646">  %t7 = tail call i32 %c(i8* %t5, i8* %t6)</flowPara><flowPara
-           id="flowPara5648">  %t8 = icmp sgt i32 %t7, 0</flowPara><flowPara
-           id="flowPara5650">  %i1 = add nuw nsw i64 %i, 1</flowPara><flowPara
-           id="flowPara5652">  br i1 %t8, label %exit, label %loop.header</flowPara><flowPara
-           id="flowPara5654" /><flowPara
-           id="flowPara5656">exit: ; preds = %loop.body<flowSpan
-   id="flowSpan6761"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">.cont</flowSpan>, </flowPara><flowPara
-           id="flowPara5658">      ;         %loop.header, %entry</flowPara><flowPara
-           id="flowPara5660">  %res = phi i32 [ 1, %entry ], </flowPara><flowPara
-           id="flowPara5662">                 [ 0, %loop.body<flowSpan
-   id="flowSpan6763"
-   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">.cont</flowSpan> ], </flowPara><flowPara
-           id="flowPara5664">                 [ 1, %loop.header ]</flowPara><flowPara
-           id="flowPara5666">  ret i32 %res</flowPara><flowPara
-           id="flowPara5668" /><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5670">osr: ; preds = %loop.body</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5672">  %osr.res = call i32 @isord2to(</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5674">               i64* %v, i64 %n, i64 %i, </flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5676">               i32 (i8*, i8*)* %c)</flowPara><flowPara
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-           id="flowPara5678">  ret i32 %osr.res</flowPara><flowPara
-           id="flowPara5680">}</flowPara></flowRoot>    </g>
-  </g>
+    <rect
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6773"
+       width="29.127001"
+       height="11.795774"
+       x="152.67801"
+       y="34.901432" />
+    <rect
+       y="485.00146"
+       x="248.57812"
+       height="11.795774"
+       width="34.427029"
+       id="rect6771"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       y="553.27582"
+       x="36.409088"
+       height="72.359154"
+       width="346.29355"
+       id="rect6765"
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect6757"
+       width="346.29355"
+       height="87.266357"
+       x="36.409088"
+       y="202.13484" />
+    <flowRoot
+       transform="translate(-18.13636,-93.181818)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot5588"
+       xml:space="preserve"><flowRegion
+         id="flowRegion5590"><rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+           y="126.55576"
+           x="56.451614"
+           height="620.85822"
+           width="360.47766"
+           id="rect5592" /></flowRegion><flowPara
+         id="flowPara5594">define i32 @isord<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan6767">from</flowSpan>(i64* %v, i64 %n, </flowPara><flowPara
+         id="flowPara5596">         i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
+         id="flowPara5598">entry:</flowPara><flowPara
+         id="flowPara5600">  %t0 = icmp sgt i64 %n, 1</flowPara><flowPara
+         id="flowPara5602">  br i1 %t0, label %loop.body, label %exit</flowPara><flowPara
+         id="flowPara5604" /><flowPara
+         id="flowPara5606">loop.header:</flowPara><flowPara
+         id="flowPara5608">  %t1 = icmp slt i64 %i1, %n</flowPara><flowPara
+         id="flowPara5610">  br i1 %t1, label %loop.body, label %exit</flowPara><flowPara
+         id="flowPara5612" /><flowPara
+         id="flowPara5614">loop.body:</flowPara><flowPara
+         id="flowPara5618">  %i = phi i64 [%i1, %loop.header], [1,%entry]</flowPara><flowPara
+         id="flowPara5620"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %p.osr = phi i64 [%p.osr1, %loop.header], </flowPara><flowPara
+         id="flowPara5622"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">                   [1000, %entry]</flowPara><flowPara
+         id="flowPara5624"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %p.osr1 = add nsw i64 %p.osr, -1</flowPara><flowPara
+         id="flowPara5626"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.cond = icmp eq i64 %p.osr, 0</flowPara><flowPara
+         id="flowPara5628"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  br i1 %osr.cond, label %osr, </flowPara><flowPara
+         id="flowPara5630"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">                   label %loop.body.cont</flowPara><flowPara
+         id="flowPara5632"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'" /><flowPara
+         id="flowPara5634"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">loop.body.cont:</flowPara><flowPara
+         id="flowPara5636">  %t2 = getelementptr inbounds i64* %v, i64 %i</flowPara><flowPara
+         id="flowPara5638">  %t3 = add nsw i64 %i, -1</flowPara><flowPara
+         id="flowPara5640">  %t4 = getelementptr inbounds i64* %v, i64 %t3</flowPara><flowPara
+         id="flowPara5642">  %t5 = bitcast i64* %t4 to i8*</flowPara><flowPara
+         id="flowPara5644">  %t6 = bitcast i64* %t2 to i8*</flowPara><flowPara
+         id="flowPara5646">  %t7 = tail call i32 %c(i8* %t5, i8* %t6)</flowPara><flowPara
+         id="flowPara5648">  %t8 = icmp sgt i32 %t7, 0</flowPara><flowPara
+         id="flowPara5650">  %i1 = add nuw nsw i64 %i, 1</flowPara><flowPara
+         id="flowPara5652">  br i1 %t8, label %exit, label %loop.header</flowPara><flowPara
+         id="flowPara5654" /><flowPara
+         id="flowPara5658">exit: </flowPara><flowPara
+         id="flowPara5660">  %res = phi i32 [1, %entry], </flowPara><flowPara
+         id="flowPara5662">                 [0, %loop.body<flowSpan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+   id="flowSpan6763">.cont</flowSpan>], </flowPara><flowPara
+         id="flowPara5664">                 [1, %loop.header]</flowPara><flowPara
+         id="flowPara5666">  ret i32 %res</flowPara><flowPara
+         id="flowPara5668" /><flowPara
+         id="flowPara5670"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr:</flowPara><flowPara
+         id="flowPara5672"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordascto(</flowPara><flowPara
+         id="flowPara5674"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">               i64* %v, i64 %n, i64 %i, </flowPara><flowPara
+         id="flowPara5676"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">               i32 (i8*, i8*)* %c)</flowPara><flowPara
+         id="flowPara5678"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  ret i32 %osr.res</flowPara><flowPara
+         id="flowPara5680">}</flowPara></flowRoot>  </g>
 </svg>

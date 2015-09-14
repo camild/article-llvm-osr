@@ -70,8 +70,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.32"
-     inkscape:cx="192.48884"
-     inkscape:cy="926.40765"
+     inkscape:cx="222.79187"
+     inkscape:cy="805.19553"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -97,7 +97,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -151,7 +151,7 @@
        id="rect6773"
        width="15.566395"
        height="11.795774"
-       x="144.8598"
+       x="158.8598"
        y="22.143856" />
     <flowRoot
        xml:space="preserve"
@@ -165,7 +165,7 @@
            x="56.451614"
            y="126.55576"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start" /></flowRegion><flowPara
-         id="flowPara7098">define i32 @isord2<flowSpan
+         id="flowPara7098">define i32 @isordasc<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
    id="flowSpan7837">to</flowSpan></flowPara><flowPara
          id="flowPara7739"> (<flowSpan
