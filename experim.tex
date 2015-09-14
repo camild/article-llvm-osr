@@ -50,7 +50,7 @@ For each benchmark we performed 10 trials preceded by an initial warm-up iterati
 \begin{itemize}
 \item {\bf Message 1}: how much does a never-firing OSR point impact code quality? We run a program with one or more OSR points, and we measure the slowdown given by factors such as cache effects (due to code bloat), register pressure, etc. due to the presence of the OSR points.
 \item {\bf Message 2}: what is the overhead of an OSR transition to the same function? We run a program with a controlled OSR transition, e.g., with a counter that fires the OSR. Here we measure the impact of the actual OSR call. We compute for each benchmark: 1) the average time per OSR transition; 2) the number of transferred live variables; 3) the total benchmark time with an always-firing OSR at each iteration of the hottest loop; 4) the total benchmark time with a never-firing OSR at each iteration of the hottest loop (baseline); 5) the number of iterations of the hottest loop (equals the number of OSR transitions).
-\item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark: 1) time required by insertOpenOSR (OSR point insertion + creates stub); 2) time required by insertFinalizedOSR (OSR point insertion + generation of continuation function); 3) time required for generating continuation function.
+\item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark the time required by insertOpenOSR (OSR point insertion + stub creation) and the time required by insertFinalizedOSR (OSR point insertion + generation of continuation function).
 \end{itemize}
 
 \paragraph{Impact on code quality}
@@ -68,7 +68,7 @@ Table~\ref{tab:sameFun} reports for each benchmark an estimate of the average co
 
 Hot code portions for OSR point insertion are picked as in the experiments for code quality. However, as our goal for hot loops is to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. Depending on the characteristics of the hot loop, we can either transform it into a separate function and instrument its entrypoint, or, when the loop essentially calls a method with high total self time, we insert an OSR point at the beginning of such method.
 
-Normalized differences reported in the table represent a reasonable estimate of the average cost of firing a single OSR transition, which in other words means performing a function call passing the live variables as arguments. Reported numbers are in the order of nanoseconds, and can also become negative due to the effects discussed for Message 1.
+Normalized differences reported in the table represent a reasonable estimate of the average cost of firing a single OSR transition, which in other words means performing a function call passing the live variables as arguments. Reported numbers are in the order of nanoseconds, and might be negative due to the machine-level effects discussed for Message 1.
 
 \begin{table*} 
 \begin{center}
@@ -107,7 +107,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
     \end{tabular} 
 \end{small}
 \end{center}
-\caption{\label{tab:sameFun}Average cost of an OSR transition to the same function. For each benchmark we report the number of fired OSR transition, the live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time. } 
+\caption{\label{tab:sameFun}Average cost of an OSR transition to the same function. For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time. } 
 \end{table*}
 
 % figure
@@ -130,7 +130,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
 \fi
 
 \ifauthorea{\newline}{}
-\paragraph{OSR machinery insertion}
+\paragraph{OSR machinery generation}
 [...]
 
 \begin{table} 
