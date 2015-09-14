@@ -68,6 +68,8 @@ Table~\ref{tab:sameFun} reports for each benchmark an estimate of the average co
 
 Hot code portions for OSR point insertion are picked as in the experiments for code quality. However, as our goal for hot loops is to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. Depending on the characteristics of the hot loop, we can either transform it into a separate function and instrument its entrypoint, or, when the loop essentially calls a method with high total self time, we insert an OSR point at the beginning of such method.
 
+Normalized differences reported in the table represent a reasonable estimate of the average cost of firing a single OSR transition, which in other words means performing a function call passing the live variables as arguments. Reported numbers are in the order of nanoseconds, and can also become negative due to the effects discussed for Message 1.
+
 \begin{table*} 
 \begin{center}
 \begin{small}
