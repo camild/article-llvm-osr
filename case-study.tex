@@ -74,9 +74,10 @@ We have evaluated the effectiveness of our technique on four benchmarks, namely 
 \begin{small}
     % dirty hack for text wrapping
     \begin{tabular}{ |c|c|c|c|c| }
-        \hline
-         & base & optimized & optimized & direct call \\ 
-        benchmark & (cached) & (JIT-compiled) & (cached) & (hand-coded) \\
+        \cline{2-5}
+         & Base & Optimized & Optimized & Direct \\ 
+        \cline{1}
+        {\em Benchmark} & (cached) & (JIT) & (cached) & (by hand) \\
         \hline
         \hline
         odeEuler & 1.046 & 2.796 & 2.800 & 2.828 \\ 
