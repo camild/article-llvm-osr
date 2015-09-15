@@ -135,7 +135,7 @@ We now discuss the overhead of the library for the insertion of OSR machinery in
 
 For open OSR points, we report the time spent in inserting the OSR point in the original function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the continuation function.
 
-Not surprisingly, generating this function is more expensive than the other operations, as it involves cloning and manipulating the body of the target function - that is the source function itself - as described in Section {\bf XXX}; as the time spent in it depends on the size of the function, the table contains an additional column in which time is normalized against the number of IR instructions in it.
+Not surprisingly, constructing such function takes longer than the other operations, as it involves cloning and manipulating the body of the target function - that is the source function itself - as described in Section {\bf XXX}; as the time spent in it depends on the size of the function, the table contains an additional column in which time is normalized against the number of IR instructions in its body.
 
 \begin{table} 
 \begin{small}
