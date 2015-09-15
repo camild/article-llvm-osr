@@ -169,5 +169,6 @@ Not surprisingly, constructing such function takes longer than the other operati
 \end{small}
 \end{table}
 
+\ifauthorea{\newline}{}
 \paragraph{Discussion}
 Experimental results presented in this section suggest that inserting an OSR point is unlikely to degrade the quality of generated code, and the time required to fire an OSR transition is negligible (i.e., order of nanoseconds). Instrumenting the original IR is cheap, while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. [...] 
