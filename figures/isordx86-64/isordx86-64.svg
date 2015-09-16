@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0729879"
-     inkscape:cx="178.51818"
+     inkscape:cx="62.02106"
      inkscape:cy="823.78442"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -48,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,7 +61,7 @@
        id="rect4305"
        width="14.463603"
        height="9.4982271"
-       x="247.32626"
+       x="227.32626"
        y="274.52496" />
     <rect
        y="35.924976"
@@ -163,7 +163,7 @@
            x="197.19626"
            y="38.343513" /></flowRegion><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
-         id="flowPara4255">isordasc<flowSpan
+         id="flowPara4255">isord<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
    id="flowSpan4257">to</flowSpan>:</flowPara><flowPara
          id="flowPara4223"
