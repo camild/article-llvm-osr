@@ -3,14 +3,6 @@
 \section{OSR in LLVM}
 \label{se:osr-llvm}
 
-In this section we discuss an LLVM implementation of the approach described in \mysection\ref{se:overview}. Our discussion is based on a set of abstractions to support OSR instrumentation of IR code, which we organized in an LLVM-based library for VM builders called \osrkit. A simplified overview of the main building blocks is:
-\begin{itemize}
-\item {\em StateMapper}: a class that [...]
-\item {\em InsertResolvedOSR(f1, b1, f2, b2, cond, m)}: function that inserts a resolved OSR point in function {\em f1} at basic block {\em b1} to function {\em f2} at basic block {\em b2}, using as OSR condition a sequence of IR instructions {\em cond} and a state mapper {\em m}.
-\item {\em InsertOpenOSR()}: [...]
-\item {\em GenerateOSRContFun(...)}: generates the continuation function [...]
-\end{itemize}
-
 % ====> The following text goes in the artifact
 % In this section we discuss our implementation of the approach described in \mysection\ref{se:overview} in \tinyvm, a proof-of-concept virtual machine we developed as a playground to exercise our OSR techniques. TinyVM is based on LLVM's MCJIT compiler and supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
 
@@ -23,7 +15,7 @@ In this section we discuss an LLVM implementation of the approach described in \
 \end{figure}
 \fi
 
-\subsection{Example}
+%\subsection{Example}
 To explain how the OSR approach of \mysection\ref{se:overview} can be implemented in LLVM, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is ordered according to some criterion specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
 
 \ifdefined\noauthorea
@@ -65,6 +57,14 @@ A new basic block is placed at the beginning of the loop body, which increments 
 %\subsection{\osrkit\ Instrumentation API}
 %\label{se:instrum-api}
 %To support the IR instrumentation tasks of \mysection\ref{se:overview}, \osrkit\ provides a number of abstractions for VM builders. 
+
+%In this section we discuss an LLVM implementation of the approach described in \mysection\ref{se:overview}. Our discussion is based on a set of abstractions to support OSR instrumentation of IR code, which we organized in an LLVM-based library for VM builders called \osrkit. A simplified overview of the main building blocks is:
+%\begin{itemize}
+%\item {\em StateMapper}: a class that [...]
+%\item {\em InsertResolvedOSR(f1, b1, f2, b2, cond, m)}: function that inserts a resolved OSR point in function {\em f1} at basic block {\em b1} to function {\em f2} at basic block {\em b2}, using as OSR condition a sequence of IR instructions {\em cond} and a state mapper {\em m}.
+%\item {\em InsertOpenOSR()}: [...]
+%\item {\em GenerateOSRContFun(...)}: generates the continuation function [...]
+%\end{itemize}
 
 %LLVMContext& Context, OSRLibrary::OpenOSRInfo& info,
 %        OSRLibrary::OSRCond& cond, Value* profDataVal, OSRLibrary::DestFunGenerator destFunGenerator,
