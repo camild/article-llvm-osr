@@ -18,7 +18,7 @@ In this section we discuss an LLVM implementation of the approach described in \
 \fi
 
 \subsection{Example}
-To explain how the OSR approach of \mysection\ref{se:overview} can be implemented in LLVM, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is sorted according to some ordering specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
+To explain how the OSR approach of \mysection\ref{se:overview} can be implemented in LLVM, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is ordered according to some criterion specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
 
 \ifdefined\noauthorea
 \begin{figure}[t]
