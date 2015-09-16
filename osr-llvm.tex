@@ -57,11 +57,14 @@ The final step to be performed before execution is native code generation. \myfi
 
 \subsection{Instrumentation API}
 \label{se:instrum-api}
-To support the IR instrumentation tasks of \mysection\ref{se:overview}, \osrkit\ provides a number of abstractions for VM builders:
+To support the IR instrumentation tasks of \mysection\ref{se:overview}, \osrkit\ provides a number of abstractions for VM builders. A simplified overview of the main building blocks is:
 \begin{itemize}
-\item [...]
+\item {\tt StateMapper}: module that [...]
+\item {\tt insertResolvedOSR(f1, b1, f2, b2, cond, m)}: function that inserts a resolved OSR point in f1 at basic block b1 to function b2 at basic block b2, using as OSR condition a sequence of IR instructions {\tt cond}, a state map {\tt m}.
+\item {\tt insertOpenOSR()}
+\item {\tt generateOSRDestFun()}
 \end{itemize}
-
+                              
 %To place an open OSR, \tinyvm\ requires the following pieces of information: 1) a pointer to the 
 
 %LLVMContext& Context, OSRLibrary::OpenOSRInfo& info,
