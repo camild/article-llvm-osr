@@ -21,7 +21,7 @@ Consider the generic OSR scenario shown in \myfigure\ref{fi:osr-dynamics}. A bas
 
 Classic OSR implementations adjust the stack so that execution can continue in \fvariant\ with the current frame \cite{chambers1992design}. This requires manipulating the program state at machine code level and is highly ABI- and compiler-dependent. A simpler approach, which we follow in this article, consists of creating a new frame every time an OSR is fired, essentially regarding an OSR transition as a function call~\cite{Lameed_2013,webkit14}. 
 
-Our implementation targets two general scenarios: 1) {\em resolved OSR}: \fvariant\ is known before executing \fbase\ as in the deoptimization example discussed above; 2) {\em open OSR}: \fvariant\ is generated when the OSR is fired, supporting deferred compilation strategies. In both cases, \fbase\ is instrumented before its execution to incorporate the OSR machinery. We call such OSR-instrumented version \fosrfrom.
+Our implementation targets two general scenarios: 1) {\em resolved OSR}: \fvariant\ is known before executing \fbase\ as in the deoptimization example discussed above; 2) {\em open OSR}: \fvariant\ is generated when the OSR is fired, supporting deferred and profile-guided compilation strategies. In both cases, \fbase\ is instrumented before its execution to incorporate the OSR machinery. We call such OSR-instrumented version \fosrfrom.
 
 \ifdefined\noauthorea
 \begin{figure}[t]
