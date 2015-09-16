@@ -9,7 +9,7 @@ In this section we discuss our implementation of the approach described in \myse
 To explain how OSR is encoded in IR by \tinyvm, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is sorted according to some ordering specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
 
 \paragraph{OSR Instrumentation of Base Function.}
-To achieve this goal, we use deferred compilation by instrumenting {\tt isord} in \tinyvm\ with an open OSR at the beginning of the loop body, as shown in \myfigure\ref{fig:isordfrom}. Portions added to the original code by OSR istrumentation are highlighted in grey.
+We use deferred compilation by instrumenting {\tt isord} in \tinyvm\ with an open OSR at the beginning of the loop body, as shown in \myfigure\ref{fig:isordfrom}. Portions added to the original code by OSR istrumentation are highlighted in grey.
 %The figure illustrates how the original {\tt isord} code is instrumented by \tinyvm, highlighting in grey the added portions. 
 A new basic block is placed at the beginning of the loop body, incrementing the hotness counter {\tt p.osr} and jumping to an OSR-firing block if the counter reaches the threshold (1000 iterations in this example). The OSR block contains a tail call to the target generation stub. Notice that maintaining the SSA form requires adjusting phi nodes.
 
