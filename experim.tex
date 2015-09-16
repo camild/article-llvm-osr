@@ -67,7 +67,7 @@ Results for the unoptimized and optimized versions of the benchmarks are reporte
   
 \paragraph{Overhead of OSR Transitions.}
 
-\mytable\ref{tab:sameFun} reports for each benchmark an estimate of the average cost of performing an OSR transition to a clone of the running function. For each benchmark we compute the time difference between the scenarios in which an always- and a never-firing resolved OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
+\mytable\ref{tab:sameFun} reports estimates of the average cost of performing an OSR transition to a clone of the running function. For each benchmark we compute the time difference between the scenarios in which an always- and a never-firing resolved OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
 
 Hot code portions for OSR point insertion have been identified as in the experiments for code quality. However, as for hot loops we want to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. Depending on the characteristics of the hot loop, we either transform it into a separate function and instrument its entrypoint, or, when the loop calls a method with a high self time, we insert an OSR point at the beginning of that method.
 
