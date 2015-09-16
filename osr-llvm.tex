@@ -18,7 +18,7 @@
 %\subsection{Example}
 In this section we discuss how to implement the OSR approach of \mysection\ref{se:overview} in LLVM. Our discussion is based on a simple example that illustrates a profile-driven optimization scenario. The IR code shown in this section has been generated with \osrkit, an LLVM-based library we prototyped to support VM builders with a set of abstractions for OSR instrumentation of IR code.
 
-The example we consider is a simple base function {\tt isord} that checks whether an array of numbers is ordered according to some criterion specified by a comparator, as shown in \myfigure\ref{fi:isord-example}. Our goal is to instrument {\tt isort} with a mechanism that fires an OSR to a faster version if the number of iterations of a base function exceeds a certain threshold.
+The example we consider is a simple base function {\tt isord} that checks whether an array of numbers is ordered according to some criterion specified by a comparator, as shown in \myfigure\ref{fi:isord-example}. Our goal is to instrument {\tt isort} so that, whenever the number of iterations of {\tt isord} exceeds a certain threshold, control is dynamically diverted to a faster version generated on the fly by inlining the comparator.
 
 %To explain how the OSR approach of \mysection\ref{se:overview} can be implemented in LLVM, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is ordered according to some criterion specified by a comparator.
 
