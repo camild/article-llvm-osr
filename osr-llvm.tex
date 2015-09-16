@@ -62,7 +62,7 @@ To support the IR instrumentation tasks of \mysection\ref{se:overview}, \osrkit\
 \item {\em StateMapper}: module that [...]
 \item {\em insertResolvedOSR(f1, b1, f2, b2, cond, m)}: function that inserts a resolved OSR point in function {\em f1} at basic block {\em b1} to function {\em f2} at basic block {\em b2}, using as OSR condition a sequence of IR instructions {\em cond} and a state mapper {\em m}.
 \item {\em insertOpenOSR()}: [...]
-\item {\em generateOSRDestFun()}: [...]
+\item {\em generateOSRContFun(...)}: generates the continuation function [...]
 \end{itemize}
                               
 %To place an open OSR, \tinyvm\ requires the following pieces of information: 1) a pointer to the 
