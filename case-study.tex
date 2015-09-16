@@ -36,7 +36,7 @@ The source code of McVM is publicly available~\cite{mcvm}; after porting it from
 \begin{enumerate}
 \item An analysis pass for \feval\ instructions in the IIR representation of a function
 \item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ calls
-\item An inserter component to insert OSR points in the IR generated for IIR locations annotated during the analysis pass
+\item An inserter component to insert OSR points in the IR for IIR locations annotated during the analysis pass
 \item A callback optimizer triggered at OSR points, which in turn is made of:
 \begin{enumerate}
 \item A profile-driven IIR generator to replace \feval\ calls with direct calls
