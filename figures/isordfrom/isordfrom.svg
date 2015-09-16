@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="83.982131"
+     inkscape:cx="79.309234"
      inkscape:cy="735.62784"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -108,19 +108,19 @@
          id="flowPara5618">  %i = phi i64 [%i1, %loop.header], [1,%entry]</flowPara><flowPara
          id="flowPara5620"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %p.osr = phi i64 [%p.osr1, %loop.header], </flowPara><flowPara
-         id="flowPara5622"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">                   [1000, %entry]</flowPara><flowPara
          id="flowPara5624"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %p.osr1 = add nsw i64 %p.osr, -1</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">                   [1000, %entry]</flowPara><flowPara
          id="flowPara5626"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.cond = icmp eq i64 %p.osr, 0</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %p.osr1 = add nsw i64 %p.osr, -1</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3399">  %osr.cond = icmp eq i64 %p.osr, 0</flowPara><flowPara
          id="flowPara5630"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  br i1 %osr.cond, label %osr, </flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
          id="flowPara4191">                   label %loop.body.cont</flowPara><flowPara
-         id="flowPara5634"
+         id="flowPara5636"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">loop.body.cont:</flowPara><flowPara
-         id="flowPara5636">  %t2 = getelementptr inbounds i64* %v, i64 %i</flowPara><flowPara
+         id="flowPara3383">  %t2 = getelementptr inbounds i64* %v, i64 %i</flowPara><flowPara
          id="flowPara5638">  %t3 = add nsw i64 %i, -1</flowPara><flowPara
          id="flowPara5640">  %t4 = getelementptr inbounds i64* %v, i64 %t3</flowPara><flowPara
          id="flowPara5642">  %t5 = bitcast i64* %t4 to i8*</flowPara><flowPara
@@ -140,7 +140,7 @@
          id="flowPara5670"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr:</flowPara><flowPara
          id="flowPara5672"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordascto(</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordstub(</flowPara><flowPara
          id="flowPara5676"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">      i64* %v, i64 %n, i64 %i, i32 (i8*, i8*)* %c)</flowPara><flowPara
          id="flowPara5678"
