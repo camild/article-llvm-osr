@@ -3,7 +3,10 @@
 \section{OSR in LLVM}
 \label{se:osr-llvm}
 
-In this section we discuss our implementation of the approach described in \mysection\ref{se:overview} in \tinyvm, a proof-of-concept virtual machine we developed as a playground to exercise our OSR techniques. TinyVM is based on LLVM's MCJIT compiler and supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
+In this section we discuss an LLVM implementation of the approach described in \mysection\ref{se:overview}. Our discussion is based on a set of abstractions to support OSR instrumentation of IR code, which we organized in an LLVM-based library for VM builders called \osrkit.
+
+% ====> The following text goes in the artifact
+% In this section we discuss our implementation of the approach described in \mysection\ref{se:overview} in \tinyvm, a proof-of-concept virtual machine we developed as a playground to exercise our OSR techniques. TinyVM is based on LLVM's MCJIT compiler and supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
 
 \ifdefined\noauthorea
 \begin{figure}[t]
@@ -15,7 +18,7 @@ In this section we discuss our implementation of the approach described in \myse
 \fi
 
 \subsection{Example}
-To explain how \osrkit\ implements in LLVM the OSR approach of \mysection\ref{se:overview}, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is sorted according to some ordering specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
+To explain how \tinyvm\ implements in LLVM the OSR approach of \mysection\ref{se:overview}, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is sorted according to some ordering specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
 
 \ifdefined\noauthorea
 \begin{figure}[t]
@@ -36,7 +39,7 @@ To explain how \osrkit\ implements in LLVM the OSR approach of \mysection\ref{se
 \fi
 
 \paragraph{OSR Instrumentation.}
-We use deferred compilation by instrumenting {\tt isord} with an open OSR at the beginning of the loop body, as shown in \myfigure\ref{fig:isordfrom}. Portions added to the original code by OSR istrumentation are highlighted in grey.
+We use deferred compilation by instrumenting {\tt isord} in \tinyvm\ with an open OSR at the beginning of the loop body, as shown in \myfigure\ref{fig:isordfrom}. Portions added to the original code by OSR istrumentation are highlighted in grey.
 %The figure illustrates how the original {\tt isord} code is instrumented by \tinyvm, highlighting in grey the added portions. 
 A new basic block is placed at the beginning of the loop body, which increments a hotness counter {\tt p.osr} and jumps to an OSR-firing block if the counter reaches the threshold (1000 iterations in this example). The OSR block contains a tail call to the target generation stub, which receives as parameters the four live variables at the OSR point ({\tt v}, {\tt n}, {\tt i}, {\tt c}). Notice that maintaining the SSA form requires adjusting phi nodes. The stub (see \myfigure[...]) calls a code generator that: 1) builds an optimized version of {\tt isord} by inlining the comparator, and 2) uses it to create the continuation function {\tt isordto} shown in \myfigure\ref{fig:isordascto}. The stub terminates with a tail call to {\tt isordto}. To generate the continuation function from the optimized version created by the inliner, \tinyvm\ replaces the function entry point, removes dead code, replaces live variables with the function parameters, and fixes phi nodes accordingly. Additions resulting from the IR instrumentation are in grey, while removals are struck-through.
 
@@ -56,8 +59,6 @@ The final step performed by \tinyvm\ before execution is native code generation 
 \label{se:instrum-api}
 To support the IR instrumentation tasks of \mysection\ref{se:overview}, \tinyvm\ provides a number of abstractions for VM builders:
 \begin{itemize}
-\item [...]
-\item [...]
 \item [...]
 \end{itemize}
 
