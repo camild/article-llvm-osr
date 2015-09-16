@@ -205,7 +205,7 @@
      id="namedview5609"
      showgrid="true"
      inkscape:zoom="2.46"
-     inkscape:cx="194.69947"
+     inkscape:cx="241.44744"
      inkscape:cy="439.13574"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -529,7 +529,7 @@
          id="tspan4312"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10px;font-family:serif;-inkscape-font-specification:serif">    f'<tspan
    style="font-size:51.99999809%;baseline-shift:sub"
-   id="tspan4342">to</tspan>=generate(f, L) </tspan><tspan
+   id="tspan4342">to</tspan>=gen(f, L) </tspan><tspan
          sodipodi:role="line"
          x="190.40001"
          y="-371.40234"
