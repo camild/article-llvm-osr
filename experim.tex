@@ -3,9 +3,9 @@
 \section{Experimental Evaluation}
 \label{se:experiments}
 
-In this section we present a preliminar experimental study of our OSR implementation in TinyVM. Our experiments are baed on the \shootout\ test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. %, a proof-of-concept virtual machine based on LLVM's JIT compiler MCJIT. TinyVM supports interactive invocations of functions and it can compile LLVM IR either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
+In this section we present a preliminar experimental study of our OSR implementation in TinyVM. Our experiments are based on the \shootout\ test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. %, a proof-of-concept virtual machine based on LLVM's JIT compiler MCJIT. TinyVM supports interactive invocations of functions and it can compile LLVM IR either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
 %TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. 
-The list of benchmarks and their description is reported in Table~\ref{tab:shootout}; four of them - namely {\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm} - are evaluated against two workloads of different size.
+The list of benchmarks and their description is reported in \mytable\ref{tab:shootout}; four of them - namely {\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm} - are evaluated against two workloads of different size.
 
 \begin{table} 
 \begin{center}
@@ -39,11 +39,13 @@ The list of benchmarks and their description is reported in Table~\ref{tab:shoot
 
 \subsection{Setup}
 
-We generated the IR modules for our experiments with clang, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
+%We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
+
+We generated the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we performed was {\tt mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we also generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 
 Experiments were performed on an octa-core 2.3 Ghz Intel Xeon E5-4610 v2 with 256+256KB of L1 cache, 2MB of L2 cache, 16MB of shared L3 cache and 128 GB of DDR3 main memory, running Debian Wheezy 7, Linux kernel 3.2.0, LLVM 3.6.2 (Release build, compiled using gcc 4.7.2), 64 bit.
 
-For each benchmark we performed 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
+For each benchmark we analyze CPU time performing 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
 
 \subsection{Results}
 
@@ -53,7 +55,7 @@ For each benchmark we performed 10 trials preceded by an initial warm-up iterati
 \item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark the time required by insertOpenOSR (OSR point insertion + stub creation) and insertFinalizedOSR (OSR point insertion + generation of continuation function).
 \end{itemize}
 
-\paragraph{Impact on code quality}
+\paragraph{Impact on code quality.}
 In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion.
 
 For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body. These loops are natural candidates for OSR point insertion, as they can be used - as in the Jikes RVM - to enable more dynamic inlining opportunities, with the benefits from several control-flow (e.g., dead code elimination) and data-flow (e.g., constant propagation) optimizations based on the run-time values of the live variables. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
@@ -62,7 +64,7 @@ For {\tt b-trees} - the only benchmark in our suite showing a recursive pattern 
 
 Results for the unoptimized and optimized versions of the benchmarks are reported in Figure~\ref{fig:code-quality-base} and \ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. In some cases, code might run slightly faster after OSR point have been inserted due to cache and instruction alignment effects. We analyzed the code produced by the x86\_64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly. The number of times the OSR condition is checked for each benchmark is the same as in the experiments reported in Table~\ref{tab:sameFun}.
   
-\paragraph{Overhead of OSR transitions}
+\paragraph{Overhead of OSR transitions.}
 
 Table~\ref{tab:sameFun} reports for each benchmark an estimate of the average cost of performing an OSR transition to a function identical to the running one. For each benchmark we compute the difference in terms of total CPU time when an always-firing or a never-firing OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
 
@@ -130,7 +132,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
 \fi
 
 \ifauthorea{\newline}{}
-\paragraph{OSR machinery generation}
+\paragraph{OSR machinery generation.}
 We now discuss the overhead of the library for the insertion of OSR machinery in the IR of a function. Table~\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function, the number of live values to transfer and the time spent in the IR manipulation. 
 
 For open OSR points, we report the time spent in inserting the OSR point in the original function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the continuation function.
@@ -170,5 +172,5 @@ Not surprisingly, constructing such function takes longer than the other operati
 \end{table}
 
 \ifauthorea{\newline}{}
-\paragraph{Discussion}
+\paragraph{Discussion.}
 Experimental results presented in this section suggest that inserting an OSR point is unlikely to degrade the quality of generated code, and the time required to fire an OSR transition is negligible (i.e., order of nanoseconds). Instrumenting the original IR is cheap, while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization depends on the trade-off between the expected benefits in terms of execution time and the overhead for generating on optimized version of the function and eventually JIT-compiling it; compared to these two operations, the cost of OSR-related operations is negligible.
