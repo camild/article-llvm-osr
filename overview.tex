@@ -49,7 +49,7 @@ The open OSR scenario is similar, with one main difference (see \myfigure\ref{fi
 \paragraph{Discussion.}
 Instrumenting functions for OSR at a higher level than machine code yields several benefits: 
 \begin{enumerate}
-\item {\em Platform independence}: the OSR instrumentation code is lowered to native code by the compiler backend, which handles the details of the target ABI; 
+\item {\em Platform independence}: the OSR instrumentation code is lowered to native code by the compiler back-end, which handles the details of the target ABI; 
 \item {\em Global optimizations}: lowering OSR instrumentation code along with the application code can generate faster code than local binary instrumentation. For instance, dead code elimination can suppress from \fosrto\ portions of code that would no longer be needed when jumping to the landing pad \textsf{L'}, producing smaller code and enabling better register allocation and instruction scheduling.
 \item {\em Debugging and Profiling}: preserving ABI conventions in the native code versions of \fosrfrom, \fstub, and \fosrto\ helps debuggers and profilers to more precisely locate the current execution context and collect more informative data.
 %avoiding low-lever tampering with stack frames can more easily preserve ABI calling conventions
@@ -58,92 +58,3 @@ Instrumenting functions for OSR at a higher level than machine code yields sever
 \end{enumerate}
 
 \noindent A natural question is whether encoding OSR at a higher level of abstraction can result in poorer performance than binary code approaches. We address this issue in \mysection\ref{se:osr-llvm}, where we analyze the OSR machine code generated for an x86-64 target, and in \mysection\ref{se:experiments}, where OSR performance is measured on classical benchmarks.
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
