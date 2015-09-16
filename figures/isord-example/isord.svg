@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="83.982131"
+     inkscape:cx="-32.840299"
      inkscape:cy="885.16055"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -67,13 +67,17 @@
          id="flowPara4399">int isord(long* v, long n, int (*c)(void*,void*)) {</flowPara><flowPara
          id="flowPara4381">    for (long i=1; i&lt;n; i++) </flowPara><flowPara
          id="flowPara4384">        if (c(v+i-1,v+i)&gt;0) return 0;</flowPara><flowPara
-         id="flowPara4387">    return 1;</flowPara><flowPara
-         id="flowPara4390">}</flowPara><flowPara
-         id="flowPara4393" /><flowPara
-         id="flowPara5640">int isord_asc(long* v, long n) {</flowPara><flowPara
-         id="flowPara4578">    for (long i=1; i&lt;n; i++) </flowPara><flowPara
-         id="flowPara4580">        if (v[i-1]&gt;v[i]) return 0;</flowPara><flowPara
          id="flowPara4582">    return 1;</flowPara><flowPara
          id="flowPara4586">}</flowPara><flowPara
-         id="flowPara5680" /></flowRoot>  </g>
+         id="flowPara5680" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot3348"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:15px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion3350"><rect
+           id="rect3352"
+           width="10.280374"
+           height="34.579441"
+           x="49.532711"
+           y="97.222015" /></flowRegion><flowPara
+         id="flowPara3354"></flowPara></flowRoot>  </g>
 </svg>
