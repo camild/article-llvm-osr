@@ -5,7 +5,7 @@
 
 In this section we discuss our implementation of the approach described in \mysection\ref{se:overview} in \tinyvm, a proof-of-concept virtual machine we developed as a playground to exercise our OSR techniques. TinyVM is based on LLVM's MCJIT compiler and supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
 
-\subsection{Running example}
+\subsection{Example}
 To explain how OSR is encoded in IR by \tinyvm, we consider the simple example of \myfigure\ref{fi:isord-example}. Function {\tt isord} checks whether an array of numbers is sorted according to some ordering specified by a comparator. The scenario we explore is profile-driven optimization, where we dynamically divert control to a faster version if the number of iterations exceeds a certain threshold. 
 
 \paragraph{OSR Instrumentation of Base Function.}
@@ -14,6 +14,7 @@ To achieve this goal, we use deferred compilation by instrumenting {\tt isord} i
 A new basic block is placed at the beginning of the loop body, incrementing the hotness counter {\tt p.osr} and jumping to an OSR-firing block if the counter reaches the threshold (1000 iterations in this example). The OSR block contains a tail call to the target generation stub. Notice that maintaining the SSA form requires adjusting phi nodes.
 
 \paragraph{Generation of the Continuation Function.}
+[...]
 
 \paragraph{Lowering OSR-Instrumented Code to x86-64.}
 [...]
