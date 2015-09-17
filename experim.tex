@@ -182,7 +182,7 @@ Not surprisingly, constructing a continuation function takes longer than the oth
 \end{table}
 \ifauthorea{\newline}{}
 
-\paragraph{Optimizing {\tt feval} in McVM}
+\paragraph{{\tt feval} Optimization.}
 We evaluated the effectiveness of our technique on four benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}. We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we show speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
   
 \begin{table}
