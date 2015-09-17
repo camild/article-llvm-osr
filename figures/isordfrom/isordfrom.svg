@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="219.49615"
-     inkscape:cy="698.24466"
+     inkscape:cx="102.67372"
+     inkscape:cy="773.01102"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -95,7 +95,7 @@
          id="flowPara5594">define i32 @isord<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
    id="flowSpan6767">from</flowSpan>(i64* %v, i64 %n, </flowPara><flowPara
-         id="flowPara5596">         i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
+         id="flowPara5596">                   i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
          id="flowPara5598">entry:</flowPara><flowPara
          id="flowPara5600">  %t0 = icmp sgt i64 %n, 1</flowPara><flowPara
          id="flowPara5602">  br i1 %t0, label %loop.body, label %exit</flowPara><flowPara
