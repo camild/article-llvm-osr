@@ -70,7 +70,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.32"
-     inkscape:cx="128.0949"
+     inkscape:cx="33.39793"
      inkscape:cy="805.19553"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -173,7 +173,7 @@
    id="flowSpan7807">i64* nocapture readonly %v_osr, </flowSpan></flowPara><flowPara
          id="flowPara7741"><flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-   id="flowSpan7809">  i64 %n_osr, i64 %i_osr, i32 (i8*, i8*)* %c_osr</flowSpan>) {</flowPara><flowPara
+   id="flowSpan7809">  i64 %n_osr, i32 (i8*, i8*)* %c_osr, i64 %i_osr</flowSpan>) {</flowPara><flowPara
          id="flowPara7743" /><flowPara
          id="flowPara7745"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr.entry: ; no compensation code needed...</flowPara><flowPara
