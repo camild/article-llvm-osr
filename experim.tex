@@ -179,8 +179,38 @@ Not surprisingly, constructing a continuation function takes longer than the oth
 \caption{\label{tab:instrTime} OSR machinery insertion in optimized code. Time measurements are expressed in microseconds. Results for unoptimized code are very similar and thus not reported.}
 \end{small}
 \end{table}
-
 \ifauthorea{\newline}{}
+
+\paragraph{Optimizing {\tt feval} in McVM}
+We evaluated the effectiveness of our technique on four benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}. We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we show speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
+  
+\begin{table}
+\begin{small}
+    % dirty hack for text wrapping
+    \begin{tabular}{ |c|c|c|c|c| }
+        \cline{2-5}
+        \multicolumn{1}{c|}{} & Base & Optimized & Optimized & Direct \\ 
+        \cline{1-1}
+        {\em Benchmark} & (cached) & (JIT) & (cached) & (by hand) \\
+        \hline
+        \hline
+        odeEuler & 1.046 & 2.796 & 2.800 & 2.828 \\ 
+        \hline
+        odeMidpt & 1.014 & 2.645 & 2.660 & 2.685 \\ 
+        \hline
+        odeRK4 & 1.005 & 2.490 & 2.582 & 2.647 \\ 
+        \hline
+        sim\_anl & 1.009 & 1.564 & 1.606 & 1.612 \\ 
+        \hline
+    \end{tabular} 
+    \caption{\label{tab:feval} Speedup comparison for \feval\ optimization.} 
+\end{small}
+\end{table}  
+  
+Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Numbers in their paper~\cite{lameed2013feval} show that for these benchmarks the speed-up of the OSR-based approach is equal on average to a $30.1\%$ percentage of the speed-up from hand-coded calls, ranging from $9.2\%$ to $73.9\%$; for the JIT-based approach the average percentage grows to $84.7\%$, ranging from $75.7\%$ to $96.5\%$.
+
+Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the worst case - {\tt odeRK4} benchmark - we observe a $94.1\%$ percentage when the optimized code is generated on-the-fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
+
 \paragraph{Discussion.}
 %Experimental results presented in this section suggest that inserting an OSR point is unlikely to degrade the quality of generated code, and the time required to fire an OSR transition is negligible (i.e., order of nanoseconds). Instrumenting the original IR is cheap, while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization depends on the trade-off between the expected benefits in terms of execution time and the overhead for generating on optimized version of the function and eventually JIT-compiling it; compared to these two operations, the cost of OSR-related operations is negligible.
 
