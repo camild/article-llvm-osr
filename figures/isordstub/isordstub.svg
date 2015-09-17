@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="140.0569"
+     inkscape:cx="23.23447"
      inkscape:cy="773.01102"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -97,11 +97,11 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4069">  ; hard-coded parameters passed to generator:</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4131">  ;   1) 46993664 = ptr to isord IR function</flowPara><flowPara
+         id="flowPara4131">  ;  1) 46993664 = addr of isord IR function</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4133">  ;   2) 46995056 = ptr to basic block at loop.body</flowPara><flowPara
+         id="flowPara4133">  ;  2) 46995056 = addr of basic block at loop.body</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4139">  ;   3) 47005408 = ptr to code generation env</flowPara><flowPara
+         id="flowPara4139">  ;  3) 47005408 = addr of code generation env</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4071">  (i8* inttoptr (i64 46993664 to i8*),</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
