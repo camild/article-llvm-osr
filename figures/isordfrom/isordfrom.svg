@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="79.309234"
-     inkscape:cy="735.62784"
+     inkscape:cx="37.253159"
+     inkscape:cy="698.24466"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -140,9 +140,9 @@
          id="flowPara5670"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr:</flowPara><flowPara
          id="flowPara5672"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordstub(</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordstub(i8* null,</flowPara><flowPara
          id="flowPara5676"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">      i64* %v, i64 %n, i64 %i, i32 (i8*, i8*)* %c)</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">      i64* %v, i64 %n, i32 (i8*, i8*)* %c, i64 %i)</flowPara><flowPara
          id="flowPara5678"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  ret i32 %osr.res</flowPara><flowPara
          id="flowPara5680">}</flowPara></flowRoot>  </g>

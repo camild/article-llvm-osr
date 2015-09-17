@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="isordstub.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.07"
+     inkscape:cx="256.87933"
+     inkscape:cy="773.01102"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1440"
+     inkscape:window-height="851"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       transform="translate(-18.13636,-93.181818)"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="flowRoot5588"
+       xml:space="preserve"><flowRegion
+         id="flowRegion5590"><rect
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;line-height:125%;font-family:Courier;-inkscape-font-specification:'Courier, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start"
+           y="126.55576"
+           x="56.451614"
+           height="620.85822"
+           width="360.47766"
+           id="rect5592" /></flowRegion><flowPara
+         id="flowPara5670"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier">define i32 @isordstub(</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4093">   i8* %userptr, i64* %v_osr, i64 %n_osr, </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4091">   i32 (i8*, i8*)* nocapture %c_osr, i64 %i_osr) {</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4047">entry:</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4049">  %cont.func = call ; contin. fun generator call</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4051" /><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4053">  ; generator returns ptr to continuation fun</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4055">  i32 (i64*, i64, i32 (i8*, i8*)*, i64 )* </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4057">  		    (i8*, i8*, i8*, i8*)* inttoptr </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4059">  		 </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4061">  ; continuation fun generator address is 4357824</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4063">  (i64 4357824 to </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4101">           i32 (i64*, i64, i32 (i8*, i8*)*, i64)* </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4065">  		                (i8*, i8*, i8*, i8*)*)</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4067" /><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4069">  ; built-in parameters passed to generator:</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4131">  ;   1) 46993664 = ptr to isord IR function</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4133">  ;   2) 46995056 = ptr to basic block at loop.body</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4139">  ;   3) 47005408 = ptr to LLVM context</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4071">  (i8* inttoptr (i64 46993664 to i8*),</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4073">   i8* inttoptr (i64 46995056 to i8*), </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4077">  	i8* inttoptr (i64 47005408 to i8*),i8* %userptr) </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4079" /><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4081">  %osr.res = call i32 %cont.func(i64* %v_osr, </flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4105">    i64 %n_osr, i32 (i8*, i8*)* %c_osr, i64 %i_osr)</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
+         id="flowPara4083">  ret i32 %osr.res</flowPara><flowPara
+         id="flowPara5680"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier">}</flowPara></flowRoot>    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:15px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="248.59813"
+       y="57.969681"
+       id="text4095"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4097"
+         x="248.59813"
+         y="57.969681"></tspan></text>
+  </g>
+</svg>
