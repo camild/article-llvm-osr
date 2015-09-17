@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="37.253159"
+     inkscape:cx="219.49615"
      inkscape:cy="698.24466"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -69,7 +69,7 @@
     <rect
        y="525.25714"
        x="36.409088"
-       height="43.387196"
+       height="57.405888"
        width="346.29355"
        id="rect6765"
        style="fill:#d2d2d2;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1, 1;stroke-dashoffset:0;stroke-opacity:1" />
@@ -140,7 +140,9 @@
          id="flowPara5670"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">osr:</flowPara><flowPara
          id="flowPara5672"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %osr.res = call i32 @isordstub(i8* null,</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">  %val = bitcast i32 (i8*, i8*)* %c to i8*</flowPara><flowPara
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
+         id="flowPara3402">  %osr.res = call i32 @isordstub(i8* %val,</flowPara><flowPara
          id="flowPara5676"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'">      i64* %v, i64 %n, i32 (i8*, i8*)* %c, i64 %i)</flowPara><flowPara
          id="flowPara5678"

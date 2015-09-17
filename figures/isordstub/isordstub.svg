@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="256.87933"
+     inkscape:cx="140.0569"
      inkscape:cy="773.01102"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -67,7 +67,7 @@
          id="flowPara5670"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier">define i32 @isordstub(</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4093">   i8* %userptr, i64* %v_osr, i64 %n_osr, </flowPara><flowPara
+         id="flowPara4093">   i8* %val, i64* %v_osr, i64 %n_osr, </flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4091">   i32 (i8*, i8*)* nocapture %c_osr, i64 %i_osr) {</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
@@ -83,7 +83,7 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4057">  		    (i8*, i8*, i8*, i8*)* inttoptr </flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4059">  		 </flowPara><flowPara
+         id="flowPara4059" /><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4061">  ; continuation fun generator address is 4357824</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
@@ -95,19 +95,19 @@
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4067" /><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4069">  ; built-in parameters passed to generator:</flowPara><flowPara
+         id="flowPara4069">  ; hard-coded parameters passed to generator:</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4131">  ;   1) 46993664 = ptr to isord IR function</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4133">  ;   2) 46995056 = ptr to basic block at loop.body</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4139">  ;   3) 47005408 = ptr to LLVM context</flowPara><flowPara
+         id="flowPara4139">  ;   3) 47005408 = ptr to code generation env</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4071">  (i8* inttoptr (i64 46993664 to i8*),</flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4073">   i8* inttoptr (i64 46995056 to i8*), </flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
-         id="flowPara4077">  	i8* inttoptr (i64 47005408 to i8*),i8* %userptr) </flowPara><flowPara
+         id="flowPara4077">  	i8* inttoptr (i64 47005408 to i8*), i8* %val) </flowPara><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
          id="flowPara4079" /><flowPara
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Courier;-inkscape-font-specification:Courier"
@@ -127,6 +127,6 @@
          sodipodi:role="line"
          id="tspan4097"
          x="248.59813"
-         y="57.969681"></tspan></text>
+         y="57.969681" /></text>
   </g>
 </svg>
