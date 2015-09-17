@@ -26,7 +26,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.07"
-     inkscape:cx="102.67372"
+     inkscape:cx="-14.14871"
      inkscape:cy="773.01102"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -94,8 +94,8 @@
            id="rect5592" /></flowRegion><flowPara
          id="flowPara5594">define i32 @isord<flowSpan
    style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Courier;-inkscape-font-specification:'Courier Bold'"
-   id="flowSpan6767">from</flowSpan>(i64* %v, i64 %n, </flowPara><flowPara
-         id="flowPara5596">                   i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
+   id="flowSpan6767">from</flowSpan>( </flowPara><flowPara
+         id="flowPara5596">  i64* %v, i64 %n, i32 (i8*, i8*)* nocapture %c) {</flowPara><flowPara
          id="flowPara5598">entry:</flowPara><flowPara
          id="flowPara5600">  %t0 = icmp sgt i64 %n, 1</flowPara><flowPara
          id="flowPara5602">  br i1 %t0, label %loop.body, label %exit</flowPara><flowPara
