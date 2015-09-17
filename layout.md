@@ -12,7 +12,7 @@ figures/isordx86-64/isordx86-64.png
 osr-llvm.tex
 case-study.tex
 experim.tex
-figures/code-quality-noBB/code-quality-noBB.png
+figures/code-quality-noBB/code-quality.png
 figures/code-quality-O1-noBB/code-quality-O1-noBB.png
 related.tex
 conclusions.tex
