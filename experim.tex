@@ -7,7 +7,7 @@ In this section we present a preliminar experimental study of our OSR implementa
 %, a proof-of-concept virtual machine based on LLVM's JIT compiler MCJIT. TinyVM supports interactive invocations of functions and it can compile LLVM IR either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
 %TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. 
 The list of benchmarks and their description is reported in \mytable\ref{tab:shootout}; four of them - namely {\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm} - are evaluated against two workloads of different size.
-At the end of the section, we discuss experimental results for the case study presented in \mysection\ref{se:case-study}.
+At the end of the section, we show experimental results for the case study presented in \mysection\ref{se:case-study}.
 
 \begin{table} 
 \begin{center}
