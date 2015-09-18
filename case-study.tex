@@ -66,6 +66,9 @@ This map is essential for the next step, which is constructing a state mapping b
 \item or, compensation code is required to reconstruct its value before jumping to the block.
 \end{itemize}
 
-\noindent In fact, since the type inference engine yields more accurate results for \gOptIIR\ compared to \gIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point. Compensation code might also be required to materialize an IR object for an IIR variable that were previously accessed through get/set methods from the environment.
+\noindent In fact, since the type inference engine yields more accurate results for \gOptIIR\ compared to \gIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point.
+\ifdefined \fullver
+Compensation code might also be required to materialize an IR object for an IIR variable that were previously accessed through get/set methods from the environment. %TODO
+\fi
 
 Once a state mapping object has been constructed, the optimizer calls our OSR library to generate the continuation function for the OSR transition and eventually compiles it. A pointer to the compiled function is stored in the code cache and returned to the stub, which invokes it through an indirect call passing the live state saved at the OSR point.
