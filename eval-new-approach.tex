@@ -3,15 +3,14 @@
 \subsection{A New Approach}
 \label{ss:eval-opt-mcvm}
 
-In this section, we present a new approach that combines the flexibility of OSR-based specialization with the efficiency of the JIT-based method, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}.
+In this section, we present a new approach that combines the flexibility of OSR-based specialization with the efficiency of the JIT-based method, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. The key idea is to lift the $f$-to-$f'$ optimization performed by the OSR-based specialization from IR to IIR level. This makes it possible to perform type inference in $f'$, generating a much more efficient code. The main technical challenge of this approach is that the state in $f$ at the OSR point may be incompatible with the state of $f'$ from which execution continues. Indeed, values in [...]
 
-The main idea for optimizing a function $f$ containing an \feval\ instruction is to dynamically generate a variant $f'$ where the \feval$(g,...)$ is replaced by a direct call of the form $g(...)$. The key to efficiency is the ability to perform type inference on the IIR level, [...]
-
-Our approach to \feval\ optimization leverages OSR to generate specialized code where [...]
+%The main idea for optimizing a function $f$ containing an \feval\ instruction is to dynamically generate a variant $f'$ where the \feval$(g,...)$ is replaced by a direct call of the form $g(...)$. The key to efficiency is the ability to perform type inference on the IIR level, [...]
 
 %capture run-time information
 
-After porting it from the LLVM legacy JIT to MCJIT, we have extended it with the following components to enable the optimization of \feval\ instructions:
+\paragraph{Implementation in McVM.}
+We implemented our approach in McVM~\footnote{As a by-product of our project, we ported the MATLAB McVM virtual machine from the LLVM legacy JIT to the new MCJIT toolkit.}, extending it with four main components:
 
 \begin{enumerate}
 \item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function.
@@ -72,4 +71,4 @@ Once a state mapping object has been constructed, the optimizer calls our OSR li
 \paragraph{Discussion.}
 The ideas presented in this section advance the state of the art of \feval\ optimization in MATLAB runtimes.
 %combine the flexibility of OSR-based specialization with the efficiency of the JIT-based method. 
-Similarly to OSR-based specialization, we do not place restrictions on the functions that can be optimized. On the other hand, we work at IIR (rather than IR) level as in JIT-based specialization, which allows us to perform type inference on the specialized code. Working at IIR level eliminates the two main sources of inefficiency of OSR-based specialization: 1) we can replace generic istructions with specialized instructions, and 2) the types of $g$'s arguments do not need to be cached or guarded as they are statically inferred. These observations are confirmed in practice by experiments on real MATLAB programs, as we will show in \mysection\ref{ss:experim-results}.
+Similarly to OSR-based specialization, we do not place restrictions on the functions that can be optimized. On the other hand, we work at IIR (rather than IR) level as in JIT-based specialization, which allows us to perform type inference on the specialized code. Working at IIR level eliminates the two main sources of inefficiency of OSR-based specialization: 1) we can replace generic istructions with specialized instructions, and 2) the types of $g$'s arguments do not need to be cached or guarded as they are statically inferred. These observations are confirmed in practice by experiments on benchmarks from the MATLAB community, as we will show in \mysection\ref{ss:experim-results}.
