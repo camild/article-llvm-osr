@@ -23,7 +23,11 @@ The source code of McVM is publicly available~\cite{mcvm}; after porting it from
 \item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function
 \item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ sites
 \item An inserter component to insert open OSR points in the IR for IIR locations annotated during the analysis pass
+\ifdefined \fullver
 \item An optimizer module triggered at OSR points, which in turn is made of:
+\else
+An optimizer triggered at OSR points and made of:
+\fi
 \ifdefined \noauthorea
 \begin{enumerate}[noitemsep]
 \else
