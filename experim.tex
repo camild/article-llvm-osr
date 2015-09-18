@@ -43,9 +43,19 @@ At the end of the section, we show experimental results for the case study prese
 
 %We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 
-We generated the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we performed was {\tt mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we also generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
+We generated the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we performed was {\tt mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form.
+\ifdefined \fullver
+Starting from this version, we also generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
+\else
+Starting from this version, we also generate an {\em optimized} version performing using the LLVM optimizer {\tt opt -O1}.
+\fi
 
-Experiments were performed on an octa-core 2.3 Ghz Intel Xeon E5-4610 v2 with 256+256KB of L1 cache, 2MB of L2 cache, 16MB of shared L3 cache and 128 GB of DDR3 main memory, running Debian Wheezy 7, Linux kernel 3.2.0, LLVM 3.6.2 (Release build, compiled using gcc 4.7.2), 64 bit.
+Experiments were performed on an octa-core 2.3 Ghz Intel Xeon E5-4610 v2 with 256+256KB of L1 cache, 2MB of L2 cache, 16MB of shared L3 cache and 128 GB of DDR3 main memory, running Debian Wheezy 7, Linux kernel 3.2.0,
+\ifdefined \fullver
+LLVM 3.6.2 (Release build, compiled using gcc 4.7.2), 64 bit.
+\else
+LLVM 3.6.2, 64 bit.
+\fi
 
 For each benchmark we analyze CPU time performing 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
 
