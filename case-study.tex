@@ -1,6 +1,6 @@
 % !TEX root = article.tex
 
-\section{Case Study}
+\section{Case Study: Optimizing \feval\ in McVM}
 \label{se:case-study}
 
 In this section we show how \osrkit\ can be used in a production VM to implement aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments (e.g., {\tt feval(g,x,y)} computes {\tt g(x,y)}). This feature is used in many classes of numerical computations that benefit from having functions as parameters.
