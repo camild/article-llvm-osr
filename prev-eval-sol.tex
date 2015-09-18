@@ -7,7 +7,7 @@ Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for op
 
 \paragraph{JIT-based specialization.}  
 
-[...] 
+[...]  
 
 \paragraph{OSR-based specialization.} When a loop containing an \feval\ becomes hot in a function $f$, an OSR is triggered. At that time, an optimized version $f'$ of $f$ is generated and control is diverted to $f'$. $f'$ is created by an optimizer that attempts to replace an \feval$(g,x,y,z...)$ instruction with a direct call $g(x,y,z,...)$ with unboxed parameters. The optimizer works at IR level and uses the actual values of $g$ and its arguments known at the OSR time to specialize the code. The direct call to $g$ is guarded by a condition that checks if $g$ and the type of its parameters remained the same as observed when the OSR was fired. If the guard fails, the code falls back to executing the original \feval\ instruction.
 
