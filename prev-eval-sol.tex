@@ -3,21 +3,22 @@
 \subsection{Comparison to previous approaches}
 \label{ss:prev-eval-sol}
 
-Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for optimizing \feval\ instructions in McVM: {\em OSR-based} and {\em JIT-based} specialization, which work as follows.
+Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for optimizing \feval\ instructions in McVM: {\em JIT-based} and {\em OSR-based} specialization, which work as follows.
 
 \paragraph{JIT-based specialization.}  
 
 [...]
 
-\paragraph{OSR-based specialization.} When a loop containing an \feval\ becomes hot in a function $f$, an OSR is triggered. At that time, an optimized version $f'$ of $f$ is generated and control is diverted to $f'$. $f'$ is created by an optimizer that attempts to replace an \feval$(g,x,y,z...)$ instruction with a direct call $g(x,y,z,...)$ with unboxed parameters. The optimizer uses the actual values of $g$ and its arguments known at the OSR time to specialize the code. The direct call is guarded by a condition that checks if $g$ and the type of its parameters remain the same as observed when the OSR was fired. If the guard fails, the code falls back to executing the original \feval\ instruction.
+\paragraph{OSR-based specialization.} When a loop containing an \feval\ becomes hot in a function $f$, an OSR is triggered. At that time, an optimized version $f'$ of $f$ is generated and control is diverted to $f'$. $f'$ is created by an optimizer that attempts to replace an \feval$(g,x,y,z...)$ instruction with a direct call $g(x,y,z,...)$ with unboxed parameters. The optimizer works at IR level and uses the actual values of $g$ and its arguments known at the OSR time to specialize the code. The direct call to $g$ is guarded by a condition that checks if $g$ and the type of its parameters remained the same as observed when the OSR was fired. If the guard fails, the code falls back to executing the original \feval\ instruction.
 
-While this method overcomes the limitations of JIT-based specialization, supporting optimization of \feval\ instructions without , it is substantially slower for two main reasons:
+This method overcomes the limitations of JIT-based specialization, supporting optimization of \feval$(g,...)$ calls in functions that do not receive $g$ as a parameter. However, it is substantially slower for two main reasons:
+
 \begin{enumerate}
-\item when a function $f$ is first compiled from MATLAB to IR by McVM, the functions it calls via \feval\ are unknown. Hence, the type inference engine is unable to infer types for their returned values, and these values must be kept boxed in heap-allocated objects and handled with slow generic instructions in the IR representation of $f$ (suitable for handling different types). For this reason, the optimized continuation functions $f'$ generated at OSR points in McVM inherit the slow generic instructions of $f$.
-\item guard computation in $f'$ can be rather expensive, as it may require checking many parameters;
+\item When a function $f$ is first compiled from MATLAB to IR by McVM, the functions it calls via \feval\ are unknown. Hence, the type inference engine is unable to infer types for their returned values, and these values must be kept boxed in heap-allocated objects and handled with slow generic instructions in the IR representation of $f$ (suitable for handling different types). For this reason, the optimized continuation functions $f'$ generated at OSR points in McVM inherit the slow generic instructions of $f$.
+\item Guard computation in $f'$ can be rather expensive, as it may require checking many parameters.
 \end{enumerate}
 
-\noindent Our approach combines the flexibility of OSR-based specialization with the efficiency of JIT-based specialization, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. Indeed, [...]
+\noindent Our approach combines the flexibility of OSR-based specialization with the efficiency of JIT-based specialization, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. Similarly to OSR-based specialization, it does not place restrictions on the functions that can be optimized. Furthermore, since the dynamic code optimization works at IIR (rather than IR) level, type inference can replace generic istructions with specialized instructions, removing the main source of inefficiency of Lameed and Hendren's OSR-based specialization.
 
 {\tt [Daniele --> text moved from case-study.tex]} Compared to the OSR-based approach by Lameed and Hendren, our solution is cheaper because the types for the other arguments do not need to be cached or guarded: as we will see later on, the type inference engine will compute the most accurate yet sound type information in the analysis of the optimized IIR where direct calls are used.
 
