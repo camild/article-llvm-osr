@@ -18,7 +18,7 @@ The Jikes RVM uses an OSR mechanism~\cite{fink2003design} that extracts a scope 
 \ifdefined \fullver
 In the Graal VM - a modified version of HotSpot centered on the principle of speculative optimizations - the execution falls back to the interpreter during deoptimization, while a runtime function restores the stack frames in the interpreter using the metadata associated with the deoptimization point~\cite{duboscq2013graal,wurthinger2013truffle,duboscq2014metadata}.
 \else
-In the Graal VM, which is centered on speculative optimizations, the execution falls back to the interpreter during deoptimization, while a runtime function restores the stack frames in the interpreter using the metadata associated with the deoptimization point~\cite{duboscq2013graal,wurthinger2013truffle,duboscq2014metadata}.
+In the Graal VM, which is centered on the principle of speculative optimizations, the execution falls back to the interpreter during deoptimization, while a runtime function restores the stack frames in the interpreter using the metadata associated with the deoptimization point~\cite{duboscq2013graal,wurthinger2013truffle,duboscq2014metadata}.
 \fi
 
 % TODO only if we have space: HotpathVM
