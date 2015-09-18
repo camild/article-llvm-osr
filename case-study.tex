@@ -3,7 +3,7 @@
 \section{Case Study}
 \label{se:case-study}
 
-In this section we show how \osrkit\ can be used in a production VM to support aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments (e.g., {\tt feval(f,x,y)} computes {\tt f(x,y)}). This feature is used in many classes of numerical computations that benefit from having functions as parameters.
+In this section we show how \osrkit\ can be used in a production VM to support aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments (e.g., {\tt feval(g,x,y)} computes {\tt g(x,y)}). This feature is used in many classes of numerical computations that benefit from having functions as parameters.
 
 \ifdefined\fullver such as iterative methods for approximate solutions of an ordinary differential equation (ODE) and simulated annealing heuristics to locate a good approximation to the global optimum of a function in a large search space.}\fi
 
@@ -11,12 +11,15 @@ In this section we show how \osrkit\ can be used in a production VM to support a
 MATLAB is a popular dynamic language for scientific and numerical programming. Introduced in the late 1970s mainly as a scripting language for performing computations through efficient libraries, it has evolved over the years into a more complex programming language with support for high-level features such as functions, packages and object orientation. A popular feature of the language is the \feval\ construct, a built-in higher-order function that enables the invocation of the function specified as first argument with the remaining arguments for the \feval\ call, returning eventually the computed result. This feature is heavily used in many classes of numerical computations. 
 \fi
 
-A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation.
+A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation. Furthermore, since \feval\ invocations typically require a fallback to an intepreter, parameters passed to an \feval\ are generally boxed to make them more generic.
 
-Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing \feval\ instructions:
+Lameed and Hendren propose and implement in McVM two dynamic techniques for optimizing \feval\ instructions:
 
 \begin{itemize}
-\item {OSR-based specialization:} when a loop containing an \feval\ becomes hot, an open OSR is triggered: the OSR handler invokes a code generator that creates a specialized version of the interrupted function and diverts control to the optimized version.
+\item {\em OSR-based specialization:} when a loop containing an \feval\ becomes hot in a function $f$, an OSR is triggered: the OSR handler invokes a code optimizer that creates a specialized version $f'$ of $f$, and diverts control to $f'$. The optimizer works at IR level and attempts to replace \feval$(g,x,y,z...)$ with a direct call $g(x,y,z,...)$.
+
+guarded by condition that checks if .
+\item {\em JIT-based specialization:}  [...]
 \end{itemize}
 
 \ifdefined\fullver
