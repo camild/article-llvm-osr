@@ -13,10 +13,13 @@ The success of the Java language has drawn more attention to the design and impl
 Whaley~\cite{whaley2001osr} proposes a technique to identify intra-method code regions that are rarely executed, and thus compile and optimize the code without these regions. A rare block is replaced by a stub that transfers the control to the interpreter, while a glue routine reconstructs the state from the interpreter starting from a table storing the location, in registers or memory, of each variable in the original bytecode.
 \fi
 
-The Jikes RVM uses an OSR mechanism~\cite{fink2003design} that extracts a scope descriptor from a thread suspended at a method's entrypoint or backward branch, creates specialized code to setup the stack frame for the optimized compiled code and resumes the execution at the desired program counter. OSR is used as part of an automatic, online, profile-driven deferred compilation mechanism.
+The Jikes RVM uses an OSR mechanism~\cite{fink2003design} that extracts a scope descriptor from a thread suspended at a method's entrypoint or backward branch, creates specialized code to setup the stack frame for the optimized compiled code and resumes the execution at the desired program counter. 
 \ifdefined \fullver
+OSR is used as part of an automatic, online, profile-driven deferred compilation mechanism.
+% TODO discuss continuation function in Jikes (i.e., with constants being hard-wired in it)
 A more general approach has then been proposed in~\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g. class loading, exception conditions). Execution state information is maintained in a variable map - a per-method list of thread-switch points and associated live bytecode variables - that is incrementally updated across a wide range of basic compiler optimizations.
 \else
+OSR is used as part of a profile-driven deferred compilation mechanism.
 A more general solution is proposed in~\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g., class loading). Execution state information is maintained in a variable map that is incrementally updated across a wide range of basic compiler optimizations.
 \fi
 
