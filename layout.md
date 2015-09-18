@@ -11,7 +11,7 @@ figures/isordascto/isordascto.png
 figures/isordx86-64/isordx86-64.png
 osr-llvm.tex
 case-study.tex
-subsection_Comparison_to_previous_approaches__.tex
+prev-eval-sol.tex
 experim.tex
 figures/code-quality-noBB/code-quality.png
 figures/code-quality-O1-noBB/code-quality-O1-noBB.png
