@@ -19,6 +19,8 @@ While this method overcomes the limitations of JIT-based specialization, support
 
 \noindent Our approach combines the flexibility of OSR-based specialization with the efficiency of JIT-based specialization, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. Indeed, [...]
 
+{\tt [Daniele --> text moved from case-study.tex]} Compared to the OSR-based approach by Lameed and Hendren, our solution is cheaper because the types for the other arguments do not need to be cached or guarded: as we will see later on, the type inference engine will compute the most accurate yet sound type information in the analysis of the optimized IIR where direct calls are used.
+
 \ifdefined\fullver
 The first one is based on OSR: using the McOSR library~\cite{lameed2013modular}, \feval\ calls inside loops are instrumented with an OSR point and profiling code to cache the last-known types for the arguments of each \feval\ instruction. When an OSR is fired at run-time, a code generator modifies the original function by inserting a guard to choose between a fast path containing a direct call and a slow path with the original \feval\ call. The second technique is less general and uses value-based JIT compilation: when the first argument of an \feval\ call is an argument of the enclosing function, the compiler replaces each call to this function in all of its callers with a call to a special dispatcher. At run-time, the dispatcher evaluates the value of the argument to use for the \feval\ and executes either a previously compiled cached code or generates and JIT-compiles a version of the function optimized for the current value.
 
@@ -40,3 +42,4 @@ The first one in particular is a major source of inefficiency for the OSR-based 
 Lameed and Hendren conclude their paper by stating, ``It would be interesting to look at future work that combine the
 strengths of both approaches". In the remaining part of this section, we extend McVM by implementing a novel optimization mechanism for \feval\ based on our OSR technique: we will show that our mechanism is as efficient as their JIT-based approach in terms of quality of generated code, and is even more general than their OSR-based approach, as it can optimize also \feval\ calls not enclosed in a loop.
 \fi
+
