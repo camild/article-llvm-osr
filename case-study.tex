@@ -13,7 +13,11 @@ MATLAB is a popular dynamic language for scientific and numerical programming. I
 
 A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation.
 
-Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing \feval\ instructions. 
+Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing \feval\ instructions:
+
+\begin{itemize}
+\item {OSR-based specialization:} when a loop containing an feval becomes hot, an OSR is fired.
+\end{itemize}
 
 \ifdefined\fullver
 The first one is based on OSR: using the McOSR library~\cite{lameed2013modular}, \feval\ calls inside loops are instrumented with an OSR point and profiling code to cache the last-known types for the arguments of each \feval\ instruction. When an OSR is fired at run-time, a code generator modifies the original function by inserting a guard to choose between a fast path containing a direct call and a slow path with the original \feval\ call. The second technique is less general and uses value-based JIT compilation: when the first argument of an \feval\ call is an argument of the enclosing function, the compiler replaces each call to this function in all of its callers with a call to a special dispatcher. At run-time, the dispatcher evaluates the value of the argument to use for the \feval\ and executes either a previously compiled cached code or generates and JIT-compiles a version of the function optimized for the current value.
