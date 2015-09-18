@@ -3,7 +3,7 @@
 \subsection{Current Approaches}
 \label{ss:prev-eval-sol}
 
-Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for optimizing \feval\ instructions in McVM: {\em JIT-based} and {\em OSR-based} specialization. Both attempt to optimize a function $f$ that contains instructions of the form \feval$(g,...)$, leveraging information about $g$ and the type of its arguments observed at run-time. The optimization produces a specialized version $f'$ where \feval$(g,x,y,z...)$ instructions are replaced with direct calls of the form $g(x,y,z,...)$. 
+Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for optimizing \feval\ instructions in McVM: {\em JIT-based} and {\em OSR-based} specialization. Both attempt to optimize a function $f$ that contains instructions of the form \feval$(g,...)$, leveraging information about $g$ and the type of its arguments observed at run-time. The optimization produces a specialized version $f'$ where \feval$(g,x,y,z,...)$ instructions are replaced with direct calls of the form $g(x,y,z,...)$. 
 
 The two approaches differ in the points where code specialization is performed. In JIT-based specialization, $f'$ is generated when $f$ is called. In contrast, the OSR-based method interrupts $f$ as it executes, generates a specialized version $f'$, and resumes from it.  
 
