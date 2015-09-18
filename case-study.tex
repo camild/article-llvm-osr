@@ -3,36 +3,42 @@
 \section{Case Study}
 \label{se:case-study}
 
-In this section we show how \osrkit\ can be used in a production VM to support aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments (e.g., {\tt feval(g,x,y)} computes {\tt g(x,y)}). This feature is used in many classes of numerical computations that benefit from having functions as parameters.
+In this section we show how \osrkit\ can be used in a production VM to implement aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments (e.g., {\tt feval(g,x,y)} computes {\tt g(x,y)}). This feature is used in many classes of numerical computations that benefit from having functions as parameters.
 
-\ifdefined\fullver such as iterative methods for approximate solutions of an ordinary differential equation (ODE) and simulated annealing heuristics to locate a good approximation to the global optimum of a function in a large search space.}\fi
+%%%%%%%
+\ifdefined\fullver such as iterative methods for approximate solutions of an ordinary differential equation (ODE) and simulated annealing heuristics to locate a good approximation to the global optimum of a function in a large search space.}
 
-\ifdefined\fullver
 MATLAB is a popular dynamic language for scientific and numerical programming. Introduced in the late 1970s mainly as a scripting language for performing computations through efficient libraries, it has evolved over the years into a more complex programming language with support for high-level features such as functions, packages and object orientation. A popular feature of the language is the \feval\ construct, a built-in higher-order function that enables the invocation of the function specified as first argument with the remaining arguments for the \feval\ call, returning eventually the computed result. This feature is heavily used in many classes of numerical computations. 
 \fi
+%%%%%%%
 
 A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation. Furthermore, since \feval\ invocations typically require a fallback to an intepreter, parameters passed to an \feval\ are typically boxed to make them more generic.
 
-\subsection{Extending McVM}
-The McVM virtual machine is a complex research project developed at McGill and made of several software components, including: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. %The architecture of McVM is illustrated in Figure [...]
+Our case study presents a novel technique for optimizing \feval\ in the McVM virtual machine, a complex research project developed at McGill University. McVM is publicly available~\cite{mcvm} and includes: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. %The architecture of McVM is illustrated in Figure [...]
 
-McVM implements a function versioning mechanism based on type specialization: for each IIR representation of a function, different IR versions are generated according to the types of the arguments at each call site. The number of generated versions per function is on average small (i.e., less than two), as in most cases functions are always called with the same argument types. Type specialization is the main driver for generating efficient code in McVM~\cite{chevalier2010mcvm}.
+McVM implements a function versioning mechanism based on type specialization, which is the main driver for generating efficient code~\cite{chevalier2010mcvm}.: for each IIR representation of a function, different IR versions are generated according to the types of the arguments at each call site. 
+\ifdefined\fullver 
+The number of generated versions per function is on average small (i.e., less than two), as in most cases functions are always called with the same argument types. 
+\fi
 
-The source code of McVM is publicly available~\cite{mcvm}; after porting it from the LLVM legacy JIT to MCJIT, we have extended it with the following components to enable the optimization of \feval\ instructions:
+\subsection{Optimizing \feval\ in McVM}
+\label{ss:eval-opt-mcvm}
+
+The main idea for optimizing a function $f$ containing an \feval\ instruction is to dynamically generate a variant $f'$ where the \feval$(g,...)$ is replaced by a direct call of the form $g(...)$. The key to efficiency is the ability to perform type inference on the IIR level, 
+
+Our approach to \feval\ optimization leverages OSR to generate specialized code where 
+
+
+capture run-time information
+
+after porting it from the LLVM legacy JIT to MCJIT, we have extended it with the following components to enable the optimization of \feval\ instructions:
+
 \begin{enumerate}
-\item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function
-\item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ sites
-\item An inserter component to insert open OSR points in the IR for IIR locations annotated during the analysis pass
-\ifdefined \fullver
-\item An optimizer module triggered at OSR points, which in turn is made of:
-\else
+\item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function.
+\item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ sites.
+\item An inserter component to insert open OSR points in the IR for IIR locations annotated during the analysis pass.
 \item An optimizer triggered at OSR points, which uses:
-\fi
-\ifdefined \noauthorea
 \begin{enumerate}
-\else
-\begin{enumerate}
-\fi
 \item A profile-driven IIR generator to replace \feval\ calls with direct calls
 \item A helper component to lower the optimized IIR function to IR and construct a state mapping 
 \item A code caching mechanism to handle the compilation of the continuation functions
