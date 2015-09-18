@@ -65,6 +65,28 @@ We now present the main results of our experimental evaluation, aimed at address
 %\item {\bf Message 3}: what is the overhead of the library for inserting OSR points? We compute for each benchmark the time required by insertOpenOSR (OSR point insertion + stub creation) and insertFinalizedOSR (OSR point insertion + generation of continuation function).
 %\end{itemize}
 
+% figure
+\ifdefined\noauthorea
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{figures/code-quality-noBB/code-quality-noBB.eps}
+\caption{\protect\input{figures/code-quality-noBB/caption}}
+\end{center}
+\end{figure}
+\fi
+
+% figure
+\ifdefined\noauthorea
+\begin{figure}[ht]
+\begin{center}
+\vspace{-0.55cm}
+\includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
+\caption{\protect\input{figures/code-quality-O1-noBB/caption}}
+\end{center}
+\end{figure}
+\fi
+
+
 \paragraph{Impact on Code Quality.}
 In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion. The distinction between open and resolved OSR points is nearly irrelevant in this context: we chose to focus on open OSR points, as their calls take an extra argument for profiling that we set to {\tt null}.
 
@@ -125,25 +147,6 @@ Normalized differences reported in the table represent a reasonable estimate of 
 \end{center}
 \caption{\label{tab:sameFun}Average cost of an OSR transition to the same function. For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time. } 
 \end{table*}
-
-% figure
-\ifdefined\noauthorea
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.95\columnwidth]{figures/code-quality-noBB/code-quality-noBB.eps}
-\caption{\protect\input{figures/code-quality-noBB/caption}}
-\end{center}
-\end{figure}
-\fi
-
-\ifdefined\noauthorea
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
-\caption{\protect\input{figures/code-quality-O1-noBB/caption}}
-\end{center}
-\end{figure}
-\fi
 
 \ifauthorea{\newline}{}
 \paragraph{OSR Machinery Generation.}
