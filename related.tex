@@ -41,11 +41,11 @@ In the Graal VM, which is centered on the principle of speculative optimizations
 Speculative variables~\cite{susskraut2009speculation} are introduced when the slow variant needs to track state (e.g., information for out-of-bound checks) that is missing in the fast variant. Switching operations are performed by Prospect at user-specified checkpoints in the original code.
 \fi
 
-\paragraph{McOSR.} McOSR~\cite{lameed2013modular} is a library for the LLVM legacy JIT compiler to insert OSR points at loop headers. When an OSR transition is fired, the live state is saved into a set of global variables (one per live variable) and a helper method is invoked to modify the IR of the function using a code transformer provided by the front-end and a copy of the original code saved as control version. The library generates a new entrypoint for the function to check a global condition and discriminate whether the function is being invoked through an OSR transition or a regular call: in the first case, values for live variables are read from the associated global variables, and the execution jumps to the block to resume the execution at.
-\ifdefined \fullver
-The SSAUpdater component of LLVM is then used to restore the SSA form after the update.
-\fi
-When the helper method returns, the updated function is invoked and the OSR is thus performed in a new stack frame. When the updated function returns, a second helper method is called to recompile the updated function to remove the new entrypoint inserted for the OSR transition, as it can disrupt LLVM optimizations and lead to poorer performance on subsequent invocations of the function.
+%\paragraph{McOSR.} McOSR~\cite{lameed2013modular} is a library for the LLVM legacy JIT compiler to insert OSR points at loop headers. When an OSR transition is fired, the live state is saved into a set of global variables (one per live variable) and a helper method is invoked to modify the IR of the function using a code transformer provided by the front-end and a copy of the original code saved as control version. The library generates a new entrypoint for the function to check a global condition and discriminate whether the function is being invoked through an OSR transition or a regular call: in the first case, values for live variables are read from the associated global variables, and the execution jumps to the block to resume the execution at.
+%\ifdefined \fullver
+%The SSAUpdater component of LLVM is then used to restore the SSA form after the update.
+%\fi
+%When the helper method returns, the updated function is invoked and the OSR is thus performed in a new stack frame. When the updated function returns, a second helper method is called to recompile the updated function to remove the new entrypoint inserted for the OSR transition, as it can disrupt LLVM optimizations and lead to poorer performance on subsequent invocations of the function.
 
 \paragraph{Other Related Work.}
 \ifdefined \fullver
