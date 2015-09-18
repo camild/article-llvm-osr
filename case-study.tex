@@ -16,7 +16,7 @@ A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the ove
 Lameed and Hendren thus propose and implement in McVM two dynamic techniques for optimizing \feval\ instructions:
 
 \begin{itemize}
-\item {OSR-based specialization:} when a loop containing an feval becomes hot, an OSR is fired.
+\item {OSR-based specialization:} when a loop containing an \feval\ becomes hot, an open OSR is triggered: the OSR handler invokes a code generator that creates a specialized version of the interrupted function and diverts control to the optimized version.
 \end{itemize}
 
 \ifdefined\fullver
