@@ -17,7 +17,11 @@ We implemented our approach in McVM\footnote{As a by-product of our project, we 
 \item An extension for the IIR compiler to track the mapping between IIR and IR objects at \feval\ sites.
 \item An OSR inserter based on \osrkit\ to inject open OSR points in the IR for IIR locations annotated during the analysis pass.
 \item An \feval\ optimizer triggered at OSR points, which uses:
+\ifdefined \noauthorea
 \begin{enumerate}[noitemsep]
+\else
+\begin{enumerate}
+\fi
 \item a profile-driven IIR generator to replace \feval\ calls with direct calls;
 \item a helper component to lower the optimized IIR function to IR and construct a state mapping;
 \item a code caching mechanism to handle the compilation of the continuation functions.
