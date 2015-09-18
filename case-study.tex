@@ -3,7 +3,7 @@
 \section{Case Study}
 \label{se:case-study}
 
-In this section we show how \osrkit\ can be used in a production VM to support aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments. For instance, {\tt feval(f,x,y)} computes {\tt f(x,y)}. This feature is heavily used to parameterize many classes of numerical computations.
+In this section we show how \osrkit\ can be used in a production VM to support aggressive optimizations for dynamic languages. We focus on MATLAB's \feval\ construct, a widely used built-in higher-order function that applies the function passed as first parameter to the remaining arguments. For instance, {\tt feval(f,x,y)} computes {\tt f(x,y)}. This feature is heavily used by MATLAB programmers to parameterize many classes of numerical computations.
 
 \ifdefined\fullver
 MATLAB is a popular dynamic language for scientific and numerical programming. Introduced in the late 1970s mainly as a scripting language for performing computations through efficient libraries, it has evolved over the years into a more complex programming language with support for high-level features such as functions, packages and object orientation. A popular feature of the language is the \feval\ construct, a built-in higher-order function that enables the invocation of the function specified as first argument with the remaining arguments for the \feval\ call, returning eventually the computed result. This feature is heavily used in many classes of numerical computations. 
