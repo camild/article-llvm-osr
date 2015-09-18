@@ -153,7 +153,7 @@ Normalized differences reported in the table represent a reasonable estimate of 
 \paragraph{OSR Machinery Generation.}
 We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function, the number of live values to transfer and the time spent in the IR manipulation. Locations for OSR points are chosen as in the experiments about code quality, and the target function is a clone of the source function.
 
-For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the continuation function.
+For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
 
 Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} thus comes with an additional column in which time is normalized against the number of IR instructions in the target.
 
