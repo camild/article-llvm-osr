@@ -12,7 +12,11 @@ In this section, we present a new approach that combines the flexibility of OSR-
 \paragraph{Implementation in McVM.}
 We implemented our approach in McVM\footnote{As a by-product of our project, we ported the MATLAB McVM virtual machine from the LLVM legacy JIT to the new MCJIT toolkit.}, extending it with four main components:
 
+\ifdefined \noauthorea
+\begin{enumerate}[noitemsep]
+\else
 \begin{enumerate}
+\fi
 \item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function.
 \item An extension for the IIR compiler to track the mapping between IIR and IR objects at \feval\ sites.
 \item An OSR inserter based on \osrkit\ to inject open OSR points in the IR for IIR locations annotated during the analysis pass.
