@@ -24,7 +24,7 @@ We address questions Q1-3 by analyzing the performance of \osrkit on a selection
 %TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. 
 %At the end of the section, we show experimental results for the case study presented in \mysection\ref{se:case-study}.
 
-\begin{table} 
+\begin{table}[b]
 \begin{center}
 \begin{small}
     \begin{tabular}{ |c|c| }
@@ -56,11 +56,11 @@ We address questions Q1-3 by analyzing the performance of \osrkit on a selection
 
 %We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 
-We generated the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we performed is {\tt mem2reg}, which promotes memory references to register references and constructs the SSA form.
+We generate the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we perform is {\tt mem2reg}, which promotes stack references to registers and constructs the SSA form.
 \ifdefined \fullver
-Starting from this version, we also generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
+Starting from this version, we also generate an {\em optimized} version using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 \else
-Starting from this version, we also generate an {\em optimized} version performing using the LLVM optimizer {\tt opt -O1}.
+Starting from this version, we also generate an {\em optimized} version using the LLVM optimizer {\tt opt -O1}.
 \fi
 
 For question Q4, we analyze the impact of the optimization technique presented in \mysection\ref{sse:optimizing_feval} on the running time of a few numeric benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}.
