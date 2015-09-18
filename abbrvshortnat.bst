@@ -1,5 +1,5 @@
 %% File: `abbrvnat.bst'
-%% A modification of `abbrv.bst' for use with natbib package 
+%% A modification of `abbrv.bst' for use with natbib package
 %%
 %% Copyright 1993-2007 Patrick W Daly
 %% Max-Planck-Institut f\"ur Sonnensystemforschung
@@ -604,6 +604,27 @@ FUNCTION {format.in.ed.booktitle}
   if$
 }
 
+FUNCTION {format.in.number.series}
+{ volume empty$
+    { number empty$
+        { "In " series field.or.null emphasize * }
+        { output.state mid.sentence =
+            { "number" }
+            { "Number" }
+          if$
+          number tie.or.space.connect
+          series empty$
+            { "there's a number but no series in " cite$ * warning$ }
+            { " in " * series * }
+          if$
+        }
+      if$
+    }
+    { "" }
+  if$
+}
+
+
 FUNCTION {empty.misc.check}
 { author empty$ title empty$ howpublished empty$
   month empty$ year empty$ note empty$
@@ -860,10 +881,12 @@ FUNCTION {inproceedings}
   new.block
   format.title "title" output.check
   new.block
+  %crossref missing$
+  %  { format.in.ed.booktitle "booktitle" output.check
+  %    format.bvolume output
+  %    format.number.series output
   crossref missing$
-    { format.in.ed.booktitle "booktitle" output.check
-      format.bvolume output
-      format.number.series output
+    { format.in.number.series output
       format.pages output
       address empty$
         { organization publisher new.sentence.checkb
