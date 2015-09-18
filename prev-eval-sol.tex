@@ -1,6 +1,6 @@
 % !TEX root = article.tex
 
-\subsection{Comparison to Previous Approaches}
+\subsection{Existing Approaches}
 \label{ss:prev-eval-sol}
 
 Lameed and Hendren~\cite{lameed2013feval} proposed two dynamic techniques for optimizing \feval\ instructions in McVM: {\em JIT-based} and {\em OSR-based} specialization. Both attempt to optimize a function $f$ that contains instructions of the form \feval$(g,...)$, leveraging information about $g$ and the type of its arguments observed at run-time. The optimization produces a specialized version $f'$ where \feval$(g,x,y,z...)$ instructions are replaced with direct calls of the form $g(x,y,z,...)$. 
