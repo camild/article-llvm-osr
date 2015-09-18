@@ -3,7 +3,7 @@
 \subsection{A New Approach}
 \label{ss:eval-opt-mcvm}
 
-In this section, we present a new approach that combines the flexibility of OSR-based specialization with the efficiency of the JIT-based method, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. The key idea is to lift the $f$-to-$f'$ optimization performed by the OSR-based specialization from IR to IIR level. This makes it possible to perform type inference in $f'$, generating a much more efficient code. The main technical challenge of this idea is that the state in $f$ at the OSR point may be incompatible with the state of $f'$ from which execution continues. Indeed, some variables may be boxed in $f$ and unboxed in $f'$. Hence, compensation code is needed to adjust the state by performing live variable unboxing during the OSR.
+In this section, we present a new approach that combines the flexibility of OSR-based specialization with the efficiency of the JIT-based method, answering an open question raised by Lameed and Hendren~\cite{lameed2013feval}. The key idea is to lift the $f$-to-$f'$ optimization performed by the OSR-based specialization from IR to IIR level. This makes it possible to perform type inference in $f'$, generating a much more efficient code. The main technical challenge of this idea is that the program's state in $f$ at the OSR point may be incompatible with the state of $f'$ from which execution continues. Indeed, some variables may be boxed in $f$ and unboxed in $f'$. Hence, compensation code is needed to adjust the state by performing live variable unboxing during the OSR.
 
 %The main idea for optimizing a function $f$ containing an \feval\ instruction is to dynamically generate a variant $f'$ where the \feval$(g,...)$ is replaced by a direct call of the form $g(...)$. The key to efficiency is the ability to perform type inference on the IIR level, [...]
 
@@ -26,18 +26,22 @@ We implemented our approach in McVM\footnote{As a by-product of our project, we 
 
 \noindent We remark that our implementation heavily depends on \osrkit's ability to handle compensation code. 
 
-\paragraph{Analysis Pass.} In the analysis pass is fully integrated in McVM's analysis manager. We group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only those instructions not dominated by others, so that the function can be optimized as early as possible at run-time. 
 \ifdefined \fullver
-The analysis pass is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase.
+\paragraph{Analysis Pass.} The analysis pass, which is fully integrated in McVM's analysis manager, groups \feval\ instructions whose first argument is reached by the same definition, and for each group marks for instrumentation only those instructions not dominated by others, so that the function can be optimized as early as possible at run-time. 
+\ifdefined \fullver
+It is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase.
 \else
-The analysis pass also determines whether the value of the argument can change across two executions of the same \feval, and a run-time guard must thus be inserted during the optimization phase.
+It also determines whether the value of the argument can change across two executions of the same \feval, and a run-time guard must thus be inserted during the optimization phase.
 \fi
 
 \paragraph{IIR Compiler Extension.}
-When the IIR compiler processes an annotated \feval\ instruction, it keeps track of the current {\em variable map} between IIR and IR objects, the {\tt llvm::BasicBlock*} created for the \feval, and the {\tt llvm::Value*} object used as its first argument. 
+The extension operates when the IIR compiler processes an annotated \feval\ instruction. It builds a {\em variable map} between IIR and IR objects, and keeps track of the {\tt llvm::BasicBlock*} $b$ created for the \feval\  in the IR code and of the {\tt llvm::Value*} object $g$ used as its first argument. 
 
 \paragraph{OSR Inserter.}
-The last two elements are then used by the inserter component as basic block and {\tt val} argument in the open-OSR stub that invokes the optimizer component.
+The OSR inserter uses the $b$ and $g$ objects collected by the compiler extension as basic block and {\tt val} argument in the open-OSR stub that invokes the \feval\ optimizer, respectively.
+\fi
+
+%The last two elements are then used by the inserter component as basic block and {\tt val} argument in the open-OSR stub that invokes the optimizer component.
 
 \newcommand{\gBase}{$f$}
 \newcommand{\gOpt}{$f_{opt}$}
