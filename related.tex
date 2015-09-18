@@ -20,7 +20,7 @@ OSR is used as part of an automatic, online, profile-driven deferred compilation
 A more general approach has then been proposed in~\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g. class loading, exception conditions). Execution state information is maintained in a variable map - a per-method list of thread-switch points and associated live bytecode variables - that is incrementally updated across a wide range of basic compiler optimizations.
 \else
 OSR is used as part of a profile-driven deferred compilation mechanism.
-A more general solution is proposed in~\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g., class loading). Execution state information is maintained in a variable map that is incrementally updated across a wide range of basic compiler optimizations.
+A more general solution is proposed in~\cite{soman2006efficient}, with the OSR implementation decoupled from program code to ease more aggressive specializations triggered by events external to the executing code (e.g., class loading). Execution state information is maintained in a variable map that is incrementally updated across a set of compiler optimizations.
 \fi
 
 \ifdefined \fullver
