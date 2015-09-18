@@ -18,7 +18,7 @@ We implemented our approach in McVM\footnote{As a by-product of our project, we 
 \begin{enumerate}
 \fi
 \item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR of a function.
-\item An extension for the IIR compiler to track the mapping between IIR and IR objects at \feval\ sites.
+\item An extension for the IIR compiler to track the {\em variable map} between IIR and IR objects at \feval\ sites.
 \item An OSR inserter based on \osrkit\ to inject open OSR points in the IR for IIR locations annotated during the analysis pass.
 \item An \feval\ optimizer triggered at OSR points, which uses:
 \ifdefined \noauthorea
