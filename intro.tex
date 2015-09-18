@@ -10,7 +10,7 @@ Currently VM builders using MCJIT are required to have a deep knowledge of the i
 In a 2013 paper Lameed and Hendren propose McOSR~\cite{lameed2013modular}, a technique for OSR that essentially stores the live values in a global buffer, recompiles the current function and then loads in it the saved state when the execution is resumed. Their approach shows a few limitations that we discuss later on in this paper, and because of some relevant design choices it can work only with the legacy JIT that has been dropped since LLVM's release 3.6.
 
 \paragraph{Contributions.}
-In this paper we present a novel, target-independent framework for LLVM to enable switching between different versions of a function at run-time. Specific goals of our approach include:
+In this paper we present a novel, target-independent framework for on-stack replacement. While the ideas have been prototyped in LLVM, they may be applied to other toolchains. Specific goals of our approach include:
 \begin{itemize}
 \item The ability for a function reached via OSR to fire an OSR itself: this would allow switching from a base function $f_0$ to an optimized function $f_1$, and later on to a further optimized version $f_2$, etc.
 \item Supporting deoptimization, i.e., transitions from an optimized function to a less optimized function from which it was derived.
