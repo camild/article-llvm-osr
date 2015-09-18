@@ -108,20 +108,7 @@ In order to measure how much a never-firing OSR point might impact code quality,
 \end{figure}
 \fi
 
-
-
-For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body.
-\ifdefined \fullver
-These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger operations such as method recompilation through OSR and thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
-\else
-These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger method recompilation through OSR or thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
-\fi
-
-For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time in the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, enabling for instance multiple levels of inlining for non-tail-recursive functions. The only analyzed benchmark showing a recursive pattern is {\tt b-trees}.
-
-%For {\tt b-trees} - the only benchmark showing a recursive pattern - we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, or to enable some form of dynamic optimization (for instance, in a recursive search algorithm we might want to inline the comparator method provided by the user at the call).
-
-\begin{table*}
+\begin{table*}[ht]
 \begin{center}
 \begin{small}
     \begin{tabular}{ |c|c|c|c|c|c|c|c| }
@@ -163,6 +150,17 @@ For recursive benchmarks, we insert an OSR point in the body of the method that 
 \end{table*}
 \ifauthorea{\newline}{}
 
+For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body.
+\ifdefined \fullver
+These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger operations such as method recompilation through OSR and thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+\else
+These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger method recompilation through OSR or thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+\fi
+
+For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time in the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, enabling for instance multiple levels of inlining for non-tail-recursive functions. The only analyzed benchmark showing a recursive pattern is {\tt b-trees}.
+
+%For {\tt b-trees} - the only benchmark showing a recursive pattern - we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, or to enable some form of dynamic optimization (for instance, in a recursive search algorithm we might want to inline the comparator method provided by the user at the call).
+
 Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
 %We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
 The number of times the OSR condition is checked for each benchmark is the same as in the experiments reported in \mytable\ref{tab:sameFun}.
@@ -177,10 +175,6 @@ Normalized differences reported in the table represent a reasonable estimate of 
 
 \paragraph{Q3: OSR Machinery Generation.}
 We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function, the number of live values to transfer and the time spent in the IR manipulation. Locations for OSR points are chosen as in the experiments about code quality, and the target function is a clone of the source function.
-
-For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
-
-Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} thus comes with an additional column in which time is normalized against the number of IR instructions in the target.
 
 \begin{table}[hb]
 \begin{small}
@@ -215,13 +209,16 @@ Not surprisingly, constructing a continuation function takes longer than the oth
 \end{table}
 \ifauthorea{\newline}{}
 
+For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
+
+Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} thus comes with an additional column in which time is normalized against the number of IR instructions in the target.
 
 \paragraph{Discussion.}
 %Experimental results presented in this section suggest that inserting an OSR point is unlikely to degrade the quality of generated code, and the time required to fire an OSR transition is negligible (i.e., order of nanoseconds). Instrumenting the original IR is cheap, while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization depends on the trade-off between the expected benefits in terms of execution time and the overhead for generating on optimized version of the function and eventually JIT-compiling it; compared to these two operations, the cost of OSR-related operations is negligible.
 
 Experimental results presented in this section suggest that inserting an OSR point is a quick operation and is unlikely to degrade the quality of generated code. The time required to fire an OSR transition is negligible (i.e., order of nanoseconds), while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization merely depends on the trade-off between the expected benefits in terms of execution time and the overheads from generating and JIT-compiling an optimized version of the function; compared to these two operations, the cost of OSR-related operations is negligible.
 
-\paragraph{Q4 Optimizing {\tt feval} in MATLAB.}
+\paragraph{Q4: Optimizing {\tt feval} in MATLAB.}
 %\label{sse:feval-results}
 %We conclude this section with a discussion on the effectiveness of our optimization technique for McVM. In particular, we analyze its impact on the running time of a few numeric benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}.
 We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we show speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
