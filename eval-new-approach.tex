@@ -17,7 +17,7 @@ We implemented our approach in McVM\footnote{As a by-product of our project, we 
 \item An extension for the IIR compiler to track the mapping between IIR and IR objects at \feval\ sites.
 \item An OSR inserter based on \osrkit\ to inject open OSR points in the IR for IIR locations annotated during the analysis pass.
 \item An \feval\ optimizer triggered at OSR points, which uses:
-\begin{enumerate}
+\begin{enumerate}[noitemsep]
 \item a profile-driven IIR generator to replace \feval\ calls with direct calls;
 \item a helper component to lower the optimized IIR function to IR and construct a state mapping;
 \item a code caching mechanism to handle the compilation of the continuation functions.
@@ -26,8 +26,7 @@ We implemented our approach in McVM\footnote{As a by-product of our project, we 
 
 \noindent We remark that our implementation heavily depends on \osrkit's ability to handle compensation code. 
 
-\paragraph{Analysis Pass.}
-We integrated our analysis pass in McVM's analysis manager. In particular, we group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only those instructions not dominated by others, so that the function can be optimized as early as possible at run-time. 
+\paragraph{Analysis Pass.} In the analysis pass is fully integrated in McVM's analysis manager. We group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only those instructions not dominated by others, so that the function can be optimized as early as possible at run-time. 
 \ifdefined \fullver
 The analysis pass is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase.
 \else
