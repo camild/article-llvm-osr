@@ -11,7 +11,7 @@ In this section we show how \osrkit\ can be used in a production VM to support a
 MATLAB is a popular dynamic language for scientific and numerical programming. Introduced in the late 1970s mainly as a scripting language for performing computations through efficient libraries, it has evolved over the years into a more complex programming language with support for high-level features such as functions, packages and object orientation. A popular feature of the language is the \feval\ construct, a built-in higher-order function that enables the invocation of the function specified as first argument with the remaining arguments for the \feval\ call, returning eventually the computed result. This feature is heavily used in many classes of numerical computations. 
 \fi
 
-A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation. Furthermore, since \feval\ invocations typically require a fallback to an intepreter, parameters passed to an \feval\ are generally boxed to make them more generic.
+A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation. Furthermore, since \feval\ invocations typically require a fallback to an intepreter, parameters passed to an \feval\ are typically boxed to make them more generic.
 
 \subsection{Extending McVM}
 The McVM virtual machine is a complex research project developed at McGill and made of several software components, including: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. %The architecture of McVM is illustrated in Figure [...]
@@ -39,9 +39,14 @@ The source code of McVM is publicly available~\cite{mcvm}; after porting it from
 \end{enumerate}
 \end{enumerate}
 
-We integrated our analysis pass in McVM's analysis manager. In particular, we group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only instructions not dominated by others, so that the function can be optimized as early as possible at run-time. The analysis pass is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase.
+We integrated our analysis pass in McVM's analysis manager. In particular, we group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only those instructions not dominated by others, so that the function can be optimized as early as possible at run-time. 
+\ifdefined \fullver
+The analysis pass is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase.
+\else
+The analysis pass also determines whether the value of the argument can change across two executions of the same \feval, and a run-time guard must thus be inserted during the optimization phase.
+\fi
 
-When the IIR compiler processes an annotated \feval\ instruction, it keeps track of the current {\em variable map} between IIR and IR objects, the {\tt llvm::BasicBlock*} created for the \feval\ and the {\tt llvm::Value*} object used as its first argument. The last two elements are then used by the inserter component as basic block and {\tt val} argument in the open-OSR stub that invokes the optimizer component.
+When the IIR compiler processes an annotated \feval\ instruction, it keeps track of the current {\em variable map} between IIR and IR objects, the {\tt llvm::BasicBlock*} created for the \feval, and the {\tt llvm::Value*} object used as its first argument. The last two elements are then used by the inserter component as basic block and {\tt val} argument in the open-OSR stub that invokes the optimizer component.
 
 \newcommand{\gBase}{$g$}
 \newcommand{\gOpt}{$g_{opt}$}
@@ -51,16 +56,18 @@ When the IIR compiler processes an annotated \feval\ instruction, it keeps track
 \newcommand{\gOptIR}{$g^{IR}_{opt}$}
 
 \subsection{Generating Optimized Code}
-The core of our optimization pipeline is the optimizer module that is responsible for generating optimized code for the running function \gBase\ using contextual information passed by an open-OSR stub. As a first step, the optimizer inspects {\tt val} to resolve the target $f$ of the \feval\ and check whether a previously compiled optimized version of \gBase\ is available from the cache.
+The core of our optimization pipeline is the optimizer module, which is responsible for generating optimized code for the running function \gBase\ using contextual information passed by an open-OSR stub. As a first step, the optimizer inspects {\tt val} to resolve the target $f$ of the \feval\ and checks whether a previously compiled version of \gBase\ optimized for $f$ is available from the cache.
 \ifdefined \fullver
 If not, a new function \gOpt\ is generated by cloning the IIR representation \gIIR\ of \gBase\ into \gOptIIR\ and replacing all the \feval\ calls in the same group of the instrumented one with direct calls to $f$.
 \else
 If not, a new function \gOpt\ is generated by cloning the IIR representation \gIIR\ of \gBase\ into \gOptIIR\ and replacing all \feval\ calls to $f$ with direct calls.
 \fi
 
-As a next step, the optimizer asks the IIR compiler to analyze \gOptIIR\ and generate optimized LLVM IR \gOptIR, also storing the variable map between IIR and IR objects when compiling the direct call corresponding to the \feval\ instruction that triggered the OSR.
+As a next step, the optimizer asks the IIR compiler to process \gOptIIR\ and generate optimized LLVM IR \gOptIR, also storing the variable map between IIR and IR objects when compiling the direct call corresponding to the \feval\ instruction that triggered the OSR.
+\ifdefined \fullver
 
-This map is essential for the next step, which is constructing a state mapping between \gIR\ to \gOptIR, as it is compared against the corresponding map stored during the lowering of \gBase\ to determine for each value in \gOptIR\ live at the continuation block whether:
+\fi
+This map is essential for the next step, which is constructing a state mapping between \gIR\ to \gOptIR, as it is compared against the corresponding map stored during the lowering of \gBase\ to determine whether for each value in \gOptIR\ live at the continuation block:
 \begin{itemize}
 \item an {\tt llvm::Value*} from \gIR\ passed as argument at the OSR point can be used directly
 \item or, compensation code is required to reconstruct its value before jumping to the block.
