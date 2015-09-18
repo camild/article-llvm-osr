@@ -148,15 +148,15 @@ For recursive benchmarks, we insert an OSR point in the body of the method that 
     \end{tabular} 
 \end{small}
 \end{center}
-\caption{\label{tab:sameFun}Average cost of an OSR transition to the same function. For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time. } 
+\caption{\label{tab:sameFun}Cost of OSR transitions to the same function. Overhead is assessed w.r.t. running time of the never-firing version. %For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time.
+}
 \end{table*}
+\ifauthorea{\newline}{}
 
 Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
 %We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
 The number of times the OSR condition is checked for each benchmark is the same as in the experiments reported in \mytable\ref{tab:sameFun}.
 
-\ifauthorea{\newline}{}
-  
 \paragraph{Overhead of OSR Transitions.}
 
 \mytable\ref{tab:sameFun} reports estimates of the average cost of performing an OSR transition to a clone of the running function. For each benchmark we compute the time difference between the scenarios in which an always- and a never-firing resolved OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
