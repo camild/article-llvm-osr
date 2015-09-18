@@ -14,16 +14,16 @@ MATLAB is a popular dynamic language for scientific and numerical programming. I
 A previous study by Lameed and Hendren~\cite{lameed2013feval} shows that the overhead of an \feval\ call is significantly higher than a direct call, especially in JIT-based execution environments such as McVM~\cite{chevalier2010mcvm} and the proprietary MATLAB JIT accelerator by Mathworks. In fact, the presence of an \feval\ instruction can disrupt the results of intra- and inter-procedural level for type and array shape inference analyses, which are key factors for efficient code generation. Furthermore, since \feval\ invocations typically require a fallback to an intepreter, parameters passed to an \feval\ are generally boxed to make them more generic.
 
 \subsection{Extending McVM}
-The McVM virtual machine is a complex research project developed at McGill~\cite{mcvm} and made of several software components, including: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. %The architecture of McVM is illustrated in Figure [...]
+The McVM virtual machine is a complex research project developed at McGill and made of several software components, including: a front-end for lowering MATLAB programs to an intermediate representation called IIR that captures the high-level features of the language; an interpreter for running MATLAB functions and scripts in IIR format; a manager component to perform analyses on IIR; a JIT compiler based on LLVM for generating native code for a function, lowering McVM IIR to LLVM IR; a set of helper components to perform fast vector and matrix operations using optimized libraries such as ATLAS, BLAS and LAPACK. %The architecture of McVM is illustrated in Figure [...]
 
 McVM implements a function versioning mechanism based on type specialization: for each IIR representation of a function, different IR versions are generated according to the types of the arguments at each call site. The number of generated versions per function is on average small (i.e., less than two), as in most cases functions are always called with the same argument types. Type specialization is the main driver for generating efficient code in McVM~\cite{chevalier2010mcvm}.
 
 The source code of McVM is publicly available~\cite{mcvm}; after porting it from the LLVM legacy JIT to MCJIT, we have extended it with the following components to enable the optimization of \feval\ instructions:
 \begin{enumerate}
-\item An analysis pass for \feval\ instructions in the IIR representation of a function
-\item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ calls
+\item An analysis pass to identify optimization opportunities for \feval\ instructions in the IIR representation of a function
+\item An extension for the IIR compiler to track the correspondence between IIR and IR objects at \feval\ sites
 \item An inserter component to insert OSR points in the IR for IIR locations annotated during the analysis pass
-\item A callback optimizer triggered at OSR points, which in turn is made of:
+\item An optimizer module triggered at OSR points, which in turn is made of:
 \begin{enumerate}
 \item A profile-driven IIR generator to replace \feval\ calls with direct calls
 \item A helper component to lower the optimized IIR function to IR and construct a state mapping 
@@ -31,7 +31,7 @@ The source code of McVM is publicly available~\cite{mcvm}; after porting it from
 \end{enumerate}
 \end{enumerate}
 
-The analysis pass is integrated in McVM's analysis manager and identifies optimization opportunities for functions containing \feval\ instructions. A function becomes a candidate for optimization when at least one of its \feval\ calls is inside a loop. We then group \feval\ instructions whose first argument is reached by the same definition, using reaching definition information already computed by the analysis manager for previous optimizations. For each group we mark for instrumentation only instructions not dominated by others, so that the function can be optimized as early as possible at run-time.
+We integrated our analysis pass in McVM's analysis manager. In particular, we group \feval\ instructions whose first argument is reached by the same definition, and for each group we mark for instrumentation only instructions not dominated by others, so that the function can be optimized as early as possible at run-time.
 
 The analysis pass is also able to determine whether the value of the argument can change across two executions of the same \feval\ instruction, thus discriminating when a run-time guard must be inserted during the run-time optimization phase. Compared to the OSR-based approach by Lameed and Hendren, our solution is cheaper because the types for the other arguments do not need to be cached or guarded: as we will see later on, the type inference engine will compute the most accurate yet sound type information in the analysis of the optimized IIR where direct calls are used.
 
