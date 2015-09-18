@@ -100,17 +100,18 @@ We now present the main results of our experimental evaluation, aimed at address
 \paragraph{Impact on Code Quality.}
 In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion. The distinction between open and resolved OSR points is nearly irrelevant in this context: we chose to focus on open OSR points, as their calls take an extra argument for profiling that we set to {\tt null}.
 
-For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body. These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger operations such as method recompilation through OSR and thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from a few thousands up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body.
+\ifdefined \fullver
+These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger operations such as method recompilation through OSR and thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+\else
+These loops are natural candidates for OSR point insertion: for instance, the Jikes RVM inserts yield points on backward branches to trigger method recompilation through OSR or thread preemption for garbage collection. In the \shootout\ benchmarks, the number of such loops is typically 1 (2 for {\tt spectral-norm}).
+\fi
 
 For recursive benchmarks, we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time in the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, enabling for instance multiple levels of inlining for non-tail-recursive functions. The only analyzed benchmark showing a recursive pattern is {\tt b-trees}.
 
 %For {\tt b-trees} - the only benchmark showing a recursive pattern - we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, or to enable some form of dynamic optimization (for instance, in a recursive search algorithm we might want to inline the comparator method provided by the user at the call).
 
-Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
-%We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
-The number of times the OSR condition is checked for each benchmark is the same as in the experiments reported in \mytable\ref{tab:sameFun}.
-
-\begin{table*}
+\begin{table*}[ht]
 \begin{center}
 \begin{small}
     \begin{tabular}{ |c|c|c|c|c|c|c|c| }
@@ -152,6 +153,11 @@ The number of times the OSR condition is checked for each benchmark is the same 
 \end{table*}
 
 \ifauthorea{\newline}{}
+
+Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
+%We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
+The number of times the OSR condition is checked for each benchmark is the same as in the experiments reported in \mytable\ref{tab:sameFun}.
+
   
 \paragraph{Overhead of OSR Transitions.}
 
@@ -205,7 +211,7 @@ Not surprisingly, constructing a continuation function takes longer than the oth
 \paragraph{Discussion.}
 %Experimental results presented in this section suggest that inserting an OSR point is unlikely to degrade the quality of generated code, and the time required to fire an OSR transition is negligible (i.e., order of nanoseconds). Instrumenting the original IR is cheap, while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization depends on the trade-off between the expected benefits in terms of execution time and the overhead for generating on optimized version of the function and eventually JIT-compiling it; compared to these two operations, the cost of OSR-related operations is negligible.
 
-Experimental results presented in this section suggest that inserting an OSR point is a quick operation and is unlikely to degrade the quality of generated code. The time required to fire an OSR transition is negligible (i.e., order of nanoseconds), while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization merely depends on the trade-off between the expected benefits in terms of execution time and the overheads from generating and JIT-compiling an optimized version of the function; compared to these two operations, the cost of OSR-related operations is very likely to be negligible.
+Experimental results presented in this section suggest that inserting an OSR point is a quick operation and is unlikely to degrade the quality of generated code. The time required to fire an OSR transition is negligible (i.e., order of nanoseconds), while the cost of generating a continuation function - either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - is likely to be dominated by the cost of its compilation. For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization merely depends on the trade-off between the expected benefits in terms of execution time and the overheads from generating and JIT-compiling an optimized version of the function; compared to these two operations, the cost of OSR-related operations is negligible.
 
 \subsection{Optimizing {\tt feval} in MATLAB}
 \label{sse:feval-results}
