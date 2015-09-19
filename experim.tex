@@ -85,27 +85,6 @@ LLVM 3.6.2, 64 bit.
 For each benchmark we analyze CPU time performing 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
 
 
-% figure
-\ifdefined\noauthorea
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.95\columnwidth]{figures/code-quality-noBB/code-quality-noBB.eps}
-\caption{\protect\input{figures/code-quality-noBB/caption}}
-\end{center}
-\end{figure}
-\fi
-
-% figure
-\ifdefined\noauthorea
-\begin{figure}[t]
-\begin{center}
-%\vspace{-0.55cm}
-\includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
-\caption{\protect\input{figures/code-quality-O1-noBB/caption}}
-\end{center}
-\end{figure}
-\fi
-
 \subsection{Results}
 \label{ss:experim-results}
 %We now present the main results of our experimental evaluation, aimed at addressing the following questions:
@@ -163,6 +142,7 @@ For each benchmark we analyze CPU time performing 10 trials preceded by an initi
 \end{table*}
 \ifauthorea{\newline}{}
 
+
 \paragraph{Q1: Impact on Code Quality.}
 In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion. The distinction between open and resolved OSR points is nearly irrelevant in this context: we choose to focus on open OSR points, passing {\tt null} as the {\tt val} argument for the stub.
 
@@ -182,6 +162,27 @@ Results for the unoptimized and optimized versions of the benchmarks are reporte
 The number of times the OSR condition is checked for each benchmark is 
 %the same as in the experiments 
 reported in \mytable\ref{tab:sameFun}.
+
+% figure
+\ifdefined\noauthorea
+\begin{figure}[bh]
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{figures/code-quality-noBB/code-quality-noBB.eps}
+\caption{\protect\input{figures/code-quality-noBB/caption}}
+\end{center}
+\end{figure}
+\fi
+
+% figure
+\ifdefined\noauthorea
+\begin{figure}[bh]
+\begin{center}
+%\vspace{-0.55cm}
+\includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
+\caption{\protect\input{figures/code-quality-O1-noBB/caption}}
+\end{center}
+\end{figure}
+\fi
 
 \paragraph{Q2: Overhead of OSR Transitions.}
 
