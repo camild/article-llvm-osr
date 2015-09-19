@@ -261,9 +261,9 @@ We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, usi
 \end{small}
 \end{table}
 
-Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for these benchmarks the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
+Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for the very same MATLAB programs the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
 
-Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the worst case - {\tt odeRK4} benchmark - we observe a $94.1\%$ when the optimized code is generated on-the-fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
+Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
 
 
 
