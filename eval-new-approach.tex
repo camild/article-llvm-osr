@@ -82,13 +82,13 @@ As a next step, the optimizer asks the IIR compiler to lower \fOptIIR\ to \fOptI
 Using this map and the one stored during the lowering of \fIIR, the optimizer constructs a state mapping between \fIR\ and \fOptIR. In particular, for each value in \fOptIR\ live at the continuation block we determine whether:
 %\begin{enumerate}[label={(\alph*)}, noitemsep, partopsep=0.5ex, topsep=0.5ex]
 \begin{itemize}[noitemsep, partopsep=0.5ex, topsep=0.5ex]
-\item a live {\tt llvm::Value*} from \fIR\ passed at the OSR point can be used directly,
+\item we can assign to it a live value passed at the OSR point directly,
 \item or a compensation code is required to set its value.
 \end{itemize}
 %\end{enumerate}
 \fi
 
-\noindent In fact, since the type inference engine yields more accurate results for \fOptIIR\ compared to \fIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point.
+\noindent Notice that since the type inference engine yields more accurate results for \fOptIIR\ compared to \fIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point.
 \ifdefined \fullver
 Compensation code might also be required to materialize an IR object for an IIR variable that were previously accessed through get/set methods from the environment. %TODO
 \fi
