@@ -186,6 +186,9 @@ Reported numbers are in the order of nanoseconds, and might be negative due to i
 
 \begin{table}[hb]
 \begin{small}
+\ifdefined \noauthorea
+    \begin{adjustbox}{width=1\columnwidth}
+\fi
     \begin{tabular}{ |c|c|c|c|c|c|c| }
         \cline{3-7}
         \multicolumn{2}{l|}{} & \multicolumn{2}{c|}{{\em Open OSR {\tiny$(\mu s)$}}} & \multicolumn{3}{c|}{{\em Resolved OSR  {\tiny$(\mu s)$}}} \\ 
@@ -212,6 +215,9 @@ Reported numbers are in the order of nanoseconds, and might be negative due to i
         sp-norm & 28 & 15.31 & 27.50 & 12.41 & 154.54 & 5.52 \\ 
         \hline
     \end{tabular} 
+\ifdefined \noauthorea
+    \end{adjustbox}
+\fi
 \caption{\label{tab:instrTime} Q3: OSR machinery insertion in optimized code. Time measurements are expressed in microseconds. Results for unoptimized code are very similar and thus not reported.}
 \end{small}
 \end{table}
