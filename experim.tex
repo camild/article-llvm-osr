@@ -194,7 +194,7 @@ However, as for hot loops we want to perform an OSR transition at each iteration
 \fi %%%%%%%%%%%%%
 Depending on the characteristics of the hot loop, we either transform its body into a separate function and instrument its entrypoint, or, when the loop calls a method with a high self time, we insert an OSR point at the beginning of that method.
 
-Normalized differences reported in the table represent a reasonable estimate of the average cost of firing a single OSR transition.
+Normalized differences reported in the table represent a reasonable estimate of the average cost of firing an OSR transition.
 %, which in other words is the cost of performing a function call passing the live variables as arguments. 
 Reported numbers are in the order of nanoseconds, and might be negative due to instruction cache effects.
 
@@ -254,17 +254,7 @@ Experimental results presented in this section suggest that inserting an OSR poi
 %- either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - 
 is likely to be dominated by the cost of its compilation (Q3). For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization merely depends on the trade-off between the expected benefits in terms of execution time and the overheads from generating and JIT-compiling an optimized version of the function; compared to these two operations, the cost of OSR-related operations is negligible.
 
-\paragraph{Q4: Optimizing {\tt feval} in MATLAB.}
-%\label{sse:feval-results}
-%We conclude this section with a discussion on the effectiveness of our optimization technique for McVM. In particular, we analyze its impact on the running time of a few numeric benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}.
-We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we show speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
-
-Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for the very same MATLAB programs the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
-
-Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
-
-
-\begin{table}[t]
+\begin{table}[h!]
 \begin{small}
 \ifdefined \noauthorea
     \begin{adjustbox}{width=1\columnwidth}
@@ -292,5 +282,15 @@ Our optimization technique yields speed-ups that are very close to the upper bou
     \caption{\label{tab:feval} Q4: Speedup comparison for \feval\ optimization.} 
 \end{small}
 \end{table}
+
+\paragraph{Q4: Optimizing {\tt feval} in MATLAB.}
+%\label{sse:feval-results}
+%We conclude this section with a discussion on the effectiveness of our optimization technique for McVM. In particular, we analyze its impact on the running time of a few numeric benchmarks, namely {\tt odeEuler}, {\tt odeMidpt}, {\tt odeRK4}, and {\tt sim\_anl}. The first three benchmarks solve an ODE for heat treating simulation using the Euler, midpoint, and Range-Kutta method, respectively\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}; the last benchmark minimizes the six-hump camelback function with the method of simulated annealing\footnote{\url{http://www.mathworks.com/matlabcentral/fileexchange/33109-simulated-annealing-optimization}}.
+We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, using the running times for McVM's \feval\ default dispatcher as baseline. As the dispatcher typically JIT-compiles the invoked function, we also analyzed running times when the dispatcher calls a previously compiled function. In the last column, we show speed-ups from a modified version of the benchmarks in which each \feval\ call is replaced by hand with a direct call to the function in use for the specific benchmark.
+
+Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for the very same MATLAB programs the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
+
+Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
+
 
 
