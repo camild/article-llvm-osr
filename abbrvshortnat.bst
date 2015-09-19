@@ -741,8 +741,9 @@ FUNCTION {article}
         { format.eid output }
       if$
     }
-  if$
-  format.issn output
+  %if$
+  %format.issn output
+  if $
   format.doi output
   format.url output
   new.block
