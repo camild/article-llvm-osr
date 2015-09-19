@@ -27,6 +27,9 @@ We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selecti
 \begin{table}[hb]
 \begin{center}
 \begin{small}
+\ifdefined \noauthorea
+    \begin{adjustbox}{width=1\columnwidth}
+\fi
     \begin{tabular}{ |c|c| }
         \hline
         Benchmark & Description \\ 
@@ -49,6 +52,9 @@ We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selecti
         sp-norm & Eigenvalue calculation with power method \\ 
         \hline
     \end{tabular} 
+\ifdefined \noauthorea
+    \end{adjustbox}
+\fi
 \end{small}
 \end{center}
 \caption{\label{tab:shootout} Description of the \shootout\ benchmarks.} 
@@ -114,6 +120,9 @@ In order to measure how much a never-firing OSR point might impact code quality,
 \begin{table*}[ht]
 \begin{center}
 \begin{small}
+\ifdefined \noauthorea
+    \begin{adjustbox}{width=1\textwidth}
+\fi
     \begin{tabular}{ |c|c|c|c|c|c|c|c| }
         \cline{3-8}
         \multicolumn{2}{c|}{} & \multicolumn{3}{c|}{{\em Unoptimized version}} & \multicolumn{3}{c|}{{\em Optimized code}} \\
@@ -146,6 +155,9 @@ In order to measure how much a never-firing OSR point might impact code quality,
         sp-norm-large & 19\,360\,000\,000 & 2 & 0.778 & 14.89 & 2 & -0.003 & -0.07 \\
         \hline
     \end{tabular} 
+\ifdefined \noauthorea
+    \end{adjustbox}
+\fi
 \end{small}
 \end{center}
 \caption{\label{tab:sameFun}Cost of OSR transitions to the same function. Overhead is assessed w.r.t. running time of the never-firing version. %For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time.
@@ -246,6 +258,9 @@ We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, usi
 
 \begin{table}[hb]
 \begin{small}
+\ifdefined \noauthorea
+    \begin{adjustbox}{width=1\columnwidth}
+\fi
     % dirty hack for text wrapping
     \begin{tabular}{ |c|c|c|c|c| }
         \cline{2-5}
@@ -263,6 +278,9 @@ We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, usi
         sim\_anl & 1.009 & 1.564 & 1.606 & 1.612 \\ 
         \hline
     \end{tabular} 
+\ifdefined \noauthorea
+    \end{adjustbox}
+\fi
     \caption{\label{tab:feval} Q4: Speedup comparison for \feval\ optimization.} 
 \end{small}
 \end{table}
