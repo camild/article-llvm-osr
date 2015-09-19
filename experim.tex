@@ -102,7 +102,7 @@ In order to measure how much a never-firing OSR point might impact code quality,
 
 % figure
 \ifdefined\noauthorea
-\begin{figure}[b]
+\begin{figure}[!hb]
 \begin{center}
 %\vspace{-0.55cm}
 \includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
@@ -184,11 +184,6 @@ Normalized differences reported in the table represent a reasonable estimate of 
 %, which in other words is the cost of performing a function call passing the live variables as arguments. 
 Reported numbers are in the order of nanoseconds, and might be negative due to instruction cache effects.
 
-\paragraph{Q3: OSR Machinery Generation.}
-We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function and the time spent in the IR manipulation. Locations for OSR points are chosen as in 
-%the experiments about code quality, 
-Q1, and the target function is a clone of the source function.
-
 \begin{table}[hb]
 \begin{small}
     \begin{tabular}{ |c|c|c|c|c|c|c| }
@@ -221,6 +216,11 @@ Q1, and the target function is a clone of the source function.
 \end{small}
 \end{table}
 \ifauthorea{\newline}{}
+
+\paragraph{Q3: OSR Machinery Generation.}
+We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function and the time spent in the IR manipulation. Locations for OSR points are chosen as in 
+%the experiments about code quality, 
+Q1, and the target function is a clone of the source function.
 
 For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
 
