@@ -3,9 +3,7 @@
 \section{Conclusions}
 \label{se:conclusions}
 
-In this paper, we have proposed a combination of features of extant OSR techniques that no previous solution provided simultaneously. Relevant aspects include platform independence~\cite{lameed2013modular}, generation of highly optimized continuation functions~\cite{fink2003design}, and direct support for JIT-based deoptimization without the need for interpreter to fall back into~\cite{bebenita2010spur}.
-
-
+In this paper, we have proposed a combination of features of extant OSR techniques that no previous solution provided simultaneously. Relevant aspects include platform independence~\cite{lameed2013modular}, generation of highly optimized continuation functions~\cite{fink2003design}, and performing deoptimization without the need for an interpreter~\cite{bebenita2010spur}. A novel abstraction we propose is OSR with compensation code, which allows to extend the range of points where OSR transitions can be fired. Using this technique, we have shown how to improve the state of the art of \feval\ optimization in MATLAB virtual machines. We have investigated the feasibility of our approach in LLVM, showing that it is efficient in practice.
 
 \ifx\noauthorea\undefined
 \paragraph{Acknowledgements.}
