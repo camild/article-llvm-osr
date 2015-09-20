@@ -13,7 +13,7 @@ Currently VM builders using MCJIT are required to have a deep knowledge of the i
 Lameed and Hendren propose McOSR~\cite{lameed2013modular}, a technique for OSR that stores the live values in a global buffer, recompiles the current function, and then loads in it the saved state when the execution is resumed. McOSR was designed for the legacy JIT that is no longer included in LLVM since release 3.6 and has some limitations that we discuss in \mysection\ref{se:osr-llvm}.
 
 \paragraph{Contributions.}
-In this paper we investigate general-purpose, target-independent implementations of on-stack replacement. Specific goals of our approach include:
+In this paper we propose a general-purpose, target-independent implementation of on-stack replacement. Specific goals of our approach include:
 \begin{itemize}
 \item The ability for a function reached via OSR to fire an OSR itself: this would allow switching from a base function $f$ to an optimized function $f'$, and later on to a further optimized version $f''$, and so on.
 \item Supporting deoptimization, i.e., transitions from an optimized function to a less optimized function from which it was derived.
