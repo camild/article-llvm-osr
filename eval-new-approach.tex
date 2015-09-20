@@ -90,7 +90,7 @@ Compensation code might also be required to materialize an IR object for an IIR 
 Once a state mapping object has been constructed, the optimizer calls our OSR library to generate the continuation function for the OSR transition and eventually compiles it.
 A pointer to the compiled function is stored in the code cache and returned to the stub, which invokes it through an indirect call passing the live state saved at the OSR point.
 \else
-\noindent Once a state mapping has been constructed, the optimizer asks \osrkit\ to generate the continuation function for the OSR transition and eventually executes it.
+\noindent Once a state mapping has been constructed, the optimizer asks \osrkit\ to generate the continuation function for the OSR transition and then executes it.
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%

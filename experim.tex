@@ -15,16 +15,8 @@ In this section we present a preliminar experimental study of \osrkit\ aimed at 
 \item[Q4] What kind of benefits can we expect by using OSR in a production environment based on LLVM?
 \end{description}
 
-\subsection{Benchmarks and Setup}
-We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selection of the \shootout\ benchmarks~\cite{shootout} running in a proof-of-concept virtual machine we developed in LLVM. In particular, we focus on single-threaded benchmarks that do not rely on external libraries to perform their core computations. Benchmarks and their description are reported in \mytable\ref{tab:shootout}; four of them ({\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm}) are evaluated against two workloads of different size.
 
-%In this section we present a preliminar experimental study of our OSR implementation in TinyVM. Our experiments are based on the \shootout\ test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. In particular, we focus on single-threaded benchmarks that do not rely on external libraries to perform their core computations.
-
-%, a proof-of-concept virtual machine based on LLVM's JIT compiler MCJIT. TinyVM supports interactive invocations of functions and it can compile LLVM IR either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
-%TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. 
-%At the end of the section, we show experimental results for the case study presented in \mysection\ref{se:case-study}.
-
-\begin{table}[hb]
+\begin{table}[b]
 \begin{center}
 \begin{small}
 \ifdefined \noauthorea
@@ -60,9 +52,18 @@ We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selecti
 \caption{\label{tab:shootout} Description of the \shootout\ benchmarks.} 
 \end{table}
 
-%We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
-
 \ifauthorea{\newline}{}
+
+\subsection{Benchmarks and Setup}
+We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selection of the \shootout\ benchmarks~\cite{shootout} running in a proof-of-concept virtual machine we developed in LLVM. In particular, we focus on single-threaded benchmarks that do not rely on external libraries to perform their core computations. Benchmarks and their description are reported in \mytable\ref{tab:shootout}; four of them ({\tt b-trees}, {\tt mbrot}, {\tt n-body} and {\tt sp-norm}) are evaluated against two workloads of different size.
+
+%In this section we present a preliminar experimental study of our OSR implementation in TinyVM. Our experiments are based on the \shootout\ test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. In particular, we focus on single-threaded benchmarks that do not rely on external libraries to perform their core computations.
+
+%, a proof-of-concept virtual machine based on LLVM's JIT compiler MCJIT. TinyVM supports interactive invocations of functions and it can compile LLVM IR either generated at run-time or loaded from disk. The main design goal behind TinyVM is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them or display their CFGs, repeatedly invoke a function for a specified amount of times and so on. TinyVM supports dynamic library loading and linking, and comes with a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated object such as Stackmaps.
+%TinyVM is thus an ideal playground to exercise our OSR technique, and we use it to run performance measurements on the shootout test suite, also known as the Computer Language Benchmark Game~\cite{shootout}. 
+%At the end of the section, we show experimental results for the case study presented in \mysection\ref{se:case-study}.
+
+%We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 
 \noindent We generate the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. To cover scenarios where OSR machinery is inserted in programs with different optimization levels, we consider two versions: 1) {\em unoptimized}, where the only LLVM optimization we perform is {\tt mem2reg} to promote stack references to registers and construct the SSA form; 2) {\em optimized}, where we apply {\tt opt} {\tt -O1} to the unoptimized version.
 
@@ -159,15 +160,9 @@ For recursive benchmarks, we insert an OSR point in the body of the method that 
 
 %For {\tt b-trees} - the only benchmark showing a recursive pattern - we insert an OSR point in the body of the method that accounts for the largest {\em self} execution time of the program. Such an OSR point might be useful to trigger recompilation of the code at a higher degree of optimization, or to enable some form of dynamic optimization (for instance, in a recursive search algorithm we might want to inline the comparator method provided by the user at the call).
 
-Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
-%We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
-The number of times the OSR condition is checked for each benchmark is 
-%the same as in the experiments 
-reported in \mytable\ref{tab:sameFun}.
-
 % figure
 \ifdefined\noauthorea
-\begin{figure}[bh]
+\begin{figure}[t]
 \begin{center}
 \includegraphics[width=0.95\columnwidth]{figures/code-quality-noBB/code-quality-noBB.eps}
 \caption{\protect\input{figures/code-quality-noBB/caption}}
@@ -177,7 +172,7 @@ reported in \mytable\ref{tab:sameFun}.
 
 % figure
 \ifdefined\noauthorea
-\begin{figure}[bh]
+\begin{figure}[t]
 \begin{center}
 %\vspace{-0.55cm}
 \includegraphics[width=0.95\columnwidth]{figures/code-quality-O1-noBB/code-quality-O1-noBB.eps}
@@ -185,6 +180,12 @@ reported in \mytable\ref{tab:sameFun}.
 \end{center}
 \end{figure}
 \fi
+
+Results for the unoptimized and optimized versions of the benchmarks are reported in \myfigure\ref{fig:code-quality-base} and \myfigure\ref{fig:code-quality-O1}, respectively. For both scenarios we observe that the overhead is very small, i.e. less than $1\%$ for most benchmarks and less than $2\%$ in the worst case. For some benchmarks, code might run slightly faster after OSR point insertion due to instruction cache effects.
+%We analyzed the code produced by the x86-64 back-end: the OSR machinery is lowered into three native instructions that load a counter in a register, compare it against a constant value and jump to the OSR block accordingly.
+The number of times the OSR condition is checked for each benchmark is 
+%the same as in the experiments 
+reported in \mytable\ref{tab:sameFun}.
 
 \paragraph{Q2: Overhead of OSR Transitions.}
 
@@ -293,7 +294,7 @@ We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, usi
 
 Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for the very same MATLAB programs the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
 
-Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
+\noindent Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
 
 
 
