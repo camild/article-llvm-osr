@@ -4,7 +4,7 @@ On-Stack Replacement (OSR) is a technique for dynamically transferring execution
 %suspending the execution of a function and continuing with a different version of the code. 
 OSR is typically used in virtual machines to interrupt a long-running function and recompile it at a higher optimization level, or to replace it with a different one when a speculative assumption made during its compilation no longer holds.
 
-In this paper we present a framework for OSR that introduces novel ideas and combines features of extant techniques that no previous solution provided simultaneously. New features include OSR with compensation code to adjust the program state during a transition and the ability to fire an OSR from arbitrary locations in the code. Our approach is platform-independent as the OSR machinery is entirely encoded at a compiler's intermediate representation level.
+In this paper we present a framework for OSR that introduces novel ideas and combines features of existing techniques that no previous solution provided simultaneously. New features include OSR with compensation code to adjust the program state during a transition and the ability to fire an OSR from arbitrary locations in the code. Our approach is platform-independent as the OSR machinery is entirely encoded at a compiler's intermediate representation level.
 
 %Compared to extant OSR techniques, our approach is platform-independent as transitions are encoded entirely at the Intermediate Representation (IR) level; it supports OSR-point insertion at arbitrary locations in a function, 
 
