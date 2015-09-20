@@ -1,4 +1,4 @@
- % !TEX root = article.tex
+n % !TEX root = article.tex
 
 \section{Experimental Evaluation}
 \label{se:experiments}
@@ -147,7 +147,7 @@ For each benchmark we analyze CPU time performing 10 trials preceded by an initi
 %\end{itemize}
 
 \paragraph{Q1: Impact on Code Quality.}
-In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion. The distinction between open and resolved OSR points is nearly irrelevant in this context: we choose to focus on open OSR points, passing {\tt null} as the {\tt val} argument for the stub.
+In order to measure how much a never-firing OSR point might impact code quality, we analyzed the source-code structure of each benchmark and profiled its run-time behavior to identify performance-critical sections for OSR point insertion. The distinction between open and resolved OSR points is nearly irrelevant in this context: we choose to focus on open OSR points, passing {\tt null} as the {\tt val} argument for the stub (see \mysection\ref{se:osr-llvm}).
 
 For iterative benchmarks, we insert an OSR point in the body of their hottest loops. We classify a loop as hottest when its body is executed for a very high cumulative number of iterations (e.g., from millions up to billions) and it either calls the method with the highest {\em self} time in the program, or it performs the most computational-intensive operations for the program in its own body.
 \ifdefined \fullver
