@@ -1,0 +1,36 @@
+% !TEX root = ../article.tex
+
+\subsubsection{Session 2: Performance Figures}
+
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code:
+
+\begin{itemize}[parsep=0pt]
+\item {\tt bench}: IR code of the benchmark;
+\item {\tt codeQuality}: IR code with the hottest loop instrumented with a never-firing OSR;
+\item {\tt finalAlwaysFire}: IR code with the hottest loop instrumented with an always-firing OSR.
+\end{itemize}
+
+\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. We show how to run the code using {\tt fasta} as an example. For slow steps, we report the time required on our test platform (\mysection\ref{ss:bench-setup}).
+
+\paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
+The first step consists in generating figures for the baseline (uninstrumented) benchmark version:
+\begin{small}
+\begin{verbatim}
+tinyvm$ tinyvm shootout/scripts/bench/fasta
+\end{verbatim}
+\end{small}
+
+\noindent Experiment duration $\approx1$:$29$ sec. Time per trial: $\approx8.98$ sec.
+
+\begin{small}
+\begin{verbatim}
+tinyvm$ tinyvm shootout/scripts/codeQuality/fasta
+\end{verbatim}
+\end{small}
+
+\noindent Experiment duration $\approx1$:$31$ sec. Time per trial: $\approx9.15$ sec.
+
+%[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
+%[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
+%[Q4] What kind of benefits can we expect by using OSR in a production environment based on LLVM?
+

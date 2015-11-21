@@ -80,35 +80,8 @@ We propose two usage sessions. In the first session, we show how to generate and
 
 The main component of the artifact is the interactive VM \tinyvm\ built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The VM supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind \tinyvm\ is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them, display their CFGs, and repeatedly invoke a function for a specified amount of times. \tinyvm\ supports dynamic library loading and linking, and includes a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated objects such as Stackmaps.
 
-\subsubsection{Session 1: OSR instrumentation in \osrkit}
-
-\subsubsection{Session 2: Performance Figures}
-
-The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code:
-
-\begin{itemize}[parsep=0pt]
-\item {\tt bench}: IR code of the benchmark;
-\item {\tt codeQuality}: IR code with the hottest loop instrumented with a never-firing OSR;
-\item {\tt finalAlwaysFire}: IR code with the hottest loop instrumented with an always-firing OSR.
-\end{itemize}
-
-\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. We show how to run the code using {\tt fasta} as an example. For slow steps, we report the time required on our test platform (\mysection\ref{ss:bench-setup}).
-
-\paragraph{Baseline.} The first step consists in generating figures for the baseline (uninstrumented) version of each benchmark:
-\begin{small}
-\begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/bench/fasta
-\end{verbatim}
-\end{small}
-
-\noindent Experiment duration $\approx1:30$ sec. Time per trial: $\approx9$ sec.
-
-\paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
-
-%[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
-%[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
-%[Q4] What kind of benefits can we expect by using OSR in a production environment based on LLVM?
-
+\input{artifact/session1}
+\input{artifact/session2}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Notes}
