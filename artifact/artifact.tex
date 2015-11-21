@@ -9,6 +9,9 @@
 
 \usepackage{url}
 
+\newcommand{\osrkit}{{\sf OSRKit}}
+\newcommand{\tinyvm}{{\sf TinyVM}}
+
 \begin{document}
 
 \special{papersize=8.5in,11in}
@@ -27,7 +30,7 @@ Submission and reviewing guidelines and methodology: \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-{\em Obligatory}
+\osrkit\ is an library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Description}
@@ -38,25 +41,27 @@ Submission and reviewing guidelines and methodology: \\
 
 {\small
 \begin{itemize}
-  \item {\bf Algorithm: }
-  \item {\bf Program: }
-  \item {\bf Compilation: }
-  \item {\bf Transformations: }
+  %\item {\bf Algorithm: }
+  \item {\bf Program: } {\tt shootout} C benchmarks (included, Sep 2015). %and a number of MATLAB benchmarks (included)
+  \item {\bf Compilation: } LLVM 3.6.2 (Release build).
+  %\item {\bf Transformations: }
   \item {\bf Binary: }
-  \item {\bf Data set: }
-  \item {\bf Run-time environment: }
-  \item {\bf Hardware: }
-  \item {\bf Run-time state: }
-  \item {\bf Execution: }
-  \item {\bf Output: }
-  \item {\bf Experiment workflow: }
+  %\item {\bf Data set: }
+  \item {\bf Run-time environment: } Linux (version 3.x).
+  \item {\bf Hardware: } x86-64 CPU.
+  \item {\bf Run-time state: } Cache-sensitive (performance measurements only).
+  %\item {\bf Execution: }
+  \item {\bf Output: } Measured characteristics are output to console.
+  \item {\bf Experiment workflow: } Invoke scripts and perform a few manual steps.
   \item {\bf Publicly available?} Yes.
 \end{itemize}
 }
 
 \subsubsection{How delivered}
 
-The artifact ships as an Oracle VirtualBox 5 Appliance. The latest version of the code is available at \url{}
+The artifact ships as an Oracle VirtualBox 5 Appliance.
+
+The latest version of the code is available at \url{https://github.com/dcdelia/tinyvm}
 
 \subsubsection{Hardware dependencies}
 
