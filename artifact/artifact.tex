@@ -14,7 +14,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \appendix
-\section{Artifact description}
+\section{Artifact Description}
 
 %Submission and reviewing guidelines and methodology: \\
 %{\em http://cTuning.org/ae/submission-20151015.html}
@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. The artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact includes an interactive shell called \texttt{tinyvm} for loading, inspecting, instrumenting, and executing IR code. It is distributed as a preconfigured Oracle VirtualBox VM.
+\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. The artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact includes an interactive VM called \tinyvm\ for loading, inspecting, instrumenting, and executing IR code. It is distributed as a preconfigured Oracle VirtualBox VM.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,7 +33,7 @@
 %{\em Fill in whatever is applicable with some informal keywords and remove the rest}
 
 {\small
-\begin{itemize}
+\begin{itemize}[parsep=0pt]
   %\item {\bf Algorithm: }
   \item {\bf Program: } {\tt shootout} C benchmarks (included, Sep 2015). %and a number of MATLAB benchmarks (included)
   \item {\bf Compilation: } LLVM 3.6.2 (release build).
@@ -50,16 +50,16 @@
 \end{itemize}
 }
 
-\subsubsection{How delivered}
+\subsubsection{How Delivered}
 
 The artifact ships as an Oracle VirtualBox 5 Appliance.
 The latest version of the code is available at \url{https://github.com/dcdelia/tinyvm}.
 
-\subsubsection{Hardware dependencies}
+\subsubsection{Hardware Dependencies}
 
-The artifact requires an x86-64 platform.
+An x86-64 platform is required.
 
-\subsubsection{Software dependencies}
+\subsubsection{Software Dependencies}
 
 The artifact was tested in Oracle VirtualBox 5.0.10. 
 
@@ -71,22 +71,32 @@ The artifact was tested in Oracle VirtualBox 5.0.10.
 To install the artifact, just import the appliance in Oracle VirtualBox.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Experiment workflow}
+\subsection{Experiment Workflow}
 
-We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in Section 3 of the paper. The second session focuses on how to run the scripts used to generate the performance tables of Section 5 related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in the artifact.
+We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in \mysection\ref{se:osr-llvm}. The second session focuses on how to run the scripts used to generate the performance tables of \mysection\ref{se:experiments} related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in the artifact.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Evaluation and expected result}
+\subsection{Evaluation and Expected Result}
 
-The main component of the artifact is the interactive shell {\tt tinyvm} built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The shell supports loading, inspecting, instrumenting, and executing IR code.
+The main component of the artifact is the interactive VM \tinyvm\ built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The VM supports interactive invocation of LLVM IR functions either generated at run-time or loaded from disk. The main design goal behind \tinyvm\ is the creation of an interactive environment for IR manipulation and JIT-compilation of functions: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them, display their CFGs, and repeatedly invoke a function for a specified amount of times. \tinyvm\ supports dynamic library loading and linking, and includes a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated objects such as Stackmaps.
 
 \subsubsection{Session 1: OSR instrumentation in \osrkit}
 
 \subsubsection{Session 2: Performance Figures}
 
-The experiments can be repeated by executing the scripts in {\tt tinyvm/shootout/scripts}.
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, the directory {\tt tinyvm/shootout/X/} contains:
 
-\paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points in the code by measuring how .
+\begin{itemize}[parsep=0pt]
+\item {\tt C}: C code
+\item {\tt bench.ll}: baseline IR code ({\tt -O0})
+\item {\tt bench-O1.ll}: baseline IR code ({\tt -O1})
+\end{itemize}
+
+\noindent Each experiment runs 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. 
+
+\paragraph{Baseline.} The first step consists in generating figures for the baseline version of each benchmark.
+
+\paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
 
 %[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
 %[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
