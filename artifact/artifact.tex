@@ -30,7 +30,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code.
+\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. This artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3 of the companion paper. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact is based on a preconfigured Oracle VirtualBox VM.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Description}
@@ -43,9 +44,9 @@
 \begin{itemize}
   %\item {\bf Algorithm: }
   \item {\bf Program: } {\tt shootout} C benchmarks (included, Sep 2015). %and a number of MATLAB benchmarks (included)
-  \item {\bf Compilation: } LLVM 3.6.2 (Release build).
+  \item {\bf Compilation: } LLVM 3.6.2 (release build).
   %\item {\bf Transformations: }
-  \item {\bf Binary: }
+  %\item {\bf Binary: }
   %\item {\bf Data set: }
   \item {\bf Run-time environment: } Linux (version 3.x).
   \item {\bf Hardware: } x86-64 CPU.
@@ -64,25 +65,33 @@ The latest version of the code is available at \url{https://github.com/dcdelia/t
 
 \subsubsection{Hardware dependencies}
 
+The artifact requires an x86-64 platform.
+
 \subsubsection{Software dependencies}
 
-\subsubsection{Datasets}
+The artifact was tested in Oracle VirtualBox 5.0.10. 
+
+%\subsubsection{Datasets}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Installation}
 
-{\em Obligatory}
+To install the artifact, just import the appliance in Oracle VirtualBox.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment workflow}
 
+We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in Section 3 of the paper. The second session focuses on how to run the scripts used to generate the performance tables of Section 5 related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in this artifact.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and expected result}
 
-{\em Obligatory}
+\subsubsection{Session 1: OSR instrumentation in \osrkit}
+
+\subsubsection{Session 2: Performance Figures}  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Notes}
+%\subsection{Notes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % When adding this appendix to your paper, 
