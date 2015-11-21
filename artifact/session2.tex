@@ -10,25 +10,31 @@ The experiments can be repeated by executing scripts on a selection of the \shoo
 \item {\tt finalAlwaysFire}: IR code with the hottest loop instrumented with an always-firing OSR.
 \end{itemize}
 
-\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. We show how to run the code using {\tt fasta} as an example. For slow steps, we report the time required on our test platform (\mysection\ref{ss:bench-setup}).
+\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
 
 \paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
 The first step consists in generating figures for the baseline (uninstrumented) benchmark version:
 \begin{small}
 \begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/bench/fasta
+tinyvm$ tinyvm shootout/scripts/bench/n-body
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$:$29$ sec. Time per trial: $\approx8.98$ sec. The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
+\noindent Experiment duration $\approx1$m. Time per trial: $\approx5.725$s. The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
 
 \begin{small}
 \begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/codeQuality/fasta
+tinyvm$ tinyvm shootout/scripts/codeQuality/n-body
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$:$31$ sec. Time per trial: $\approx9.15$ sec. The ratio $9.15/8.98=1.01$ is reported for {\tt fasta} in \ref{fig:code-quality-base}.
+\noindent Experiment duration $\approx1$m. Time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ is reported for {\tt n-body} in \ref{fig:code-quality-base}. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+
+
+\paragraph{Question Q2.} 
+
+\paragraph{Question Q3.} 
+
 
 %[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
 %[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
