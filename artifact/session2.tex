@@ -20,7 +20,7 @@ tinyvm$ tinyvm shootout/scripts/bench/fasta
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$:$29$ sec. Time per trial: $\approx8.98$ sec.
+\noindent Experiment duration $\approx1$:$29$ sec. Time per trial: $\approx8.98$ sec. The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
 
 \begin{small}
 \begin{verbatim}
@@ -28,7 +28,7 @@ tinyvm$ tinyvm shootout/scripts/codeQuality/fasta
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$:$31$ sec. Time per trial: $\approx9.15$ sec.
+\noindent Experiment duration $\approx1$:$31$ sec. Time per trial: $\approx9.15$ sec. The ratio $9.15/8.98=1.01$ is reported for {\tt fasta} in \ref{fig:code-quality-base}.
 
 %[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
 %[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
