@@ -30,6 +30,16 @@
 
 The main component of the artifact is an interactive VM called \tinyvm\ built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The VM provides an interactive environment for IR manipulation, JIT-compilation, and execution of functions either generated at run-time or loaded from disk: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them, display their CFGs, and repeatedly invoke a function for a specified amount of times. \tinyvm\ supports dynamic library loading and linking, and includes a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking native code and other machine-level generated objects such as Stackmaps.
 
+\tinyvm\ is located in {\small\tt /home/osrkit/Desktop/tinyvm/} and runs a case-insensitite command-line interpreter:
+\begin{small}
+\begin{verbatim}
+osrkit@osrkit-AE:~/Desktop/tinyvm$ tinyvm
+Welcome! Enter 'HELP' to show the list of commands.
+TinyVM> 
+\end{verbatim}
+\end{small}
+
+\noindent Use ``help'' to print basic documentation on how to use the shell. Usage scenarios are discussed in \ref{ss:art-eval-res}.
 
 \subsubsection{Check-list (artifact meta information)}
 
@@ -80,6 +90,7 @@ We propose two usage sessions. In the first session, we show how to generate and
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and Expected Result}
+\label{ss:art-eval-res}
 
 \input{artifact/session1}
 \input{artifact/session2}

@@ -2,15 +2,15 @@
 
 \subsubsection{Session 2: Performance Figures}
 
-The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code:
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code in two versions:
 
 \begin{itemize}[parsep=0pt]
-\item {\tt bench}: IR code of the benchmark;
-\item {\tt codeQuality}: IR code with the hottest loop instrumented with a never-firing OSR;
-\item {\tt finalAlwaysFire}: IR code with the hottest loop instrumented with an always-firing OSR.
+\item {\tt bench} and {\tt bench-O1}: IR code of the benchmark;
+%\item {\tt codeQuality}: IR code of the benchmark with the hottest loop instrumented with a never-firing OSR;
+\item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by turning the body of the hottest loop into a separate function (see \ref{ss:experim-results}).
 \end{itemize}
 
-\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals, etc. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
+\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
 
 \paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
 The first step consists in generating figures for the baseline (uninstrumented) benchmark version:
@@ -20,7 +20,20 @@ tinyvm$ tinyvm shootout/scripts/bench/n-body
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$m. Time per trial: $\approx5.725$s. The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
+\noindent The script is as follows:
+
+\begin{small}
+\begin{verbatim}
+LOAD_IR shootout/n-body/bench.ll
+bench(50000000)
+REPEAT 10 bench(50000000)
+QUIT
+\end{verbatim}
+\end{small}
+
+\noindent which loads the IR code, performs a warm-up execution of the benchmark, and then 10 repetitions. The experiment duration is $\approx1$m, with a time per trial $\approx5.725$s. 
+
+The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
 
 \begin{small}
 \begin{verbatim}
@@ -28,7 +41,19 @@ tinyvm$ tinyvm shootout/scripts/codeQuality/n-body
 \end{verbatim}
 \end{small}
 
-\noindent Experiment duration $\approx1$m. Time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ is reported for {\tt n-body} in \ref{fig:code-quality-base}. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+\noindent The script is as follows:
+
+\begin{small}
+\begin{verbatim}
+LOAD_IR shootout/n-body/bench.ll
+INSERT_OSR 5 NEVER OPEN UPDATE IN bench AT %8 CLONE
+bench(50000000)
+REPEAT 10 bench(50000000)
+QUIT
+\end{verbatim}
+\end{small}
+
+\noindent The experiment duration is $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ is reported for {\tt n-body} in \ref{fig:code-quality-base}. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
 
 \paragraph{Question Q2.} 
