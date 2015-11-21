@@ -2,7 +2,7 @@
 
 \subsubsection{Session 2: Performance Figures}
 
-The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code in two versions:
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code, each in two versions:
 
 \begin{itemize}[parsep=0pt]
 \item {\tt bench} and {\tt bench-O1}: IR code of the benchmark;
@@ -53,10 +53,14 @@ QUIT
 \end{verbatim}
 \end{small}
 
-\noindent The experiment duration is $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ is reported for {\tt n-body} in \ref{fig:code-quality-base}. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+\noindent The experiment duration is $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
-
-\paragraph{Question Q2.} 
+\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The script for this is:
+\begin{small}
+\begin{verbatim}
+tinyvm$ tinyvm shootout/scripts/bench/n-body
+\end{verbatim}
+\end{small}
 
 \paragraph{Question Q3.} 
 
