@@ -1,3 +1,5 @@
+% !TEX root = ../article.tex
+
 % LaTeX template for Artifact Evaluation V20151015
 %
 % Prepared by Grigori Fursin (cTuning foundation, France and dividiti, UK) 
@@ -5,16 +7,6 @@
 %
 % (C)opyright 2014-2015
 
-\documentclass{sigplanconf}
-
-\usepackage{url}
-
-\newcommand{\osrkit}{{\sf OSRKit}}
-\newcommand{\tinyvm}{{\sf TinyVM}}
-
-\begin{document}
-
-\special{papersize=8.5in,11in}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % When adding this appendix to your paper, 
@@ -30,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. This artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3 of the companion paper. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact is based on a preconfigured Oracle VirtualBox VM.
+\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. The artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact includes an interactive shell called \texttt{tinyvm} for loading, inspecting, instrumenting, and executing IR code. It is distributed as a preconfigured Oracle VirtualBox VM.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,14 +73,25 @@ To install the artifact, just import the appliance in Oracle VirtualBox.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment workflow}
 
-We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in Section 3 of the paper. The second session focuses on how to run the scripts used to generate the performance tables of Section 5 related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in this artifact.
+We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in Section 3 of the paper. The second session focuses on how to run the scripts used to generate the performance tables of Section 5 related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in the artifact.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and expected result}
 
+The main component of the artifact is the interactive shell {\tt tinyvm} built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The shell supports loading, inspecting, instrumenting, and executing IR code.
+
 \subsubsection{Session 1: OSR instrumentation in \osrkit}
 
-\subsubsection{Session 2: Performance Figures}  
+\subsubsection{Session 2: Performance Figures}
+
+The experiments can be repeated by executing the scripts in {\tt tinyvm/shootout/scripts}.
+
+\paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points in the code by measuring how .
+
+%[Q2] What is the run-time overhead of an OSR transition, for instance to a clone of the running function?
+%[Q3] What is the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function?
+%[Q4] What kind of benefits can we expect by using OSR in a production environment based on LLVM?
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Notes}
@@ -98,4 +101,4 @@ We propose two usage sessions. In the first session, we show how to generate and
 % please remove below part
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\end{document}
+
