@@ -16,6 +16,8 @@
 \appendix
 \section{Artifact Description}
 
+%\newcommand{\nomcvm}{}
+
 %Submission and reviewing guidelines and methodology: \\
 %{\em http://cTuning.org/ae/submission-20151015.html}
 
@@ -86,7 +88,11 @@ To install the artifact, just import the appliance in Oracle VirtualBox, which i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment Workflow}
 
+\ifdefined \nomcvm
 We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in \mysection\ref{se:osr-llvm}. The second session focuses on how to run the scripts used to generate the performance tables of \mysection\ref{se:experiments} related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime\footnote{The source code of the version used in the paper, which we ported to LLVM 3.6+ and extended with the {\tt feval} optimization technique discussed in \ref{ss:eval-opt-mcvm}, is available at \url{https://github.com/dcdelia/mcvm}.}) and is not addressed in the artifact.
+\else
+We propose three usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in \mysection\ref{se:osr-llvm}. The second session focuses on how to run the scripts used to generate the performance tables of \mysection\ref{se:experiments} related to questions Q1, Q2, and Q3. The third session addresses question Q4, using third-party software (the MATLAB McVM runtime~\cite{mcvm}) that we ported to LLVM 3.6+ and extended with the {\tt feval} optimization technique discussed in \ref{ss:eval-opt-mcvm}.
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and Expected Result}
@@ -94,6 +100,10 @@ We propose two usage sessions. In the first session, we show how to generate and
 
 \input{artifact/session1}
 \input{artifact/session2}
+\ifdefined \nomcvm
+\else
+\input{artifact/session3}
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Notes}
