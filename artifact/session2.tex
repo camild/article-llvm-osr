@@ -55,7 +55,7 @@ QUIT
 
 \noindent Note that the second line inserts a never-firing open OSR point at instruction labeled with {\tt 8} (actually {\tt <label>:8}) in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
 
-The experiment duration was $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
 \paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
 \begin{small}
