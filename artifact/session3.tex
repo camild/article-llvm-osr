@@ -2,7 +2,41 @@
 
 \subsubsection{Session 3: {\tt feval} optimization in McVM}
 
-McVM is a virtual machine for MATLAB developed at McGill University. As a by-product of our project, we ported it from the LLVM legacy JIT to MCJIT, and later extended it with a new specialization mechanism for {\tt feval} calls. The source code for this version is publicly available at \url{https://github.com/dcdelia/mcvm}.
+McVM is a virtual machine for MATLAB developed at McGill University. As a by-product of our project, we ported it from the LLVM legacy JIT to MCJIT, and later extended it with a new specialization mechanism for {\tt feval} calls. The source code for this version along with the MATLAB benchmarks listed in \mysection\ref{ss:bench-setup} are publicly available at \url{https://github.com/dcdelia/mcvm}.
 
-%Experiments reported in \mytable\ref{tab:feval}
+Experiments reported in \mytable\ref{tab:feval} can be repeated using a number of scripts provided along with a McVM build in {\small\tt /home/osrkit/Desktop/mcvm/}. Pre-requirements for McVM compilation are header files for a number of scientific libraries (ATLAS, BLAS, and LAPACKE) and the Boehm garbage collector, which can be built automatically using the script {\tt bootstrap.sh} provided in the repository.
 
+For each benchmark {\tt X}, {\small\tt benchmarks/scripts/} contains three MATLAB scripts to use as input for {\tt mcvm}:
+
+\begin{itemize}[parsep=0pt]
+\item {\tt base/X}: single run of original code (i.e., {\tt feval}-based);
+\item {\tt direct/X}: single run of code optimized by hand (i.e., with direct calls);
+\item {\tt many/X}: multiple runs of original code (for code caching).
+\end{itemize}
+
+\noindent We manually collected figures from the console output and computed speedups for the different settings. We show how to run the code using {\tt odeEuler} as an example. The platform used to obtain reported numbers is the same as in session 2.
+
+To determine a baseline for speedup computation, we let {\tt mcvm} perform a single run of the original code with no {\tt feval} optimization. Note that we can selectively enable or disable {\tt feval} optimization using the {\tt -jit\_feval\_opt} flag:
+
+\begin{small}
+\begin{verbatim}
+$ cd ~/Desktop/mcvm
+$ ./mcvm -jit_feval_opt false <
+         benchmarks/scripts/base/odeEuler
+***********************************************
+     McVM - The McLab Virtual Machine v1.0     
+Visit http://www.sable.mcgill.ca for more info.
+***********************************************
+
+>: >: Compiling function: "testSH"
+Compiling function: "odeEuler"
+Compiling function: "testSHfun"
+Compiling function: "rhsSteelHeat"
+Compiling function: "testSHfun"
+Compiling function: "rhsSteelHeat"
+[TOC] Elapsed time: 32.552112 seconds
+ t y_Euler
+   0.0000  1.000000
+  80.0000 679.644212
+\end{verbatim}
+\end{small}
