@@ -13,10 +13,10 @@ The experiments can be repeated by executing scripts on a selection of the \shoo
 \noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
 
 \paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
-The first step consists in generating figures for the baseline (uninstrumented) benchmark version:
+The first step consists in generating figures for the baseline (uninstrumented) benchmark version. Go to {\small\tt /home/osrkit/Desktop/tinyvm} and type:
 \begin{small}
 \begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/bench/n-body
+$ tinyvm shootout/scripts/bench/n-body
 \end{verbatim}
 \end{small}
 
@@ -37,7 +37,7 @@ The benchmark with the hottest loop instrumented with a never-firing OSR can be 
 
 \begin{small}
 \begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/codeQuality/n-body
+$ tinyvm shootout/scripts/codeQuality/n-body
 \end{verbatim}
 \end{small}
 

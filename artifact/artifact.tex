@@ -86,7 +86,7 @@ To install the artifact, just import the appliance in Oracle VirtualBox, which i
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment Workflow}
 
-We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in \mysection\ref{se:osr-llvm}. The second session focuses on how to run the scripts used to generate the performance tables of \mysection\ref{se:experiments} related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime) and is not addressed in the artifact.
+We propose two usage sessions. In the first session, we show how to generate and instrument an LLVM IR code based on the \texttt{isord} example presented in \mysection\ref{se:osr-llvm}. The second session focuses on how to run the scripts used to generate the performance tables of \mysection\ref{se:experiments} related to questions Q1, Q2, and Q3. Question Q4 is based on additional third-party software (the MATLAB McVM runtime\footnote{The source code of the version used in the paper, which we ported to LLVM 3.6+ and extended with the {\tt feval} optimization technique discussed in \ref{ss:eval-opt-mcvm}, is available at \url{https://github.com/dcdelia/mcvm}.}) and is not addressed in the artifact.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Evaluation and Expected Result}
