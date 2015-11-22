@@ -57,11 +57,7 @@ We can now set an upper bound for speedups by measuring the running time when th
 \begin{small}
 \begin{verbatim}
 $ ./mcvm < benchmarks/scripts/direct/odeRK4
-***********************************************
-     McVM - The McLab Virtual Machine v1.0
-Visit http://www.sable.mcgill.ca for more info.
-***********************************************
-
+[...]
 >: >: Compiling function: "testSH_direct"
 Compiling function: "odeRK4_testSHfun"
 Compiling function: "testSHfun"
@@ -75,18 +71,14 @@ Compiling function: "rhsSteelHeat"
 
 \noindent In this scenario McVM can compile the whole program ahead of time, as {\tt rhsSteelHeat} is not invoked through an {\tt feval} call anymore. A comparison of the running times suggests a rough $32.537/11.777=2.791$ speedup for by-hand optimization w.r.t. the baseline version.
 
-We can now try to assess the speedup for our {\tt feval} optimization technique on {\tt odeRK4}:
+We can now try to assess the speedup from our {\tt feval} optimization technique on {\tt odeRK4}:
 
 \begin{small}
 \begin{verbatim}
 $ cd ~/Desktop/mcvm
 $ ./mcvm -jit_feval_opt true <
          benchmarks/scripts/base/odeRK4
-***********************************************
-     McVM - The McLab Virtual Machine v1.0
-Visit http://www.sable.mcgill.ca for more info.
-***********************************************
-
+[...]
 >: >: Compiling function: "testSH"
 Compiling function: "odeRK4"
 Compiling and tracking a feval instruction...
@@ -106,4 +98,14 @@ Type conversion required for variable $t10
 \end{small}
 
 \noindent The execution time ratio between the base version and the optimized code that we JIT-compile is thus $32.867/12.214=2.691$. We can observe that compensation code is generated to perform unboxing of IIR variables {\tt y} and {\tt \$t10} so that execution can correctly resume from the optimized code.
+
+We can finally evaluate the speedup enabled by our code caching mechanism for the compilation of continuation functions by running:
+\begin{small}
+\begin{verbatim}
+$ ./mcvm -jit_feval_opt true <
+         benchmarks/scripts/many/odeRK4
+\end{verbatim}
+\end{small}
+
+\noindent The experiment duration was $\approx1$m, with a time per trial of $\approx11.817$s (discarding the warm-up run). The resulting speedup w.r.t. is thus $32.867/11.817=2.781$.
 
