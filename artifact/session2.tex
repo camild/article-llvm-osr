@@ -10,7 +10,7 @@ The experiments can be repeated by executing scripts on a selection of the \shoo
 \item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by slicing the hottest loop into a separate function when needed (see \ref{ss:experim-results}).
 \end{itemize}
 
-\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
+\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example\footnote{For {\tt rev-comp}, first run {\tt bootstrap.sh} in {\tt tinyvm/shootout/}. }. Times reported in this section have been measured in VirtualBox on an Intel Core i7-4980HQ CPU @ 2.80GHz, a different setup than the one discussed in \ref{ss:bench-setup}.
 
 \paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
 The first step consists in generating figures for the baseline (uninstrumented) benchmark version. Go to {\small\tt /home/osrkit/Desktop/tinyvm} and type:
@@ -27,7 +27,6 @@ $ tinyvm shootout/scripts/bench/n-body
 LOAD_IR shootout/n-body/bench.ll
 bench(50000000)
 REPEAT 10 bench(50000000)
-QUIT
 \end{verbatim}
 \end{small}
 
@@ -49,15 +48,14 @@ LOAD_IR shootout/n-body/bench.ll
 INSERT_OSR 5 NEVER OPEN UPDATE IN bench AT %8 CLONE
 bench(50000000)
 REPEAT 10 bench(50000000)
-QUIT
 \end{verbatim}
 \end{small}
 
-\noindent Note that the second line inserts a never-firing open OSR point at basic block labeled with {\tt \%8} (actually {\tt <label>:8}) in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
+\noindent Note that the second line inserts a never-firing open OSR point at basic block {\tt \%8} labeled with {\tt <label>:8} in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
 
 The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon platform. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
-\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
+\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs (\mytable\ref{tab:sameFun}). The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
 \begin{small}
 \begin{verbatim}
 $ tinyvm shootout/scripts/finalAlwaysFire/n-body
@@ -73,11 +71,10 @@ INSERT_OSR 95 ALWAYS SLVD UPDATE IN advance AT
         %entry TO advance AT %entry AS advance_OSR
 bench(50000000)
 REPEAT 10 bench(50000000)
-QUIT
 \end{verbatim}
 \end{small}
 
-\noindent The second line inserts an always-firing resolved OSR point at the beginning of basic block {\tt \%entry} in function {\tt advance} of file {\small\tt shootout/n-body/finalAlwaysFire.ll}, generating a continuation function called {\tt advance\_OSR}. A branch weight of 95\% is given as a hint for the LLVM native code generation back-end that OSR firing is a high-probability event. The time per trial was $\approx5.876$s.
+\noindent The second line inserts an always-firing resolved OSR point at the beginning of basic block {\tt \%entry} in function {\tt advance} of file {\small\tt shootout/n-body/finalAlwaysFire.ll}, generating a continuation function called {\tt advance\_OSR}. A branch weight of 95\% is given as a hint to the LLVM native code generation back-end that OSR firing is a high-probability event. The time per trial was $\approx5.876$s.
 
 The never-firing OSR execution used as baseline is as follows:
 \begin{small}
@@ -100,7 +97,6 @@ $ tinyvm shootout/scripts/instrTime/open/n-body
 \begin{verbatim}
 Time spent in stub generation: 0.000012835 sec
 Time spent in OSR point insertion: 0.000013219 sec
-Time spent in IR verification: 0.000060297 sec
 \end{verbatim}
 \end{small}
 
@@ -115,7 +111,6 @@ $ tinyvm shootout/scripts/instrTime/final/n-body
 \begin{verbatim}
 Time spent in creating cont. func.: 0.000075849 sec
 Time spent in OSR point insert.: 0.000009409 sec
-Time spent in IR verification: 0.000069923 sec
 \end{verbatim}
 \end{small}
 
