@@ -24,7 +24,7 @@ $ cd ~/Desktop/mcvm
 $ ./mcvm -jit_feval_opt false <
          benchmarks/scripts/base/odeRK4
 ***********************************************
-     McVM - The McLab Virtual Machine v1.0     
+     McVM - The McLab Virtual Machine v1.0
 Visit http://www.sable.mcgill.ca for more info.
 ***********************************************
 
@@ -50,12 +50,27 @@ $ ./mcvm -jit_feval_opt false <
 \end{verbatim}
 \end{small}
 
-\noindent The experiment duration on our platform was $\approx2$m, with a time per trial of $\approx32.536$s (discarding the warm-up run). The resulting speedup for the base code caching mechanism was thus $32.866/32.536=1.010$, slightly different than the one reported in \mytable\ref{tab:feval} on the Intel Xeon platform, for which we repeated each experiment $10$ times.
+\noindent The experiment duration on our platform was $\approx2$m, with a time per trial of $\approx32.537$s (discarding the warm-up run). The resulting speedup for the base code caching mechanism was thus $32.867/32.537=1.010$, slightly different than the one reported in \mytable\ref{tab:feval} on the Intel Xeon platform, for which we repeated each experiment $10$ times.
 
 We can now set an upper bound for speedups by measuring the running time when the code has been optimized by hand inserting direct calls in place of {\tt feval} instructions:
 
 \begin{small}
 \begin{verbatim}
 $ ./mcvm < benchmarks/scripts/direct/odeRK4
+***********************************************
+     McVM - The McLab Virtual Machine v1.0
+Visit http://www.sable.mcgill.ca for more info.
+***********************************************
+
+>: >: Compiling function: "testSH_direct"
+Compiling function: "odeRK4_testSHfun"
+Compiling function: "testSHfun"
+Compiling function: "rhsSteelHeat"
+[TOC] Elapsed time: 11.776950 seconds
+ t y_RK4
+   0.0000  1.000000
+  20.0000 227.364633
 \end{verbatim}
 \end{small}
+
+\noindent In this scenario McVM can compile the whole program ahead of time, as {\tt rhsSteelHeat} is not invoked through an {\tt feval} call anymore. A comparison of the running times suggests a rough $32.537/11.777=2.791$ speedup for by-hand optimization w.r.t. the baseline version.
