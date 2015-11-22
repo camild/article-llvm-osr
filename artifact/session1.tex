@@ -34,6 +34,6 @@ TinyVM> DUMP isord
 \end{verbatim}
 \end{small}
 
-\noindent
+\noindent A $\phi$-node {\tt \%i.01} is used to represent the index of the C {\tt for} loop, and is set to {\tt \%10} when reached from the loop header (basic block {\tt \%2}) {\em after} a loop iteration. In fact, as a result of {\small \tt -O1} optimizations, with {\tt n>1} execution jumps from the function entrypoint {\tt \%0} directly into the loop body, initializing the $\phi$-node with {\tt 1}.
 
 %In a usage scenario in which input arrays are large, we might want to perform dynamic inlining as early as possible. We can thus insert 
