@@ -4,7 +4,7 @@
 
 McVM is a virtual machine for MATLAB developed at McGill University. As a by-product of our project, we ported it from the LLVM legacy JIT to MCJIT, and later extended it with a new specialization mechanism for {\tt feval} calls. The source code for this version along with the MATLAB benchmarks listed in \mysection\ref{ss:bench-setup} are publicly available at \url{https://github.com/dcdelia/mcvm}.
 
-Experiments reported in \mytable\ref{tab:feval} can be repeated using a number of scripts provided along with a McVM build in {\small\tt /home/osrkit/Desktop/mcvm/}. Pre-requirements for McVM compilation are header files for a number of scientific libraries (ATLAS, BLAS, and LAPACKE) and the Boehm garbage collector, which can be built automatically using the script {\tt bootstrap.sh} provided in the repository.
+Experiments reported in \mytable\ref{tab:feval} can be repeated using a number of scripts provided along with a McVM build in {\small\tt /home/osrkit/Desktop/mcvm/}. %Pre-requirements for McVM compilation are header files for a number of scientific libraries (ATLAS, BLAS, and LAPACKE) and the Boehm garbage collector, which can be built automatically using the script {\tt bootstrap.sh} provided in the repository.
 
 For each benchmark {\tt X}, {\small\tt benchmarks/scripts/} contains three MATLAB scripts to use as input for {\tt mcvm}:
 
@@ -34,7 +34,7 @@ Compiling function: "testSHfun"
 Compiling function: "rhsSteelHeat"
 Compiling function: "testSHfun"
 Compiling function: "rhsSteelHeat"
-[TOC] Elapsed time: 32.866556 seconds
+[TOC] Elapsed time: 20.141959 seconds
  t y_RK4
    0.0000  1.000000
   20.0000 227.364633
@@ -50,7 +50,7 @@ $ ./mcvm -jit_feval_opt false <
 \end{verbatim}
 \end{small}
 
-\noindent The experiment duration on our platform was $\approx2$m, with a time per trial of $\approx32.537$s (discarding the warm-up run). The resulting speedup for the base code caching mechanism was thus $32.867/32.537=1.010$, slightly different than the one reported in \mytable\ref{tab:feval} on the Intel Xeon platform, for which we repeated each experiment $10$ times.
+\noindent The experiment duration on our platform was $\approx2$m, with an average time per trial of $\approx 19.836$s (manually computed by averaging the elapsed time figures from the console, after discarding the warm-up run). The resulting speedup for the base code caching mechanism was thus $20.142/19.836=1.015\times$, slightly different than the one reported in \mytable\ref{tab:feval} on the Intel Xeon platform, for which we repeated each experiment $10$ times.
 
 We can now set an upper bound for speedups by measuring the running time when the code has been optimized by hand inserting direct calls in place of {\tt feval} instructions:
 
@@ -62,14 +62,14 @@ $ ./mcvm < benchmarks/scripts/direct/odeRK4
 Compiling function: "odeRK4_testSHfun"
 Compiling function: "testSHfun"
 Compiling function: "rhsSteelHeat"
-[TOC] Elapsed time: 11.776950 seconds
+[TOC] Elapsed time: 7.977169 seconds
  t y_RK4
    0.0000  1.000000
   20.0000 227.364633
 \end{verbatim}
 \end{small}
 
-\noindent In this scenario McVM can compile the whole program ahead of time, as {\tt rhsSteelHeat} is not invoked through an {\tt feval} call anymore. A comparison of the running times suggests a rough $32.537/11.777=2.791$ speedup for by-hand optimization w.r.t. the baseline version.
+\noindent In this scenario McVM can compile the whole program ahead of time, as {\tt rhsSteelHeat} is not invoked through an {\tt feval} call anymore. A comparison of the running times suggests a rough $20.142/7.977=2.525\times$ speedup for by-hand optimization w.r.t. the baseline version.
 
 We can now try to assess the speedup from our {\tt feval} optimization technique on {\tt odeRK4}:
 
@@ -90,14 +90,14 @@ Compiling function: "testSHfun"
 Compiling function: "rhsSteelHeat"
 Type conversion required for variable y
 Type conversion required for variable $t10
-[TOC] Elapsed time: 12.214164 seconds
+[TOC] Elapsed time: 8.450570 seconds
  t y_RK4
    0.0000  1.000000
   20.0000 227.364633
 \end{verbatim}
 \end{small}
 
-\noindent The execution time ratio between the base version and the optimized code that we JIT-compile is thus $32.867/12.214=2.691$. We can observe that compensation code is generated to perform unboxing of IIR variables {\tt y} and {\tt \$t10} so that execution can correctly resume from the optimized code.
+\noindent The execution time ratio between the base version and the optimized code that we JIT-compile is thus $20.142/8.451=2.383$. Notice that compensation code is generated to perform unboxing of IIR variables {\tt y} and {\tt \$t10} (``Type conversion required...'') so that execution can correctly resume from the optimized code.
 
 We can finally evaluate the speedup enabled by our code caching mechanism for the compilation of continuation functions by running:
 \begin{small}
@@ -107,5 +107,5 @@ $ ./mcvm -jit_feval_opt true <
 \end{verbatim}
 \end{small}
 
-\noindent The experiment duration was $\approx1$m, with a time per trial of $\approx11.817$s (discarding the warm-up run). The resulting speedup w.r.t. is thus $32.867/11.817=2.781$.
+\noindent The experiment duration was $\approx1$m, with a time per trial of $\approx11.817$s (discarding the warm-up run). The resulting speedup w.r.t. is thus $20.142/8.006=2.516$.
 
