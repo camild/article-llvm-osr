@@ -2,10 +2,11 @@
 
 \subsubsection{Session 1: OSR instrumentation in \osrkit}
 
-\tinyvm\ implements a code generator for open OSR points that can dynamically inline a method whose address cannot be determined when the calling function is compiled. In the example from \myfigure\ref{fi:isord-example}, a comparator function {\tt c} is passed as argument to function {\tt isord}, which checks whether an array {\tt v} is ordered according to the criterion encoded in {\tt c}.
+\tinyvm\ implements a code generator for open OSR points that can dynamically inline function calls to targets that cannot be statically determined. In the example from \myfigure\ref{fi:isord-example}, a comparator function {\tt c} is passed as argument to function {\tt isord}, which checks whether an array {\tt v} of numbers is ordered according to the criterion encoded in {\tt c}.
 
-To interactively reproduce the experiment presented in \mysection\ref{se:osr-llvm}, we provide under the folder {\small\tt tinyvm/isord} a C driver {\small\tt inline.c} with an LLVM IR counterpart {\small\tt inline.ll} (generated with {\small\tt clang -S -emit-llvm -O1 inline.c}).
+To interactively reproduce the experiment presented in \mysection\ref{se:osr-llvm}, we provide under the folder {\small\tt tinyvm/isord} a C module {\small\tt inline.c} with an LLVM IR counterpart {\small\tt inline.ll} (generated with {\small\tt clang -S -emit-llvm -O1 inline.c}).
 
+\vspace{0.2em}
 We can load the IR module in \tinyvm\ and show the code generated for method {\tt isord} with:
 \begin{small}
 \begin{verbatim}
@@ -34,9 +35,9 @@ TinyVM> DUMP isord
 \end{verbatim}
 \end{small}
 
-\noindent A $\phi$-node {\tt \%i.01} is used to represent the index of the C {\tt for} loop, and is set to {\tt \%10} when reached from the loop header (basic block {\tt \%2}) {\em after} a loop iteration. In fact, as a result of {\small \tt -O1} optimizations, with {\tt n>1} execution jumps from the function entrypoint {\tt \%0} directly into the loop body, initializing the $\phi$-node with {\tt 1}. Comparator {\tt c} is invoked with a tail call, storing its return value into virtual register {\tt \%8}.
+\noindent A $\phi$-node {\tt \%i.01} is used to represent the index of the {\tt for} loop from the C code, and is set to {\tt \%10} when reached from the loop header (basic block {\tt \%2}) {\em after} a loop iteration. In fact, as a result of {\small \tt -O1} optimizations, when {\tt n>1} execution jumps from the function entrypoint {\tt \%0} directly into the loop body, initializing the $\phi$-node with {\tt 1}. Comparator {\tt c} is invoked with a tail call, storing its return value into virtual register {\tt \%8}.
 
-OSR points can be inserted with the {\tt INSERT\_OSR} command, which allows several combinations of features (see {\tt HELP} for details). In this session we will modify {\tt isord} so that when the loop body is entered for the first time, an OSR is promptly fired:
+OSR points can be inserted with the {\tt INSERT\_OSR} command, which allows several combinations of features (see {\tt HELP} for an exhaustive list). In this session we will modify {\tt isord} so that when the loop body is entered for the first time, an OSR is aggressively fired:
 
 \begin{small}
 \begin{verbatim}
@@ -45,7 +46,7 @@ TinyVM> INSERT_OSR 100 ALWAYS OPEN UPDATE IN isord
 \end{verbatim}
 \end{small}
 
-\noindent \tinyvm\ will {\tt UPDATE} the function in the following way: an {\tt ALWAYS}-true OSR condition is verified before executing instruction {\tt \%4}, firing an {\tt OPEN} OSR transition to the {\tt DYN\_INLINE} code generator that will inline any indirect function call to the function pointer {\tt \%c}. We choose {\tt \%4} as location for the OSR as it is the first non-$\phi$ instruction in the loop body, and we hint the LLVM back-end through profiling metadata that the OSR firing is {\tt 100}\%-likely.
+\noindent \tinyvm\ will {\tt UPDATE} the function in the following way: an {\tt ALWAYS}-true OSR condition is checked before executing instruction {\tt \%4} to fire an {\tt OPEN} OSR transition to the {\tt DYN\_INLINE} code generator, which will inline any indirect function call to the function pointer {\tt \%c}. We choose {\tt \%4} as location for the OSR as it is the first non-$\phi$ instruction in the loop body; we also hint the LLVM back-end through IR profiling metadata that firing an OSR is {\tt 100}\%-likely.
 
 The IR will now look like:
 
@@ -73,9 +74,9 @@ OSR_fire:                        ; preds = %.lr.ph
 \end{verbatim}
 \end{small}
 
-\noindent\osrkit\ has split the {\tt \%.lr.ph} basic block at the OSR point, also adding an {\tt OSR\_fire} block to transfer the execution state to {\tt isord\_stub} and eventually return the {\tt OSRRet} value. 
+\noindent\osrkit\ has split the {\tt \%.lr.ph} block for the OSR condition, also adding an {\tt OSR\_fire} block to transfer the execution state to {\tt isord\_stub} and eventually return the {\tt OSRRet} value. 
 
-We can now let {\tt isord} run on a dynamically initialized array through the {\tt driver} method, which takes as argument the array length to use. The method will populate with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we will ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
+We can now let {\tt isord} run on an array dynamically initialized from the {\tt driver} method, which takes as argument the array length to use. The method will also populate it with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we can ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
 
 \begin{small}
 \begin{verbatim}
