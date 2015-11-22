@@ -89,7 +89,35 @@ $ tinyvm shootout/scripts/finalAlwaysFire/
 
 \noindent with a time per trial of $\approx5.669$s. The average time per OSR transition is therefore $(5.876-5.669)/50000000=4.14\cdot 10^{-9}$s. Compare this with the result of \ref{tab:sameFun}.
 
-\paragraph{Question Q3.} The third experiment measures the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function
+\paragraph{Question Q3.} The third experiment measures the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function. To perform one trial for the open OSR experiment of \ref{tab:instrTime}, run:
+\begin{small}
+\begin{verbatim}
+$ tinyvm shootout/scripts/instrTime/open/n-body
+\end{verbatim}
+\end{small}
+\noindent which yielded:
+\begin{small}
+\begin{verbatim}
+Time spent in stub generation: 0.000012835 sec
+Time spent in OSR point insertion: 0.000013219 sec
+Time spent in IR verification: 0.000060297 sec
+\end{verbatim}
+\end{small}
 
+\noindent One trial for the resolved OSR experiment can be run as follows:
+\begin{small}
+\begin{verbatim}
+$ tinyvm shootout/scripts/instrTime/final/n-body
+\end{verbatim}
+\end{small}
+\noindent obtaining, e.g.:
+\begin{small}
+\begin{verbatim}
+Time spent in creating cont. func.: 0.000075849 sec
+Time spent in OSR point insert.: 0.000009409 sec
+Time spent in IR verification: 0.000069923 sec
+\end{verbatim}
+\end{small}
 
+\noindent Notice that in a virtualized environment there may be significant fluctuations in the reported times across different trials.
 
