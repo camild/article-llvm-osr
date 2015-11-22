@@ -31,7 +31,7 @@ QUIT
 \end{verbatim}
 \end{small}
 
-\noindent which loads the IR code, performs a warm-up execution of the benchmark, and then 10 repetitions. The experiment duration is $\approx1$m, with a time per trial $\approx5.725$s. 
+\noindent which loads the IR code, performs a warm-up execution of the benchmark, and then 10 repetitions. The experiment duration was $\approx1$m, with a time per trial of $\approx5.725$s. 
 
 The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
 
@@ -53,14 +53,41 @@ QUIT
 \end{verbatim}
 \end{small}
 
-\noindent The experiment duration is $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+\noindent Note that the second line inserts a never-firing open OSR point at instruction labeled with {\tt 8} (actually {\tt <label>:8}) in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
 
-\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The script for this is:
+The experiment duration was $\approx1$m with a time per trial: $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+
+\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
 \begin{small}
 \begin{verbatim}
-tinyvm$ tinyvm shootout/scripts/bench/n-body
+$ tinyvm shootout/scripts/finalAlwaysFire/n-body
 \end{verbatim}
 \end{small}
+
+\noindent which runs:
+
+\begin{small}
+\begin{verbatim}
+LOAD_IR shootout/n-body/finalAlwaysFire.ll
+INSERT_OSR 95 ALWAYS SLVD UPDATE IN advance AT 
+        %entry TO advance AT %entry AS advance_OSR
+bench(50000000)
+REPEAT 10 bench(50000000)
+QUIT
+\end{verbatim}
+\end{small}
+
+\noindent The second line inserts an always-firing resolved OSR point at instruction labeled with {\tt \%entry} in function {\tt advance} of file {\tt shootout/n-body/finalAlwaysFire.ll}, generating a continuation function called {\tt advance\_OSR}. A branch weight of 95\% is given as a hint for the LLVM native code generation back-end that OSR firing is a high-probability event. The time per trial was $\approx5.876$s.
+
+The never-firing OSR execution used as baseline is as follows:
+\begin{small}
+\begin{verbatim}
+$ tinyvm shootout/scripts/finalAlwaysFire/
+     baseline/n-body
+\end{verbatim}
+\end{small}
+
+\noindent with a time per trial of $\approx5.669$s. The average time per OSR transition is therefore $(5.876-5.669)/50000000=4.14\cdot 10^{-9}$s. Compare this with the result of \ref{tab:sameFun}.
 
 \paragraph{Question Q3.} 
 
