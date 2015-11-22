@@ -22,7 +22,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Abstract}
 
-\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. The artifact supports exploring how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact includes an interactive VM called \tinyvm\ for loading, inspecting, instrumenting, and executing IR code. It is distributed as a preconfigured Oracle VirtualBox VM.
+\osrkit\ is a library that enables On-Stack Replacement (OSR) at arbitrary places in LLVM IR code. The artifact is designed to explore how \osrkit\ can instrument IR code to support OSR transitions in the LLVM MCJIT runtime environment. A running example is presented based on the \texttt{isord} case study discussed in Section 3. We also support repeating experiments Q1, Q2, and Q3 presented in Section 5. The artifact includes an interactive VM called \tinyvm\ for loading, inspecting, instrumenting, and executing IR code. The package is a preconfigured Oracle VirtualBox VM.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,7 +81,7 @@ The artifact was tested in Oracle VirtualBox 5.0.10.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Installation}
 
-To install the artifact, just import the appliance in Oracle VirtualBox.
+To install the artifact, just import the appliance in Oracle VirtualBox, which installs Linux LXLE. Open the {\tt README} file on the {\tt Desktop} folder for further info on the artifact and the Linux distribution.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Experiment Workflow}
