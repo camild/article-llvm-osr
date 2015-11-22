@@ -30,7 +30,7 @@
 
 The main component of the artifact is an interactive VM called \tinyvm\ built on top of the LLVM MCJIT runtime environment and the \osrkit\ library. The VM provides an interactive environment for IR manipulation, JIT-compilation, and execution of functions either generated at run-time or loaded from disk: for instance, it allows the user to insert OSR points in loaded functions, run optimization passes on them, display their CFGs, and repeatedly invoke a function for a specified amount of times. \tinyvm\ supports dynamic library loading and linking, and includes a helper component for MCJIT that simplifies tasks such as handling multiple IR modules, symbol resolution in presence of multiple versions of a function, and tracking machine-level generated code and data objects.
 
-\tinyvm\ is located in {\small\tt /home/osrkit/Desktop/tinyvm/} and runs a case-insensitite command-line interpreter:
+\tinyvm\ is located in {\small\tt /home/osrkit/Desktop/tinyvm/} and runs a case-insensitive command-line interpreter:
 \begin{small}
 \begin{verbatim}
 osrkit@osrkit-AE:~/Desktop/tinyvm$ tinyvm

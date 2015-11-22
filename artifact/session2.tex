@@ -2,12 +2,12 @@
 
 \subsubsection{Session 2: Performance Figures}
 
-The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled in {\tt clang} with both {\tt -O0} and {\tt -O1}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code, each in two versions:
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled to LLVM IR using {\tt clang} as described in \mysection\ref{ss:bench-setup}. For each benchmark {\tt X}, {\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt -O1}) IR code, each in two versions:
 
 \begin{itemize}[parsep=0pt]
 \item {\tt bench} and {\tt bench-O1}: IR code of the benchmark;
 %\item {\tt codeQuality}: IR code of the benchmark with the hottest loop instrumented with a never-firing OSR;
-\item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by turning the body of the hottest loop into a separate function (see \ref{ss:experim-results}).
+\item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by slicing the hottest loop into a separate function when needed (see \ref{ss:experim-results}).
 \end{itemize}
 
 \noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example. Times reported in this section have been measured in VirtualBox on an Intel Core i7 platform, a different setup than the one discussed in \ref{ss:bench-setup}.
@@ -33,7 +33,7 @@ QUIT
 
 \noindent which loads the IR code, performs a warm-up execution of the benchmark, and then 10 repetitions. The experiment duration was $\approx1$m, with a time per trial of $\approx5.725$s. 
 
-The benchmark with the hottest loop instrumented with a never-firing OSR can be run as follows:
+The benchmark with the hottest loop instrumented with a never-firing OSR point can be run with:
 
 \begin{small}
 \begin{verbatim}
@@ -53,9 +53,9 @@ QUIT
 \end{verbatim}
 \end{small}
 
-\noindent Note that the second line inserts a never-firing open OSR point at basic block labeled with {\tt 8} (actually {\tt <label>:8}) in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
+\noindent Note that the second line inserts a never-firing open OSR point at basic block labeled with {\tt \%8} (actually {\tt <label>:8}) in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
 
-The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon platform. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
 \paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs. The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
 \begin{small}
@@ -77,7 +77,7 @@ QUIT
 \end{verbatim}
 \end{small}
 
-\noindent The second line inserts an always-firing resolved OSR point at instruction labeled with {\tt \%entry} in function {\tt advance} of file {\tt shootout/n-body/finalAlwaysFire.ll}, generating a continuation function called {\tt advance\_OSR}. A branch weight of 95\% is given as a hint for the LLVM native code generation back-end that OSR firing is a high-probability event. The time per trial was $\approx5.876$s.
+\noindent The second line inserts an always-firing resolved OSR point at the beginning of basic block {\tt \%entry} in function {\tt advance} of file {\small\tt shootout/n-body/finalAlwaysFire.ll}, generating a continuation function called {\tt advance\_OSR}. A branch weight of 95\% is given as a hint for the LLVM native code generation back-end that OSR firing is a high-probability event. The time per trial was $\approx5.876$s.
 
 The never-firing OSR execution used as baseline is as follows:
 \begin{small}
@@ -119,6 +119,4 @@ Time spent in IR verification: 0.000069923 sec
 \end{verbatim}
 \end{small}
 
-\noindent Notice that in a virtualized environment there may be significant fluctuations in the reported times across different trials.
-
-
+\noindent Notice that in a virtualized environment there may be significant fluctuations in the reported times across different trials, as we rely on a high-resolution timer for measurements\footnote{\url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC4503740/}.}.
