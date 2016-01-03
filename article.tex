@@ -59,14 +59,19 @@
 \newcommand{\noauthorea}{}
 \input{header}
 
+\usepackage[firstpage]{draftwatermark}
+\SetWatermarkText{\hspace*{8in}\raisebox{5in}{\includegraphics[scale=1]{ae-cgo.pdf}}}
+\SetWatermarkAngle{0}
+
 \begin{document}
 
 \special{papersize=8.5in,11in}
 \setlength{\pdfpageheight}{\paperheight}
 \setlength{\pdfpagewidth}{\paperwidth}
 
-\conferenceinfo{CONF 'yy}{Month d--d, 20yy, City, ST, Country} 
-\copyrightyear{2015} 
+%\conferenceinfo{CGO '16}{March d--d, 2016, Barcelona, ST, Spain}
+\conferenceinfo{CGO '16}{March d--d, 2016, Barcelona, ??, Spain} 
+\copyrightyear{2016} 
 \copyrightdata{978-1-nnnn-nnnn-n/yy/mm} 
 \doi{nnnnnnn.nnnnnnn}
 
@@ -96,7 +101,7 @@
 
 \authorinfo{Daniele Cono D'Elia \and Camil Demetrescu}
            {{\small Dept. of Computer, Control, and Management Engineering\\Sapienza University of Rome}} % affil
-           {\{demetres,delia\}@dis.uniroma1.it} % email
+           {\{delia,demetres\}@dis.uniroma1.it} % email
 
 \maketitle
 
