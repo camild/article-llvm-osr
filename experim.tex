@@ -88,56 +88,6 @@ LLVM 3.6.2, 64 bit.
 
 For each benchmark we analyze CPU time performing 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
 
-
-
-\begin{table*}[ht]
-\begin{center}
-\begin{small}
-\ifdefined \noauthorea
-    \begin{adjustbox}{width=1\textwidth}
-\fi
-    \begin{tabular}{ |c|c|c|c|c|c|c|c| }
-        \cline{3-8}
-        \multicolumn{2}{c|}{} & \multicolumn{3}{c|}{{\em Unoptimized version}} & \multicolumn{3}{c|}{{\em Optimized code}} \\
-        \hline
-        Benchmark & Fired OSR transitions & Live values & Avg time (ns) & Overhead (\%) & Live values & Avg time (ns) & Overhead (\%) \\ 
-        \hline
-        \hline
-        b-trees & 605\,377\,887 & 2 & 1.731 & 3.96 & 3 & 0.974 & 2.29 \\ 
-        \hline
-        b-trees-large & 2\,689\,946\,975 & 2 & 1.749 & 3.90 & 3 & 1.423 & 3.30 \\ 
-        \hline
-        fannkuch & 399\,168\,000 & 0 & 1.793 & 1.73 & 0 & 0.621 & 0.59 \\ 
-        \hline
-        fasta & 400\,000\,000 & 2 & 2.335 & 7.39 & 2 & 2.699 & 8.23 \\ 
-        \hline
-        fasta-redux & 400\,000\,000 & 4 & 2.306 & 20.13 & 4 & 2.269 & 19.69 \\ 
-        \hline
-        mbrot & 256\,000\,000 & 15 & 5.016 & 2.40 & 15 & 3.628 & 1.75 \\ 
-        \hline
-        mbrot-large & 1\,024\,000\,000 & 15 & 5.268 & 2.53 & 15 & 4.637 & 2.25 \\ 
-        \hline
-        n-body & 50\,000\,000 & 3 & 2.952 & 1.65 & 3 & 6.929 & 3.59 \\ 
-        \hline
-        n-body-large & 500\,000\,000 & 3 & 2.953 & 1.64 & 3 & 6.953 & 3.60 \\ 
-        \hline
-        rev-comp & 6\,172\,843 & 8 & -10.158 & -1.10 & 8 & 8.267 & 0.92 \\ 
-        \hline
-        sp-norm & 1\,210\,000\,000 & 2 & 0.772 & 14.76 & 2 & -0.030 & -0.57 \\ 
-        \hline 
-        sp-norm-large & 19\,360\,000\,000 & 2 & 0.778 & 14.89 & 2 & -0.003 & -0.07 \\
-        \hline
-    \end{tabular} 
-\ifdefined \noauthorea
-    \end{adjustbox}
-\fi
-\end{small}
-\end{center}
-\caption{\label{tab:sameFun}Cost of OSR transitions to the same function. Overhead is assessed w.r.t. running time of the never-firing version. %For each benchmark we report the number of fired OSR transitions, the number of live values passed at the OSR point, the average time for performing a transition, and the slowdown of the always-firing w.r.t. the never-firing version calculated on total CPU time.
-}
-\end{table*}
-\ifauthorea{\newline}{}
-
 \subsection{Results}
 \label{ss:experim-results}
 %We now present the main results of our experimental evaluation, aimed at addressing the following questions:
@@ -192,6 +142,58 @@ reported in \mytable\ref{tab:sameFun}.
 
 \mytable\ref{tab:sameFun} reports estimates of the average cost of performing an OSR transition to a clone of the running function. For each benchmark we compute the time difference between the scenarios in which an always-firing and a never-firing resolved OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
 
+\begin{table}[ht]
+\begin{center}
+\begin{small}
+% hack for wrapping: http://tex.stackexchange.com/questions/54069/table-with-text-wrapping
+\newcolumntype{A}{>{\centering\arraybackslash}m{1.33cm}}
+\newcolumntype{B}{>{\centering\arraybackslash}m{0.83cm}}
+\newcolumntype{C}{>{\centering\arraybackslash}m{1.15cm}}
+\ifdefined \noauthorea
+    \begin{adjustbox}{width=1\columnwidth}
+\fi
+    \begin{tabular}{ |c|A|B|C|B|C| }
+        \cline{3-6}
+        \multicolumn{2}{c|}{} & \multicolumn{2}{c|}{{\em Unoptimized code}} & \multicolumn{2}{c|}{{\em Optimized code}} \\
+        \hline
+        Benchmark & Fired OSRs (M) & Live values & Avg time (ns) & Live values & Avg time (ns) \\ 
+        \hline
+        \hline
+        b-trees & 605 & 2 & 1.731 & 3 & 0.974 \\ 
+        \hline
+        b-trees-large & 2\,690 & 2 & 1.749 & 3 & 1.423 \\ 
+        \hline
+        fannkuch & 399 & 0 & 1.793 & 0 & 0.621 \\ 
+        \hline
+        fasta & 400 & 2 & 2.335 & 2 & 2.699 \\ 
+        \hline
+        fasta-redux & 400 & 4 & 2.306 & 4 & 2.269 \\ 
+        \hline
+        mbrot & 256 & 15 & 5.016 & 15 & 3.628 \\ 
+        \hline
+        mbrot-large & 1\,024 & 15 & 5.268 & 15 & 4.637 \\ 
+        \hline
+        n-body & 50 & 3 & 2.952 & 3 & 6.929 \\ 
+        \hline
+        n-body-large & 500 & 3 & 2.953 & 3 & 6.953 \\ 
+        \hline
+        rev-comp & 6 & 8 & -10.158 & 8 & 8.267 \\ 
+        \hline
+        sp-norm & 1\,210 & 2 & 0.772 & 2 & -0.030 \\ 
+        \hline 
+        sp-norm-large & 19\,360 & 2 & 0.778 & 2 & -0.003 \\
+        \hline
+    \end{tabular} 
+\ifdefined \noauthorea
+    \end{adjustbox}
+\fi
+\end{small}
+\end{center}
+\caption{\label{tab:sameFun}Cost of OSR transitions to the same function. For each benchmark we report the number of fired OSR transitions (rounded to millions), the number of live values passed at the OSR point, and the average time for a transition.
+}
+\end{table}
+\ifauthorea{\newline}{}
+
 Hot code portions for OSR point insertion have been identified as in Q1. %the experiments for code quality. 
 \ifdefined\fullver %%%%%%
 However, as for hot loops we want to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. 
@@ -212,7 +214,7 @@ For open OSR points, we report the time spent in inserting the OSR point in the 
 Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} thus comes with an additional column in which time is normalized against the number of IR instructions in the target.
 
 
-\begin{table}[t]
+\begin{table}[b]
 \begin{small}
 \ifdefined \noauthorea
     \begin{adjustbox}{width=1\columnwidth}
