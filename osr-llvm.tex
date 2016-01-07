@@ -101,12 +101,6 @@ McOSR~\cite{lameed2013modular} is a library for inserting open OSR points design
 %variables maintained by the VM.
 Due to the complexity in preserving the SSA form when updating the IR, McOSR supports the insertion of OSR points only at loop headers (in particular, those having exactly two predecessors), while \osrkit\ provides support for arbitrary locations.
 
-Finally, \osrkit\ introduces a number of features that are absent from McOSR, including: support for compensation code and for resolved OSR points; compatibility with the new MCJIT's design; support for maintaining multiple versions of the same function, thus making speculative optimizations and deoptimization possibly easier to handle.
-%{\bf XXXXXXXXXXXXX}
-
+Notice also that \osrkit\ introduces a number of features that are absent from McOSR, including: support for compensation code and resolved OSR points; compatibility with the new MCJIT's design; support for maintaining multiple versions of the same function, thus making speculative optimizations and deoptimization possibly easier to handle.
 
 %\osrkit\ improves upon McOSR in a number of aspects, including: 1) support for multiple versions of a function active in memory at the same time; 2) support for resolved OSR and compensation code; 3) insertion of OSR points at arbitrary locations (e.g., at function calls), and not only at loop headers; 4) compatibility with the new MCJIT's design (e.g., a JIT-ted function or module cannot be updated); 5) simpler design that does not require pools of globals to transfer live variables.
-
-%McOSR has no provision for compensation code.
-%To handle an OSR to f(), McOSR creates a second entrypoint in it that disrupts many optimizations. McOSR tries to mitigate this issue by recompiling f() again once the execution is resumed and f() has returned, but this affects only future invocations of f(). In contrast, we generate an optimized, dedicated OSR continuation function. Also, we transfer live variables as arguments to the continuation function, possibly using registers, which is likely to be more efficient than McOSR that spills them to a pool of global variables maintained by the VM.
-%McOSR supports OSR insertion only at loop headers due to the complexity in preserving the SSA form when updating the IR. Additionally, McOSR has no provision for resolved OSR points and for having multiple versions of the same function, making speculative optimization & deoptimization more expensive to handle.
