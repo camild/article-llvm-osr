@@ -15,16 +15,6 @@ In this section we present a preliminar experimental study of \osrkit\ aimed at 
 \item[Q4] What kind of benefits can we expect by using OSR in a production environment based on LLVM?
 \end{description}
 
-
-\ifdefined\noauthorea
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=0.9\columnwidth]{figures/comp-code/comp-code.eps}
-\caption{\protect\input{figures/comp-code/caption}}
-\end{center}
-\end{figure}
-\fi
-
 \begin{table}[t]
 \begin{center}
 \begin{small}
@@ -75,7 +65,7 @@ We address questions Q1-Q3 by analyzing the performance of \osrkit\ on a selecti
 
 %We generated the IR modules for our experiments with {\tt clang}, starting from the C version of the \shootout\ suite. In the version of the code we will refer to as {\em unoptimized}, no LLVM optimization passes were performed on the code other than {\em mem2reg}, which promotes memory references to register references and constructs the SSA (Static Single Assignment) form. Starting from this version, we then generate an {\em optimized} version performing using the LLVM IR optimizer {\tt opt} at {\tt -O1} optimization level.
 
-\noindent We generate the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. To cover scenarios where OSR machinery is inserted in programs with different optimization levels, we consider two versions: 1) {\em unoptimized}, where the only LLVM optimization we perform is {\tt mem2reg} to promote stack references to registers and construct the SSA form; 2) {\em optimized}, where we apply {\tt opt} {\tt -O1} to the unoptimized version.
+We generate the IR modules for our experiments with {\tt clang} starting from the C version of the \shootout\ suite. To cover scenarios where OSR machinery is inserted in programs with different optimization levels, we consider two versions: 1) {\em unoptimized}, where the only LLVM optimization we perform is {\tt mem2reg} to promote stack references to registers and construct the SSA form; 2) {\em optimized}, where we apply {\tt opt} {\tt -O1} to the unoptimized version.
 
 %In the version of the code we will refer to as {\em unoptimized}, the only LLVM optimization pass we perform is {\tt mem2reg}, which promotes stack references to registers and constructs the SSA form.
 %\ifdefined \fullver
@@ -151,7 +141,26 @@ reported in \mytable\ref{tab:sameFun}.
 
 \mytable\ref{tab:sameFun} reports estimates of the average cost of performing an OSR transition to a clone of the running function. For each benchmark we compute the time difference between the scenarios in which an always-firing and a never-firing resolved OSR point is inserted in the code, respectively; we then normalize this difference against the number of fired OSR transitions.
 
-\begin{table}[ht]
+Hot code portions for OSR point insertion have been identified as in Q1. %the experiments for code quality. 
+\ifdefined\fullver %%%%%%
+However, as for hot loops we want to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. 
+\fi %%%%%%%%%%%%%
+Depending on the characteristics of the hot loop, we either transform its body into a separate function and instrument its entrypoint, or, when the loop calls a method with a high self time, we insert an OSR point at the beginning of that method.
+
+Normalized differences reported in the table represent a reasonable estimate of the average cost of firing an OSR transition.
+%, which in other words is the cost of performing a function call passing the live variables as arguments. 
+Reported numbers are in the order of nanoseconds, and might be negative due to instruction cache effects.
+
+\paragraph{Q3: OSR Machinery Generation.}
+We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function and the time spent in the IR manipulation. Locations for OSR points are chosen as in 
+%the experiments about code quality, 
+Q1, and the target function is a clone of the source function.
+
+For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
+
+\noindent Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} hence comes with an additional column in which time is normalized against the number of IR instructions in the target function.
+
+\begin{table}[t]
 \begin{center}
 \begin{small}
 % hack for wrapping: http://tex.stackexchange.com/questions/54069/table-with-text-wrapping
@@ -203,27 +212,7 @@ reported in \mytable\ref{tab:sameFun}.
 \end{table}
 \ifauthorea{\newline}{}
 
-Hot code portions for OSR point insertion have been identified as in Q1. %the experiments for code quality. 
-\ifdefined\fullver %%%%%%
-However, as for hot loops we want to perform an OSR transition at each iteration, inserting an always-firing OSR point in the enclosing function is not an option, because the function we OSR into should then fire an OSR itself, leading eventually to a very large number of active stack frames. 
-\fi %%%%%%%%%%%%%
-Depending on the characteristics of the hot loop, we either transform its body into a separate function and instrument its entrypoint, or, when the loop calls a method with a high self time, we insert an OSR point at the beginning of that method.
-
-Normalized differences reported in the table represent a reasonable estimate of the average cost of firing an OSR transition.
-%, which in other words is the cost of performing a function call passing the live variables as arguments. 
-Reported numbers are in the order of nanoseconds, and might be negative due to instruction cache effects.
-
-\paragraph{Q3: OSR Machinery Generation.}
-We now discuss the overhead of the \osrkit\ library for inserting OSR machinery in the IR of a function. \mytable\ref{tab:instrTime} reports for each benchmark the number of IR instructions in the instrumented function and the time spent in the IR manipulation. Locations for OSR points are chosen as in 
-%the experiments about code quality, 
-Q1, and the target function is a clone of the source function.
-
-For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
-
-Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} thus comes with an additional column in which time is normalized against the number of IR instructions in the target.
-
-
-\begin{table}[b]
+\begin{table}[t]
 \begin{small}
 \ifdefined \noauthorea
     \begin{adjustbox}{width=1\columnwidth}
@@ -269,7 +258,7 @@ Experimental results presented in this section suggest that inserting an OSR poi
 %- either when inserting a resolved OSR point, or from the callback method invoked at an open OSR transition - 
 is likely to be dominated by the cost of its compilation (Q3). For a front-end, the choice whether to insert an OSR point into a function for dynamic optimization merely depends on the trade-off between the expected benefits in terms of execution time and the overheads from generating and JIT-compiling an optimized version of the function; compared to these two operations, the cost of OSR-related operations is negligible.
 
-\begin{table}[h!]
+\begin{table}[ht!]
 \begin{small}
 \ifdefined \noauthorea
     \begin{adjustbox}{width=1\columnwidth}
@@ -306,7 +295,7 @@ We report the speed-ups enabled by our technique in \mytable\ref{tab:feval}, usi
 
 Unfortunately, we are unable to compute direct performance metrics for the solution by Lameed and Hendren since its source code has not been released. Figures in their paper~\cite{lameed2013feval} show that for the very same MATLAB programs the speed-up of the OSR-based approach is on average within $30.1\%$ of the speed-up of hand-coded optimization (ranging from $9.2\%$ to $73.9\%$); for the JIT-based approach, the average grows to $84.7\%$ (ranging from $75.7\%$ to $96.5\%$).
 
-\noindent Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
+Our optimization technique yields speed-ups that are very close to the upper bound given from by-hand optimization; in the {\em worst case} ({\tt odeRK4} benchmark), we observe a $94.1\%$ when the optimized code is generated on the fly, which becomes $97.5\%$ when a cached version is available. Compared to their OSR-based approach, the compensation entry block is a key driver of improved performance, as the benefits from a better type-specialized whole function body outweigh those from performing a direct call using boxed arguments and return values in place of the original \feval.
 
 
 

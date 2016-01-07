@@ -59,6 +59,15 @@ The OSR inserter uses the $b$ and $g$ objects collected by the compiler extensio
 \newcommand{\fOptIR}{$f^{IR}_{opt}$}
 \newcommand{\gTarget}{$g$}
 
+\ifdefined\noauthorea
+\begin{figure}[!ht]
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{figures/comp-code/comp-code.eps}
+\caption{\protect\input{figures/comp-code/caption}}
+\end{center}
+\end{figure}
+\fi
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Optimizer.}
 The optimizer is called as {\tt gen} function in the open OSR stub (see \myfigure\ref{fi:overview-osr-open}) created by the OSR inserter. It receives the IR version \fIR\ of function \fbase, the basic block of \fIR\ where the OSR was fired, and the native code address of the \feval\ target function \gTarget. As a first step, the optimizer looks up the IR code of \gTarget\ by its address and checks whether a previously compiled version of \fBase\ specialized with \gTarget\ was previously cached.
@@ -90,7 +99,7 @@ Compensation code might also be required to materialize an IR object for an IIR 
 Once a state mapping object has been constructed, the optimizer calls our OSR library to generate the continuation function for the OSR transition and eventually compiles it.
 A pointer to the compiled function is stored in the code cache and returned to the stub, which invokes it through an indirect call passing the live state saved at the OSR point.
 \else
-\noindent Once a state mapping has been constructed, the optimizer asks \osrkit\ to generate the continuation function for the OSR transition and then executes it.
+Once a state mapping has been constructed, the optimizer asks \osrkit\ to generate the continuation function for the OSR transition and then executes it.
 \fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
