@@ -6,7 +6,7 @@ McVM is a virtual machine for MATLAB developed at McGill University. As a by-pro
 
 Experiments reported in \mytable\ref{tab:feval} (Question Q4) can be repeated using a number of scripts provided along with a McVM build in {\small\tt /home/osrkit/Desktop/mcvm/}. %Pre-requirements for McVM compilation are header files for a number of scientific libraries (ATLAS, BLAS, and LAPACKE) and the Boehm garbage collector, which can be built automatically using the script {\tt bootstrap.sh} provided in the repository.
 
-For each benchmark {\tt X}, {\small\tt benchmarks/scripts/} contains three MATLAB scripts to use as input for {\tt mcvm}:
+\noindent For each benchmark {\tt X}, {\small\tt benchmarks/scripts/} contains three MATLAB scripts to use as input for {\tt mcvm}:
 
 \begin{itemize}[parsep=0pt]
 \item {\tt base/X}: single run of original code (i.e., {\tt feval}-based);
@@ -18,15 +18,17 @@ For each benchmark {\tt X}, {\small\tt benchmarks/scripts/} contains three MATLA
 
 To determine a baseline for speedup computation, we let {\tt mcvm} perform a single run of the original code with no {\tt feval} optimization. Note that we can selectively enable or disable {\tt feval} optimization using the {\tt -jit\_feval\_opt} flag:
 
+%***********************************************
+%     McVM - The McLab Virtual Machine v1.0
+%Visit http://www.sable.mcgill.ca for more info.
+%***********************************************
+
 \begin{small}
 \begin{verbatim}
 $ cd ~/Desktop/mcvm
 $ ./mcvm -jit_feval_opt false <
          benchmarks/scripts/base/odeRK4
-***********************************************
-     McVM - The McLab Virtual Machine v1.0
-Visit http://www.sable.mcgill.ca for more info.
-***********************************************
+[...]
 >: >: Compiling function: "testSH"
 Compiling function: "odeRK4"
 Compiling function: "testSHfun"
@@ -40,7 +42,7 @@ Compiling function: "rhsSteelHeat"
 \end{verbatim}
 \end{small}
 
-\noindent To measure the performance of McVM code caching mechanism, we let the benchmark run multiple times in the same instance of the VM:
+\noindent To measure the performance of McVM's code caching mechanism, we let the benchmark run multiple times in the same instance of the VM:
 
 \begin{small}
 \begin{verbatim}

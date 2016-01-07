@@ -37,7 +37,7 @@ TinyVM> DUMP isord
 
 \noindent A $\phi$-node {\tt \%i.01} is used to represent the index of the {\tt for} loop from the C code, and is set to {\tt \%10} when reached from the loop header (basic block {\tt \%2}) {\em after} a loop iteration. In fact, as a result of {\small \tt -O1} optimizations, when {\tt n>1} execution jumps from the function entrypoint {\tt \%0} directly into the loop body, initializing the $\phi$-node with {\tt 1}. Comparator {\tt c} is invoked with a tail call, storing its return value into virtual register {\tt \%8}.
 
-OSR points can be inserted with the {\tt INSERT\_OSR} command, which allows several combinations of features (see {\tt HELP} for an exhaustive list). In this session we will modify {\tt isord} so that when the loop body is entered for the first time, an OSR is fired right away:
+OSR points can be inserted with the {\tt INSERT\_OSR} command, which allows several combinations of features (see {\tt HELP} for an exhaustive list). In this session we will modify {\tt isord} so that when the loop body is entered for the first time, an OSR is fired right away\footnote{Commands for inserting OSR points controlled by a counter have similar syntax and are not discussed here for the sake of brevity. For an example, please refer to script {\tt isord/inline-counter.tvm} included in \tinyvm.}:
 
 \begin{small}
 \begin{verbatim}
@@ -78,7 +78,7 @@ OSR_fire:                        ; preds = %.lr.ph
 
 \noindent\osrkit\ has split the {\tt \%.lr.ph} block for the OSR condition, also adding an {\tt OSR\_fire} block to transfer the execution state to {\tt isord\_stub} and eventually return the {\tt OSRRet} value. 
 
-We can now let {\tt isord} run on an array dynamically initialized from the {\tt driver} method, which takes as argument the array length to use. The method will also populate it with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we can ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
+\noindent We can now let {\tt isord} run on an array dynamically initialized from the {\tt driver} method, which takes as argument the array length to use. The method will also populate it with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we can ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
 
 \begin{small}
 \begin{verbatim}
