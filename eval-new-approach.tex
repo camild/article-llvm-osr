@@ -90,7 +90,7 @@ As a next step, the optimizer asks the IIR compiler to lower \fOptIIR\ to \fOptI
 
 Using this map and the one stored during the lowering of \fIIR, the optimizer constructs a state mapping between \fIR\ and \fOptIR. In particular, for each value in \fOptIR\ live at the continuation block we determine whether we can assign to it a live value passed at the OSR point, or a compensation code is required to set its value.
 
-Notice that, since the type inference engine yields more accurate results for \fOptIIR\ compared to \fIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point. An example of compensation code is reported in \myfigure\ref{fig:comp-code}.
+Notice that, since the type inference engine yields more accurate results for \fOptIIR\ compared to \fIIR, the IIR compiler can in turn generate efficient specialized IR code for representing and manipulating IIR variables, and compensation code is typically required to unbox or downcast some of the live values passed at the OSR point.
 \ifdefined \fullver
 Compensation code might also be required to materialize an IR object for an IIR variable that were previously accessed through get/set methods from the environment. %TODO
 \fi
@@ -101,6 +101,8 @@ A pointer to the compiled function is stored in the code cache and returned to t
 \else
 Once a state mapping has been constructed, the optimizer asks \osrkit\ to generate the continuation function for the OSR transition and then executes it.
 \fi
+
+An example of compensation code is reported in \myfigure\ref{fig:comp-code}. In order to correctly resume the execution at the first instruction in basic block {\tt \%31}, the entrypoint of {\tt odeEuler}'s continuation function executes a sequence of instructions that: 1) convert to {\tt double} two live variables -- i.e., function arguments {\tt \%2} and {\tt \%4} -- that are represented as boxed values in the unoptimized function, 2) look up in McVM's environment {\tt \%9} the pointer to the object instantiated for the symbol description stored at address {\tt 0x32152960}, and 3) allocate on the stack two buffers of 16 and 24 bytes, respectively.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Discussion.}
