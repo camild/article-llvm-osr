@@ -2,10 +2,10 @@
 
 \subsubsection{Session 1: OSR instrumentation in \osrkit}
 
-\tinyvm\ implements a code generator for open OSR points that can dynamically inline function calls to targets that cannot be statically determined. In the example from \myfigure\ref{fi:isord-example}, a comparator function {\tt c} is passed as argument to function {\tt isord}, which checks whether an array {\tt v} of numbers is ordered according to the criterion encoded in {\tt c}.
+\tinyvm\ implements a code generator for open OSR points that can dynamically inline function calls to targets that cannot be statically determined. In the example from \ifseparateAEdoc{Figure 4}{\myfigure\ref{fi:isord-example}}, a comparator function {\tt c} is passed as argument to function {\tt isord}, which checks whether an array {\tt v} of numbers is ordered according to the criterion encoded in {\tt c}.
 
 %To interactively reproduce the experiment presented in \mysection\ref{se:osr-llvm}, we provide under the folder {\small\tt tinyvm/isord} a C module {\small\tt inline.c} with an LLVM IR counterpart {\small\tt inline.ll} (generated with {\small\tt clang -S -emit-llvm -O1 inline.c}).
-To interactively run a dynamic inlining experiment (see \mysection\ref{se:osr-llvm}), we provide under the folder {\small\tt tinyvm/isord} a C module {\small\tt inline.c} with an LLVM IR counterpart {\small\tt inline.ll} (generated with {\small\tt clang -S -emit-llvm -O1 inline.c}).
+To interactively run a dynamic inlining experiment (see \ifseparateAEdoc{Section 3}{\mysection\ref{se:osr-llvm}}), we provide under the folder {\small\tt tinyvm/isord} a C module {\small\tt inline.c} with an LLVM IR counterpart {\small\tt inline.ll} (generated with {\small\tt clang -S -emit-llvm -O1 inline.c}).
 
 \vspace{0.2em}
 We can load the IR module in \tinyvm\ and show the code generated for method {\tt isord} with:
@@ -20,7 +20,7 @@ TinyVM> DUMP isord
 \end{verbatim}
 \end{small}
 
-\noindent Displayed virtual register names and basic block labels will often differ from those reported in \myfigure\ref{fig:isordfrom}, which have been refactored for the sake of readability. In particular, the loop body of {\tt isord} will look like:
+\noindent Displayed virtual register names and basic block labels will often differ from those reported in \ifseparateAEdoc{Figure 5}{\myfigure\ref{fig:isordfrom}}, which have been refactored for the sake of readability. In particular, the loop body of {\tt isord} will look like:
 
 \begin{small}
 \begin{verbatim}
@@ -80,7 +80,7 @@ OSR_fire:                        ; preds = %.lr.ph
 
 \noindent\osrkit\ has split the {\tt \%.lr.ph} block for the OSR condition, also adding an {\tt OSR\_fire} block to transfer the execution state to {\tt isord\_stub} and eventually return the {\tt OSRRet} value. 
 
-\noindent We can now let {\tt isord} run on an array dynamically initialized by the {\tt driver} method, which takes as argument the array length to use. The method will also populate it with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we can ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
+\ifseparateAEdoc{}{\noindent}We can now let {\tt isord} run on an array dynamically initialized by the {\tt driver} method, which takes as argument the array length to use. The method will also populate it with elements ordered for the comparator in use (see {\small\tt inline.c}). For instance, we can ask {\tt driver} to set up an array of $100000$ elements and run {\tt isord} on it:
 
 \begin{small}
 \begin{verbatim}
@@ -95,7 +95,7 @@ Evaluated to: 1
 \end{verbatim}
 \end{small}
 
-\noindent The method returns $1$ as result, indicating that the vector is sorted. Compared to \myfigure\ref{fig:isordascto}, the IR code generated for the OSR continuation function {\tt isordto} ({\tt DUMP isordto}) is slightly different, as the MCJIT compiler detects that additional optimizations (e.g., loop strength reduction) are possible and performs them right away\footnote{Notice that lowering to native code an IR function in MCJIT (which happens in \tinyvm\ when first executing it) may alter its IR representation.}. We expect code generated for {\tt isord\_stub} to be identical up to renaming to the IR reported in \myfigure\ref{fig:isordstub}.
+\noindent The method returns $1$ as result, indicating that the vector is sorted. Compared to \ifseparateAEdoc{Figure 7}{\myfigure\ref{fig:isordascto}}, the IR code generated for the OSR continuation function {\tt isordto} ({\tt DUMP isordto}) is slightly different, as the MCJIT compiler detects that additional optimizations (e.g., loop strength reduction) are possible and performs them right away\footnote{Notice that lowering to native code an IR function in MCJIT (which happens in \tinyvm\ when first executing it) may alter its IR representation.}. We expect code generated for {\tt isord\_stub} to be identical up to renaming to the IR reported in {\ifseparateAEdoc{Figure 6}{\myfigure\ref{fig:isordstub}}.
 
 To show native code generated by the MCJIT back-end, we can run \tinyvm\ in a debugger with {\small\tt gdb tinyvm} and leverage the debugging interface of MCJIT. For instance, once {\tt driver} has been invoked, we can switch to the debugger with {\tt CTRL-Z} and display the x86-64 code for any JIT-compiled method with:
 \begin{small}

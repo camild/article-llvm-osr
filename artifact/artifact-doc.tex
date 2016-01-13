@@ -1,13 +1,40 @@
-\documentclass{sigplanconf}
+\documentclass[nocopyrightspace,10pt]{sigplanconf}
 
 \usepackage{url}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{balance}
 
 \newcommand{\osrkit}{{\sf OSRKit}}
 \newcommand{\tinyvm}{{\sf TinyVM}}
+\newcommand{\shootout}{{\tt shootout}}
+
+\usepackage[firstpage]{draftwatermark}
+\SetWatermarkText{\hspace*{8in}\raisebox{5in}{\includegraphics[scale=1]{../ae-cgo.pdf}}}
+\SetWatermarkAngle{0}
+
+\hypersetup{
+  colorlinks = true, % colours links instead of ugly boxes
+  urlcolor = black, %  colour for external hyperlinks
+  linkcolor = black, % colour of internal links
+  %citecolor = black, % colour of citations
+  pdftitle = {Flexible On-Stack Replacement in LLVM},
+  pdfauthor= {Daniele Cono D'Elia, Camil Demetrescu}
+}
 
 \begin{document}
 
+\title{Flexible On-Stack Replacement in LLVM}
+
+\authorinfo{Daniele Cono D'Elia \and Camil Demetrescu}
+           {{\small Dept. of Computer, Control, and Management Engineering\\Sapienza University of Rome, Italy}} % affil
+           {\{delia,demetres\}@dis.uniroma1.it} % email
+
+\maketitle
+
 \special{papersize=8.5in,11in}
+
+\newcommand{\separateAEdoc}{}
 
 \input{artifact}
 

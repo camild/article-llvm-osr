@@ -2,15 +2,15 @@
 
 \subsubsection{Session 2: Performance Figures}
 
-The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks~\cite{shootout}. Each benchmark was compiled to LLVM IR using {\tt clang} as described in \mysection\ref{ss:bench-setup}. For each benchmark {\tt X}, {\small\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt opt -O1}) IR code, each in two versions:
+The experiments can be repeated by executing scripts on a selection of the \shootout\ benchmarks\ifseparateAEdoc{ [7]}{~\cite{shootout}}. Each benchmark was compiled to LLVM IR using {\tt clang} as described in \ifseparateAEdoc{Section 5.1}{\mysection\ref{ss:bench-setup}}. For each benchmark {\tt X}, {\small\tt tinyvm/shootout/X/} contains the unoptimized and optimized ({\tt opt -O1}) IR code, each in two versions:
 
 \begin{itemize}[parsep=0pt]
 \item {\tt bench} and {\tt bench-O1}: IR code of the benchmark;
 %\item {\tt codeQuality}: IR code of the benchmark with the hottest loop instrumented with a never-firing OSR;
-\item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by slicing the hottest loop into a separate function when needed (see \ref{ss:experim-results}).
+\item {\tt finalAlwaysFire} and {\tt finalAlwaysFire-O1}: IR code of the benchmark preprocessed by slicing the hottest loop into a separate function when needed (see \ifseparateAEdoc{Section 5.2}{\ref{ss:experim-results}}).
 \end{itemize}
 
-\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example\footnote{For {\tt rev-comp}, first run {\tt bootstrap.sh} in {\tt tinyvm/shootout/}. }. Times reported in this section have been measured in VirtualBox on an Intel Core i7-4980HQ CPU @ 2.80GHz, a different setup than the one discussed in \ref{ss:bench-setup}.
+\noindent Each experiment runs a warm-up phase followed by 10 identical trials. We manually collected the figures from the console output and analyzed them, computing confidence intervals. We show how to run the code using {\tt n-body} as an example\footnote{For {\tt rev-comp}, first run {\tt bootstrap.sh} in {\tt tinyvm/shootout/}. }. Times reported in this section have been measured in VirtualBox on an Intel Core i7-4980HQ CPU @ 2.80GHz, a different setup than the one discussed in \ifseparateAEdoc{Section 5.1}{\ref{ss:bench-setup}}.
 
 \paragraph{Question Q1.} The purpose of the experiment is assessing the impact on code quality due to the presence of OSR points.
 The first step consists in generating figures for the baseline (uninstrumented) benchmark version. Go to {\small\tt /home/osrkit/Desktop/tinyvm} and type:
@@ -32,7 +32,7 @@ REPEAT 10 bench(50000000)
 
 \noindent which loads the IR code, performs a warm-up execution of the benchmark, and then 10 repetitions. The experiment duration was $\approx1$m, with a time per trial of $\approx5.725$s. 
 
-The benchmark with the hottest loop instrumented with a never-firing OSR point can be run with:
+\ifseparateAEdoc{\noindent}{}The benchmark with the hottest loop instrumented with a never-firing OSR point can be run with:
 
 \begin{small}
 \begin{verbatim}
@@ -53,9 +53,9 @@ REPEAT 10 bench(50000000)
 
 \noindent Note that the second line inserts a never-firing open OSR point at basic block {\tt \%8} labeled with {\tt <label>:8} in function {\tt bench} of file {\tt shootout/n-body/bench.ll}, using branch weight of 5\% as a hint for the LLVM native code generation back-end that OSR firing is very unlikely. 
 
-The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ref{fig:code-quality-base} on the Intel Xeon platform. The experiment for building \ref{fig:code-quality-O1} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
+The experiment duration was $\approx1$m with a time per trial of $\approx5.673$s. The ratio $5.673/5.725=0.990$ for {\tt n-body} is slightly smaller than the one reported in \ifseparateAEdoc{Figure 10}{\ref{fig:code-quality-base}} on the Intel Xeon platform. The experiment for building \ifseparateAEdoc{Figure 11}{\ref{fig:code-quality-O1}} uses scripts in {\tt bench-O1} and {\tt codeQuality-O1}.
 
-\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs (\mytable\ref{tab:sameFun}). The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
+\paragraph{Question Q2.} This experiment assesses the run-time overhead of an OSR transition by measuring the duration of an always-firing OSR execution and of a never-firing OSR execution, and reporting the difference averaged over the number of fired OSRs (\ifseparateAEdoc{Table 2}{\mytable\ref{tab:sameFun}}). The always-firing OSR execution for {\tt n-body} (unoptimized) is as follows:
 \begin{small}
 \begin{verbatim}
 $ tinyvm shootout/scripts/finalAlwaysFire/n-body
@@ -84,9 +84,9 @@ $ tinyvm shootout/scripts/finalAlwaysFire/
 \end{verbatim}
 \end{small}
 
-\noindent with a time per trial of $\approx5.669$s. The average time per OSR transition is therefore $(5.876-5.669)/50000000=4.14\cdot 10^{-9}$s. Compare this with the result of \ref{tab:sameFun}.
+\noindent with a time per trial of $\approx5.669$s. The average time per OSR transition is therefore $(5.876-5.669)/50000000=4.14\cdot 10^{-9}$s. Compare this with the result of \ifseparateAEdoc{Table 2}{\ref{tab:sameFun}}.
 
-\paragraph{Question Q3.} The third experiment measures the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function. To perform one trial for the open OSR experiment of \ref{tab:instrTime}, run:
+\paragraph{Question Q3.} The third experiment measures the overhead of \osrkit\ for inserting OSR points and creating a stub or a continuation function. To perform one trial for the open OSR experiment of \ifseparateAEdoc{Table 3}{\ref{tab:instrTime}}, run:
 \begin{small}
 \begin{verbatim}
 $ tinyvm shootout/scripts/instrTime/open/n-body
