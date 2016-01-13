@@ -63,6 +63,12 @@
 \SetWatermarkText{\hspace*{8in}\raisebox{5in}{\includegraphics[scale=1]{ae-cgo.pdf}}}
 \SetWatermarkAngle{0}
 
+\hypersetup{
+  pdftitle = {Flexible On-Stack Replacement in LLVM},
+  pdfauthor= {Daniele Cono D'Elia, Camil Demetrescu}
+}
+
+
 \begin{document}
 
 \special{papersize=8.5in,11in}
@@ -149,9 +155,10 @@ On-stack replacement, just-in-time compilation, code optimization, deoptimizatio
 %\AtEveryBibitem{\clearfield{note}}    % clears notes
 
 
-%\newpage
+\newpage
 %\nobalance
-%\input{artifact/artifact}
+\balance
+\input{artifact/artifact}
 
 \end{document}
 
