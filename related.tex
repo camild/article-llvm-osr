@@ -38,10 +38,6 @@ In the Graal VM, which is centered on the principle of speculative optimizations
 
 % TODO only if we have space: HotpathVM
 
-\ifdefined\noauthorea
-\balance
-\fi
-
 \paragraph{Prospect.} Prospect~\cite{susskraut2010prospect} is an LLVM-based framework for parallelizing a sequential application. The IR is instrumented through two LLVM passes to enable switching at run-time between a slow and a fast variant of the code, which are both compiled statically. Helper methods are used to save and eventually restore registers, while stack-local variables are put on a separate {\tt alloca} stack rather than on the stack frame so that the two variants result into similar and thus interchangeable stack layouts.
 \ifdefined \fullver
 Speculative variables~\cite{susskraut2009speculation} are introduced when the slow variant needs to track state (e.g., information for out-of-bound checks) that is missing in the fast variant. Switching operations are performed by Prospect at user-specified checkpoints in the original code.

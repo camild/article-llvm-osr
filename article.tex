@@ -142,7 +142,7 @@ On-stack replacement, just-in-time compilation, code optimization, deoptimizatio
 \input{eval-new-approach}
 \input{experim}
 \input{related}
-%\balance is now called inside related
+\balance % putting it in the middle of 'related' screws the spacing between the last two lines in the left column!
 \input{conclusions}
 
 %\appendix
@@ -157,6 +157,7 @@ On-stack replacement, just-in-time compilation, code optimization, deoptimizatio
 % We recommend abbrvnat bibliography style.
 
 \bibliographystyle{abbrvshortnat}
+%\bibliographystyle{abbrvnat}
 \bibliography{bibliography/biblio.bib}
 %\AtEveryBibitem{\clearlist{language}} % clears language
 %\AtEveryBibitem{\clearfield{note}}    % clears notes
