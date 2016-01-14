@@ -158,7 +158,7 @@ Q1, and the target function is a clone of the source function.
 
 For open OSR points, we report the time spent in inserting the OSR point in the function and in generating the stub; both operations do not depend on the size of the function. For resolved OSR points, we report the time spent in inserting the OSR point and in generating the \fosrto\ function.
 
-\noindent Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} hence comes with an additional column in which time is normalized against the number of IR instructions in the target function.
+Not surprisingly, constructing a continuation function takes longer than the other operations (i.e., up to 1 ms vs. 20-40 us), as it involves cloning and manipulating the body of the target function and thus depends on its size: \mytable\ref{tab:instrTime} hence comes with an additional column in which time is normalized against the number of IR instructions in the target function.
 
 \begin{table}[t]
 \begin{center}
