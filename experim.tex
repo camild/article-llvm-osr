@@ -79,11 +79,11 @@ For question Q4, we analyze the impact of the optimization technique presented i
 %\footnote{\url{http://web.cecs.pdx.edu/~gerry/nmm/mfiles/}}
 
 All the experiments were performed on an octa-core 2.3 Ghz Intel Xeon E5-4610 v2 with 256+256KB of L1 cache, 2MB of L2 cache, 16MB of shared L3 cache and 128 GB of DDR3 main memory, running Debian Wheezy 7, Linux kernel 3.2.0,
-\ifdefined \fullver
+%\ifdefined \fullver
 LLVM 3.6.2 (Release build, compiled using gcc 4.7.2), 64 bit.
-\else
-LLVM 3.6.2, 64 bit.
-\fi
+%\else
+%LLVM 3.6.2, 64 bit.
+%\fi
 
 For each benchmark we analyze CPU time performing 10 trials preceded by an initial warm-up iteration; reported confidence intervals are stated at 95\% confidence level.
 

@@ -36,14 +36,21 @@
 \usepackage{amsfonts,amsmath,amssymb}
 \usepackage{url}
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\hypersetup{colorlinks=false,pdfborder={0 0 0}}
 \usepackage{textcomp}
 \usepackage{longtable}
 \usepackage{multirow,booktabs}
 \usepackage{enumitem}
 \usepackage{adjustbox}
 \usepackage{balance}
+
+% avoid footnotes above figures placed at bottom
+\usepackage[bottom,flushmargin]{footmisc}
+\setlength{\footnotemargin}{1.5mm}
+\renewcommand{\footnotelayout}{\hspace{1mm}}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0}}
+
 
 %%%%%%%%
 \iffalse
@@ -135,7 +142,7 @@ On-stack replacement, just-in-time compilation, code optimization, deoptimizatio
 \input{eval-new-approach}
 \input{experim}
 \input{related}
-\balance
+%\balance is now called inside related
 \input{conclusions}
 
 %\appendix
